@@ -28,6 +28,9 @@
     "description" : "SwaggerHub API Auto Mocking",
     "url" : "https://virtserver.swaggerhub.com/manasesjesus/c8y_openapi/1.0.0"
   } ],
+  "security" : [ {
+    "basicAuth" : [ ]
+  } ],
   "tags" : [ {
     "name" : "Managed Object",
     "description" : "The managed object resource represents individual managed objects that can be queried and deleted.\n"
@@ -78,6 +81,12 @@
     }
   },
   "components" : {
+    "securitySchemes" : {
+      "basicAuth" : {
+        "type" : "http",
+        "scheme" : "basic"
+      }
+    },
     "parameters" : {
       "managedObjectId" : {
         "name" : "id",
