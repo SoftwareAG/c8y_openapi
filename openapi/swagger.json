@@ -19,14 +19,14 @@
     "url" : "https://cumulocity.com/guides/about-doc/intro-documentation/"
   },
   "servers" : [ {
-    "description" : "SwaggerHub API Auto Mocking",
-    "url" : "https://virtserver.swaggerhub.com/manasesjesus/c8y_openapi/1.0.0"
+    "description" : "Cumulocity IoT - test",
+    "url" : "https://glenn.cumulocity.com"
   }, {
     "description" : "Cumulocity IoT Production Server",
     "url" : "https://api.cumulocity.com/"
   }, {
-    "description" : "Cumulocity IoT - test",
-    "url" : "https://glenn.cumulocity.com"
+    "description" : "SwaggerHub API Auto Mocking",
+    "url" : "https://virtserver.swaggerhub.com/manasesjesus/c8y_openapi/1.0.0"
   } ],
   "tags" : [ {
     "name" : "Managed Object",
