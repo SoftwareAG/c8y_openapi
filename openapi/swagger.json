@@ -72,17 +72,10 @@
             }
           },
           "401" : {
-            "$ref" : "#/components/responses/UnauthorizedError"
+            "$ref" : "#/components/responses/unauthorizedError"
           },
           "404" : {
-            "description" : "Device not found",
-            "content" : {
-              "application/vnd.com.nsn.cumulocity.error+json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inventoryNotFound"
-                }
-              }
-            }
+            "$ref" : "#/components/responses/inventoryObjectNotFound"
           }
         }
       }
@@ -116,7 +109,7 @@
       }
     },
     "responses" : {
-      "UnauthorizedError" : {
+      "unauthorizedError" : {
         "description" : "Authentication information is missing or invalid",
         "content" : {
           "application/vnd.com.nsn.cumulocity.error+json" : {
@@ -150,26 +143,33 @@
             }
           }
         }
+      },
+      "inventoryObjectNotFound" : {
+        "description" : "Managed object not found",
+        "content" : {
+          "application/vnd.com.nsn.cumulocity.error+json" : {
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "error" : {
+                  "type" : "string",
+                  "example" : "inventory/Not Found"
+                },
+                "message" : {
+                  "type" : "string",
+                  "example" : "Finding device data from database failed"
+                },
+                "info" : {
+                  "type" : "string",
+                  "example" : "https://www.cumulocity.com/guides/reference-guide/#error_reporting"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "schemas" : {
-      "inventoryNotFound" : {
-        "type" : "object",
-        "properties" : {
-          "error" : {
-            "type" : "string",
-            "example" : "inventory/Not Found"
-          },
-          "message" : {
-            "type" : "string",
-            "example" : "Finding device data from database failed"
-          },
-          "info" : {
-            "type" : "string",
-            "example" : "https://www.cumulocity.com/guides/reference-guide/#error_reporting"
-          }
-        }
-      },
       "InventoryItem" : {
         "type" : "object",
         "required" : [ "id", "name", "manufacturer", "releaseDate" ],
