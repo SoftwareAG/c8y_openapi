@@ -187,27 +187,6 @@
         }
       }
     },
-    "schemas" : {
-      "testExampleSchema" : {
-        "type" : "object",
-        "required" : [ "id", "name", "manufacturer", "releaseDate" ],
-        "properties" : {
-          "id" : {
-            "type" : "string",
-            "format" : "sabe",
-            "example" : "d290f1ee-6c54-4b01-90e6"
-          },
-          "name" : {
-            "type" : "string",
-            "example" : "Widget Adapter"
-          },
-          "releaseDate" : {
-            "type" : "string",
-            "format" : "date-time",
-            "example" : "2016-08-29T09:12:33.001Z"
-          }
-        }
-      }
-    }
+    "schemas" : { }
   }
 }
