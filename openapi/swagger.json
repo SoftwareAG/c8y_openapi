@@ -152,14 +152,17 @@
               "type" : "object",
               "properties" : {
                 "error" : {
+                  "description" : "The type of error returned.",
                   "type" : "string",
                   "example" : "inventory/Not Found"
                 },
                 "message" : {
+                  "description" : "A human-readable message providing more details about the error.",
                   "type" : "string",
                   "example" : "Finding device data from database failed"
                 },
                 "info" : {
+                  "description" : "A URL to more information about the error code reported.",
                   "type" : "string",
                   "example" : "https://www.cumulocity.com/guides/reference-guide/#error_reporting"
                 }
