@@ -51,6 +51,9 @@
       } ],
       "get" : {
         "tags" : [ "Managed Object" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
         "summary" : "Get a specific managed object",
         "operationId" : "ManagedObjectResource",
         "description" : "Get a specific managed object (e.g. device, group, template) by a given ID.\n\nRequired roles: ROLE_INVENTORY_READ\n",
@@ -108,7 +111,7 @@
         "schema" : {
           "type" : "string",
           "minLength" : 1,
-          "example" : 1994
+          "example" : 51994
         }
       }
     },
