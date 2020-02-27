@@ -154,7 +154,7 @@
         }
       },
       "inventoryObjectFound" : {
-        "description" : "The request has succeeded and an object corresponding to the requested resource is sent in the response.",
+        "description" : "The request has succeeded and the object is sent in the response.",
         "content" : {
           "application/vnd.com.nsn.cumulocity.managedobject+json" : {
             "schema" : {
