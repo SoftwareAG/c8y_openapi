@@ -173,7 +173,23 @@
                 "id" : {
                   "description" : "Unique identifier of the object.",
                   "type" : "string",
-                  "example" : "inventory/Not Found"
+                  "example" : 51994
+                },
+                "self" : {
+                  "description" : "Link to this resource.",
+                  "type" : "string",
+                  "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/51994"
+                },
+                "name" : {
+                  "description" : "Human-readable name that is used for representing the object in user interfaces.",
+                  "type" : "string",
+                  "example" : "My tracking device"
+                },
+                "creationTime" : {
+                  "description" : "The date and time when the object was created.",
+                  "type" : "string",
+                  "format" : "date-time",
+                  "example" : "2017-12-12T22:09:06.881+01:00"
                 }
               }
             }
