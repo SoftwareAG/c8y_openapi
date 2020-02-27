@@ -110,7 +110,7 @@
     },
     "responses" : {
       "unauthorizedError" : {
-        "description" : "Authentication information is missing or invalid",
+        "description" : "Authentication information is missing or invalid.",
         "content" : {
           "application/vnd.com.nsn.cumulocity.error+json" : {
             "schema" : {
@@ -134,18 +134,10 @@
               }
             }
           }
-        },
-        "headers" : {
-          "WWW_Authenticate" : {
-            "description" : "Sent along with a 401 Unauthorized response",
-            "schema" : {
-              "type" : "string"
-            }
-          }
         }
       },
       "inventoryObjectNotFound" : {
-        "description" : "Managed object not found",
+        "description" : "Managed object not found.",
         "content" : {
           "application/vnd.com.nsn.cumulocity.error+json" : {
             "schema" : {
@@ -170,6 +162,23 @@
             }
           }
         }
+      },
+      "inventoryObjectFound" : {
+        "description" : "The request has succeeded and an object corresponding to the requested resource is sent in the response.",
+        "content" : {
+          "application/vnd.com.nsn.cumulocity.managedobject+json" : {
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "id" : {
+                  "description" : "Unique identifier of the object.",
+                  "type" : "string",
+                  "example" : "inventory/Not Found"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "schemas" : {
@@ -179,7 +188,7 @@
         "properties" : {
           "id" : {
             "type" : "string",
-            "format" : "uuid",
+            "format" : "sabe",
             "example" : "d290f1ee-6c54-4b01-90e6"
           },
           "name" : {
