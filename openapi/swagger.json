@@ -59,17 +59,7 @@
         "description" : "Get a specific managed object (e.g. device, group, template) by a given ID.\n\n**Pre-autorization:**\n\nRequired roles: ROLE_INVENTORY_READ\n",
         "responses" : {
           "200" : {
-            "description" : "search results matching criteria",
-            "content" : {
-              "application/vnd.com.nsn.cumulocity.managedobject+json" : {
-                "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/InventoryItem"
-                  }
-                }
-              }
-            }
+            "$ref" : "#/components/responses/inventoryObjectFound"
           },
           "401" : {
             "$ref" : "#/components/responses/unauthorizedError"
@@ -198,7 +188,7 @@
       }
     },
     "schemas" : {
-      "InventoryItem" : {
+      "testExampleSchema" : {
         "type" : "object",
         "required" : [ "id", "name", "manufacturer", "releaseDate" ],
         "properties" : {
