@@ -89,7 +89,7 @@
       "managedObjectId" : {
         "name" : "id",
         "in" : "path",
-        "description" : "Unique identifier of the object, automatically allocated when the object is created.\n",
+        "description" : "Unique identifier of the object.",
         "required" : true,
         "schema" : {
           "type" : "string",
@@ -107,19 +107,21 @@
               "type" : "object",
               "properties" : {
                 "error" : {
-                  "description" : "The type of error returned.",
-                  "type" : "string",
-                  "example" : "security/Unauthorized"
+                  "allOf" : [ {
+                    "$ref" : "#/components/schemas/schema40XError"
+                  }, {
+                    "example" : "security/Unauthorized"
+                  } ]
                 },
                 "message" : {
-                  "description" : "A human-readable message providing more details about the error.",
-                  "type" : "string",
-                  "example" : "Invalid credentials! : Bad credentials"
+                  "allOf" : [ {
+                    "$ref" : "#/components/schemas/schema40XMessage"
+                  }, {
+                    "example" : "Invalid credentials! : Bad credentials"
+                  } ]
                 },
                 "info" : {
-                  "description" : "A URL to more information about the error code reported.",
-                  "type" : "string",
-                  "example" : "https://www.cumulocity.com/guides/reference-guide/#error_reporting"
+                  "$ref" : "#/components/schemas/schema40XInfo"
                 }
               }
             }
@@ -134,19 +136,21 @@
               "type" : "object",
               "properties" : {
                 "error" : {
-                  "description" : "The type of error returned.",
-                  "type" : "string",
-                  "example" : "inventory/Not Found"
+                  "allOf" : [ {
+                    "$ref" : "#/components/schemas/schema40XError"
+                  }, {
+                    "example" : "inventory/Not Found"
+                  } ]
                 },
                 "message" : {
-                  "description" : "A human-readable message providing more details about the error.",
-                  "type" : "string",
-                  "example" : "Finding device data from database failed"
+                  "allOf" : [ {
+                    "$ref" : "#/components/schemas/schema40XMessage"
+                  }, {
+                    "example" : "Finding device data from database failed"
+                  } ]
                 },
                 "info" : {
-                  "description" : "A URL to more information about the error code reported.",
-                  "type" : "string",
-                  "example" : "https://www.cumulocity.com/guides/reference-guide/#error_reporting"
+                  "$ref" : "#/components/schemas/schema40XInfo"
                 }
               }
             }
@@ -161,25 +165,22 @@
               "type" : "object",
               "properties" : {
                 "id" : {
-                  "description" : "Unique identifier of the object.",
-                  "type" : "string",
-                  "example" : 51994
+                  "$ref" : "#/components/schemas/schemaObjectId"
                 },
                 "self" : {
-                  "description" : "Link to this resource.",
-                  "type" : "string",
-                  "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/51994"
+                  "$ref" : "#/components/schemas/schemaObjectSelf"
                 },
                 "name" : {
-                  "description" : "Human-readable name that is used for representing the object in user interfaces.",
-                  "type" : "string",
-                  "example" : "My tracking device"
+                  "$ref" : "#/components/schemas/schemaObjectName"
                 },
                 "creationTime" : {
-                  "description" : "The date and time when the object was created.",
-                  "type" : "string",
-                  "format" : "date-time",
-                  "example" : "2017-12-12T22:09:06.881+01:00"
+                  "$ref" : "#/components/schemas/schemaObjectcreationTime"
+                },
+                "lastUpdated" : {
+                  "$ref" : "#/components/schemas/schemaObjectLastUpdated"
+                },
+                "childDevices" : {
+                  "$ref" : "#/components/schemas/schemaObjectchildDevices"
                 }
               }
             }
@@ -187,6 +188,63 @@
         }
       }
     },
-    "schemas" : { }
+    "schemas" : {
+      "schema40XError" : {
+        "description" : "The type of error returned.",
+        "type" : "string"
+      },
+      "schema40XMessage" : {
+        "description" : "A human-readable message providing more details about the error.",
+        "type" : "string"
+      },
+      "schema40XInfo" : {
+        "description" : "A URL to more information about the error code reported.",
+        "type" : "string",
+        "example" : "https://www.cumulocity.com/guides/reference-guide/#error_reporting"
+      },
+      "schemaObjectId" : {
+        "description" : "Unique identifier of the object.",
+        "type" : "string",
+        "example" : 51994
+      },
+      "schemaObjectSelf" : {
+        "description" : "Link to this resource.",
+        "type" : "string",
+        "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/51994"
+      },
+      "schemaObjectName" : {
+        "description" : "Human-readable name that is used for representing the object in user interfaces.",
+        "type" : "string",
+        "example" : "My tracking device"
+      },
+      "schemaObjectLastUpdated" : {
+        "description" : "The date and time when the object was updated for the last time.",
+        "type" : "string",
+        "format" : "date-time",
+        "example" : "2018-07-19T12:01:50.731Z"
+      },
+      "schemaObjectcreationTime" : {
+        "description" : "The date and time when the object was created.",
+        "type" : "string",
+        "format" : "date-time",
+        "example" : "2017-12-12T22:09:06.881+01:00"
+      },
+      "schemaObjectchildDevices" : {
+        "description" : "A collection of references to child devices.",
+        "type" : "object",
+        "properties" : {
+          "self" : {
+            "description" : "Link to this resource's child devices.",
+            "type" : "string",
+            "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/51994/childDevices"
+          },
+          "references" : {
+            "description" : "An array with the references to child devices.",
+            "type" : "array",
+            "items" : { }
+          }
+        }
+      }
+    }
   }
 }
