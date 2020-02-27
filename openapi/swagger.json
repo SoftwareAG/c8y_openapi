@@ -85,12 +85,12 @@
   "components" : {
     "securitySchemes" : {
       "BasicAuthentication" : {
-        "description" : "The authorization header is formed as `Basic <Base64(<tenantID>/<c8yuser>:<password> )>`. For instance, if your tenantID, username and password are **t0071234**, **testuser** and **secret123** respectively, you can get the Base64 string with the following command:\n\n  ```shell\n  $ echo -n t0071234/testuser:secret123 | base64\n  ```\n\n  and your authorization header would look like\n  \n  ```\n  \"Authorization\": \"Basic dDAwNzEyMzQvdGVzdHVzZXI6c2VjcmV0MTIz\" \n  ```\n  \n  On UI interfaces, your username name shall be plain text in the format `<tenantID>/<c8yuser>`. \n  \n",
+        "description" : "The authorization header is formed as `Basic <Base64(<tenantID>/<c8yuser>:<password>)>`. For instance, if your tenantID, username and password are **t0071234**, **testuser** and **secret123** respectively, you can get the Base64 string with the following command:\n\n  ```shell\n  $ echo -n t0071234/testuser:secret123 | base64\n  ```\n\n  and your authorization header would look like\n  \n  ```\n  \"Authorization\": \"Basic dDAwNzEyMzQvdGVzdHVzZXI6c2VjcmV0MTIz\" \n  ```\n  \n  On UI interfaces, your username name shall be plain text in the format `<tenantID>/<c8yuser>`. \n  \n",
         "type" : "http",
         "scheme" : "basic"
       },
       "JWTAuthentication" : {
-        "description" : "Cumulocity IoT supports JWT token authentication. The HTTP header must include:\n```\n  Authorization: Bearer <<Base64 encoded JWT token>>\n```\nThe JWT token must be signed using RSA signature with SHA-256 (RS256). \nThe minimal RSA key size is 512 bit. \nYou must upload your public key to the tenant options on the “token.publicKey” category.\n",
+        "description" : "Cumulocity IoT supports JWT token authentication. The HTTP header must include:\n```\n  \"Authorization\": \"Bearer <<Base64 encoded JWT token>>\"\n```\nThe JWT token must be signed using RSA signature with SHA-256 (RS256). \nThe minimal RSA key size is 512 bit. \nYou must upload your public key to the tenant options on the “token.publicKey” category.\n",
         "type" : "http",
         "scheme" : "bearer",
         "bearerFormat" : "JWT"
