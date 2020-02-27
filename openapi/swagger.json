@@ -19,8 +19,11 @@
     "url" : "https://cumulocity.com/guides/about-doc/intro-documentation/"
   },
   "servers" : [ {
-    "description" : "Cumulocity IoT - test",
+    "description" : "Cumulocity IoT - test server",
     "url" : "https://glenn.cumulocity.com"
+  }, {
+    "description" : "Cumulocity IoT - test server",
+    "url" : "https://aaron.cumulocity.com/"
   }, {
     "description" : "Cumulocity IoT Production Server",
     "url" : "https://api.cumulocity.com/"
