@@ -37,17 +37,17 @@
     "JWTAuthentication" : [ ]
   } ],
   "tags" : [ {
-    "name" : "Managed Object",
+    "name" : "Managed Objects",
     "description" : "The inventory stores devices and other assets relevant to your IoT solution. We refer to them as managed objects.\n"
   } ],
   "x-tagGroups" : [ {
     "name" : "Inventory",
-    "tags" : [ "Managed Object", "Device Group" ]
+    "tags" : [ "Managed Objects", "Device Group" ]
   } ],
   "paths" : {
     "/inventory/managedObjects/" : {
       "get" : {
-        "tags" : [ "Managed Object" ],
+        "tags" : [ "Managed Objects" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
         } ],
@@ -66,7 +66,7 @@
         "$ref" : "#/components/parameters/managedObjectId"
       } ],
       "get" : {
-        "tags" : [ "Managed Object" ],
+        "tags" : [ "Managed Objects" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
         } ],
@@ -111,6 +111,15 @@
           "type" : "string",
           "minLength" : 1,
           "example" : 51994
+        }
+      },
+      "queryParam_currentPage" : {
+        "name" : "currentPage",
+        "in" : "query",
+        "description" : "The current page of the paginated results.",
+        "schema" : {
+          "type" : "number",
+          "minimum" : 1
         }
       }
     },
