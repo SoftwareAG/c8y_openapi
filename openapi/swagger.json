@@ -66,6 +66,9 @@
         "operationId" : "getManagedObjects",
         "description" : "Get all managed objects (e.g. devices, assets, etc.) of your tenant.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
+          "200" : {
+            "$ref" : "#/components/responses/res_inventoryObjectFound"
+          },
           "401" : {
             "$ref" : "#/components/responses/res_unauthorizedError"
           }
@@ -249,6 +252,16 @@
         "description" : "The request has succeeded and the object is sent in the response.",
         "content" : {
           "application/vnd.com.nsn.cumulocity.managedobject+json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/schemaResponseObject"
+            }
+          }
+        }
+      },
+      "res_inventoryObjectCollectionFound" : {
+        "description" : "The request has succeeded and the collection of objects is sent in the response.",
+        "content" : {
+          "application/vnd.com.nsn.cumulocity.managedobjectcollection+json" : {
             "schema" : {
               "$ref" : "#/components/schemas/schemaResponseObject"
             }
