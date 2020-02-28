@@ -67,7 +67,7 @@
         "description" : "Get all managed objects (e.g. devices, assets, etc.) of your tenant.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
           "401" : {
-            "$ref" : "#/components/responses/unauthorizedError"
+            "$ref" : "#/components/responses/res_unauthorizedError"
           }
         }
       }
@@ -86,13 +86,13 @@
         "description" : "Get a specific managed object (e.g. device, group, template) by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
           "200" : {
-            "$ref" : "#/components/responses/inventoryObjectFound"
+            "$ref" : "#/components/responses/res_inventoryObjectFound"
           },
           "401" : {
-            "$ref" : "#/components/responses/unauthorizedError"
+            "$ref" : "#/components/responses/res_unauthorizedError"
           },
           "404" : {
-            "$ref" : "#/components/responses/inventoryObjectNotFound"
+            "$ref" : "#/components/responses/res_inventoryObjectNotFound"
           }
         }
       }
@@ -179,7 +179,7 @@
       }
     },
     "responses" : {
-      "unauthorizedError" : {
+      "res_unauthorizedError" : {
         "description" : "Authentication information is missing or invalid.",
         "content" : {
           "application/vnd.com.nsn.cumulocity.error+json" : {
@@ -212,7 +212,7 @@
           }
         }
       },
-      "inventoryObjectNotFound" : {
+      "res_inventoryObjectNotFound" : {
         "description" : "Managed object not found.",
         "content" : {
           "application/vnd.com.nsn.cumulocity.error+json" : {
@@ -245,71 +245,12 @@
           }
         }
       },
-      "inventoryObjectFound" : {
+      "res_inventoryObjectFound" : {
         "description" : "The request has succeeded and the object is sent in the response.",
         "content" : {
           "application/vnd.com.nsn.cumulocity.managedobject+json" : {
             "schema" : {
-              "type" : "object",
-              "properties" : {
-                "id" : {
-                  "allOf" : [ {
-                    "$ref" : "#/components/schemas/schemaObjectId"
-                  }, {
-                    "example" : 51994
-                  } ]
-                },
-                "self" : {
-                  "allOf" : [ {
-                    "$ref" : "#/components/schemas/schemaObjectSelf"
-                  }, {
-                    "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}"
-                  } ]
-                },
-                "name" : {
-                  "allOf" : [ {
-                    "$ref" : "#/components/schemas/schemaObjectName"
-                  }, {
-                    "example" : "My tracking device"
-                  } ]
-                },
-                "creationTime" : {
-                  "allOf" : [ {
-                    "$ref" : "#/components/schemas/schemaObjectCreationTime"
-                  }, {
-                    "example" : "2017-12-12T22:09:06.881+01:00"
-                  } ]
-                },
-                "lastUpdated" : {
-                  "allOf" : [ {
-                    "$ref" : "#/components/schemas/schemaObjectLastUpdated"
-                  }, {
-                    "example" : "2018-07-19T12:01:50.731Z"
-                  } ]
-                },
-                "c8y_IsDevice" : {
-                  "allOf" : [ {
-                    "$ref" : "#/components/schemas/schemaObjectC8y_IsDevice"
-                  }, {
-                    "example" : { }
-                  } ]
-                },
-                "childDevices" : {
-                  "$ref" : "#/components/schemas/schemaObjectChildDevices"
-                },
-                "childAdditions" : {
-                  "$ref" : "#/components/schemas/schemaObjectChildAdditions"
-                },
-                "childAssets" : {
-                  "$ref" : "#/components/schemas/schemaObjectChildAssets"
-                },
-                "deviceParents" : {
-                  "$ref" : "#/components/schemas/schemaObjectDeviceParents"
-                },
-                "assetParents" : {
-                  "$ref" : "#/components/schemas/schemaObjectAssetParents"
-                }
-              }
+              "$ref" : "#/components/schemas/schemaResponseObject"
             }
           }
         }
@@ -327,6 +268,68 @@
       "schema40XInfo" : {
         "description" : "A URL to more information about the error code reported.",
         "type" : "string"
+      },
+      "schemaResponseObject" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/schemaObjectId"
+            }, {
+              "example" : 51994
+            } ]
+          },
+          "self" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/schemaObjectSelf"
+            }, {
+              "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}"
+            } ]
+          },
+          "name" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/schemaObjectName"
+            }, {
+              "example" : "My tracking device"
+            } ]
+          },
+          "creationTime" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/schemaObjectCreationTime"
+            }, {
+              "example" : "2017-12-12T22:09:06.881+01:00"
+            } ]
+          },
+          "lastUpdated" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/schemaObjectLastUpdated"
+            }, {
+              "example" : "2018-07-19T12:01:50.731Z"
+            } ]
+          },
+          "c8y_IsDevice" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/schemaObjectC8y_IsDevice"
+            }, {
+              "example" : { }
+            } ]
+          },
+          "childDevices" : {
+            "$ref" : "#/components/schemas/schemaObjectChildDevices"
+          },
+          "childAdditions" : {
+            "$ref" : "#/components/schemas/schemaObjectChildAdditions"
+          },
+          "childAssets" : {
+            "$ref" : "#/components/schemas/schemaObjectChildAssets"
+          },
+          "deviceParents" : {
+            "$ref" : "#/components/schemas/schemaObjectDeviceParents"
+          },
+          "assetParents" : {
+            "$ref" : "#/components/schemas/schemaObjectAssetParents"
+          }
+        }
       },
       "schemaObjectId" : {
         "description" : "Unique identifier of the object.",
