@@ -183,7 +183,7 @@
                   "allOf" : [ {
                     "$ref" : "#/components/schemas/schemaObjectSelf"
                   }, {
-                    "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/51994"
+                    "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}"
                   } ]
                 },
                 "name" : {
@@ -261,7 +261,7 @@
           "self" : {
             "description" : "Link to this resource's child devices.",
             "type" : "string",
-            "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/51994/childDevices"
+            "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childDevices"
           },
           "references" : {
             "description" : "An array with the references to child devices.",
@@ -278,7 +278,7 @@
           "self" : {
             "description" : "Link to this resource's child additions.",
             "type" : "string",
-            "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/51994/childAdditions"
+            "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childAdditions"
           },
           "references" : {
             "description" : "An array with the references to child devices.",
