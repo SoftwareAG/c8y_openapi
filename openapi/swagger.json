@@ -212,6 +212,12 @@
                 },
                 "childAdditions" : {
                   "$ref" : "#/components/schemas/schemaObjectChildAdditions"
+                },
+                "childAssets" : {
+                  "$ref" : "#/components/schemas/schemaObjectChildAssets"
+                },
+                "deviceParents" : {
+                  "$ref" : "#/components/schemas/schemaObjectDeviceParents"
                 }
               }
             }
@@ -282,6 +288,40 @@
           },
           "references" : {
             "description" : "An array with the references to child devices.",
+            "type" : "array",
+            "items" : { },
+            "example" : [ ]
+          }
+        }
+      },
+      "schemaObjectChildAssets" : {
+        "description" : "A collection of references to child assets.",
+        "type" : "object",
+        "properties" : {
+          "self" : {
+            "description" : "Link to this resource's child assets.",
+            "type" : "string",
+            "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childAssets"
+          },
+          "references" : {
+            "description" : "An array with the references to child assets.",
+            "type" : "array",
+            "items" : { },
+            "example" : [ ]
+          }
+        }
+      },
+      "schemaObjectDeviceParents" : {
+        "description" : "A collection of references to device parent objects.",
+        "type" : "object",
+        "properties" : {
+          "self" : {
+            "description" : "Link to this resource's parent objects.",
+            "type" : "string",
+            "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/deviceParents"
+          },
+          "references" : {
+            "description" : "An array with the references to parent objects.",
             "type" : "array",
             "items" : { },
             "example" : [ ]
