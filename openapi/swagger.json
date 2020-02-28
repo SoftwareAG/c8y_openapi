@@ -195,7 +195,7 @@
                 },
                 "creationTime" : {
                   "allOf" : [ {
-                    "$ref" : "#/components/schemas/schemaObjectcreationTime"
+                    "$ref" : "#/components/schemas/schemaObjectCreationTime"
                   }, {
                     "example" : "2017-12-12T22:09:06.881+01:00"
                   } ]
@@ -208,7 +208,10 @@
                   } ]
                 },
                 "childDevices" : {
-                  "$ref" : "#/components/schemas/schemaObjectchildDevices"
+                  "$ref" : "#/components/schemas/schemaObjectChildDevices"
+                },
+                "childAdditions" : {
+                  "$ref" : "#/components/schemas/schemaObjectChildAdditions"
                 }
               }
             }
@@ -246,12 +249,12 @@
         "type" : "string",
         "format" : "date-time"
       },
-      "schemaObjectcreationTime" : {
+      "schemaObjectCreationTime" : {
         "description" : "The date and time when the object was created.",
         "type" : "string",
         "format" : "date-time"
       },
-      "schemaObjectchildDevices" : {
+      "schemaObjectChildDevices" : {
         "description" : "A collection of references to child devices.",
         "type" : "object",
         "properties" : {
@@ -259,6 +262,23 @@
             "description" : "Link to this resource's child devices.",
             "type" : "string",
             "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/51994/childDevices"
+          },
+          "references" : {
+            "description" : "An array with the references to child devices.",
+            "type" : "array",
+            "items" : { },
+            "example" : [ ]
+          }
+        }
+      },
+      "schemaObjectChildAdditions" : {
+        "description" : "A collection of references to child additions.",
+        "type" : "object",
+        "properties" : {
+          "self" : {
+            "description" : "Link to this resource's child additions.",
+            "type" : "string",
+            "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/51994/childAdditions"
           },
           "references" : {
             "description" : "An array with the references to child devices.",
