@@ -45,6 +45,22 @@
     "tags" : [ "Managed Object", "Device Group" ]
   } ],
   "paths" : {
+    "/inventory/managedObjects/" : {
+      "get" : {
+        "tags" : [ "Managed Object" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Get all managed objects",
+        "operationId" : "getManagedObjects",
+        "description" : "Get all managed objects (e.g. devices, assets, etc.) of your tenant.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "responses" : {
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          }
+        }
+      }
+    },
     "/inventory/managedObjects/{id}" : {
       "parameters" : [ {
         "$ref" : "#/components/parameters/managedObjectId"
@@ -55,7 +71,7 @@
           "BasicAuthentication" : [ ]
         } ],
         "summary" : "Get a specific managed object",
-        "operationId" : "ManagedObjectResource",
+        "operationId" : "getManagedObjectById",
         "description" : "Get a specific managed object (e.g. device, group, template) by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
           "200" : {
