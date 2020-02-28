@@ -49,7 +49,11 @@
       "parameters" : [ {
         "$ref" : "#/components/parameters/queryParam_currentPage"
       }, {
+        "$ref" : "#/components/parameters/queryParam_fragmentType"
+      }, {
         "$ref" : "#/components/parameters/queryParam_pageSize"
+      }, {
+        "$ref" : "#/components/parameters/queryParam_withTotalPages"
       } ],
       "get" : {
         "tags" : [ "Managed Objects" ],
