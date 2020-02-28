@@ -207,6 +207,13 @@
                     "example" : "2018-07-19T12:01:50.731Z"
                   } ]
                 },
+                "c8y_IsDevice" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/schemas/schemaObjectC8y_IsDevice"
+                  }, {
+                    "example" : { }
+                  } ]
+                },
                 "childDevices" : {
                   "$ref" : "#/components/schemas/schemaObjectChildDevices"
                 },
@@ -262,6 +269,10 @@
         "description" : "The date and time when the object was created.",
         "type" : "string",
         "format" : "date-time"
+      },
+      "schemaObjectC8y_IsDevice" : {
+        "description" : "Marks devices that can be managed using Cumulocity IoT’s Device Management application.",
+        "type" : "object"
       },
       "schemaObjectChildDevices" : {
         "description" : "A collection of references to child devices.",
