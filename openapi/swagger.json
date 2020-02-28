@@ -38,7 +38,7 @@
   } ],
   "tags" : [ {
     "name" : "Managed Object",
-    "description" : "The managed object resource represents individual managed objects that can be queried and deleted.\n"
+    "description" : "The managed object resource represents individual managed objects that can be queried and deleted.\n\nThe managed object resource represents individual managed objects that can be queried and deleted.\n\n\nThe managed object resource represents individual managed objects that can be queried and deleted.\n\nThe managed object resource represents individual managed objects that can be queried and deleted.\n"
   } ],
   "x-tagGroups" : [ {
     "name" : "Inventory",
