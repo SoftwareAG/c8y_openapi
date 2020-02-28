@@ -125,18 +125,30 @@
         "schema" : {
           "type" : "number",
           "minimum" : 1,
-          "example" : 1
+          "default" : 1,
+          "example" : 3
         }
       },
       "queryParam-pageSize" : {
         "name" : "pageSize",
         "in" : "query",
-        "description" : "Number of objects returned in the current page of the paginated results.",
+        "description" : "Indicates how many entries of the collection shall be returned.",
         "schema" : {
           "type" : "number",
           "minimum" : 1,
-          "example" : 5,
-          "default" : 5
+          "maximum" : 2000,
+          "default" : 5,
+          "example" : 10
+        }
+      },
+      "queryParam-withTotalPages" : {
+        "name" : "withTotalPages",
+        "in" : "query",
+        "description" : "When set to true, the returned results will contain full page statistics at the expense of slightly slower performance.",
+        "schema" : {
+          "type" : "boolean",
+          "default" : false,
+          "example" : true
         }
       }
     },
