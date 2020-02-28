@@ -163,8 +163,8 @@
         "description" : "Use query language to perform operations and/or filter the results. Details about the properties and supported operations can be found in [Query language](https://cumulocity.com/guides/reference/inventory/#query-language) on the Reference guide.\n",
         "schema" : {
           "type" : "string",
-          "minimum" : 1,
-          "example" : ""
+          "minLength" : 1,
+          "example" : "$filter=(name+eq+'Controller 1')"
         }
       },
       "queryParam_withTotalPages" : {
