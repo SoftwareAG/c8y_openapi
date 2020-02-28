@@ -122,7 +122,8 @@
         "description" : "The current page of the paginated results.",
         "schema" : {
           "type" : "number",
-          "minimum" : 1
+          "minimum" : 1,
+          "example" : 1
         }
       }
     },
