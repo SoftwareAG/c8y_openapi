@@ -218,6 +218,9 @@
                 },
                 "deviceParents" : {
                   "$ref" : "#/components/schemas/schemaObjectDeviceParents"
+                },
+                "assetParents" : {
+                  "$ref" : "#/components/schemas/schemaObjectAssetParents"
                 }
               }
             }
@@ -322,6 +325,23 @@
           },
           "references" : {
             "description" : "An array with the references to parent objects.",
+            "type" : "array",
+            "items" : { },
+            "example" : [ ]
+          }
+        }
+      },
+      "schemaObjectAssetParents" : {
+        "description" : "A collection of references to asset parent objects.",
+        "type" : "object",
+        "properties" : {
+          "self" : {
+            "description" : "Link to this resource's asset parent objects.",
+            "type" : "string",
+            "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/assetParents"
+          },
+          "references" : {
+            "description" : "An array with the references to asset parent objects.",
             "type" : "array",
             "items" : { },
             "example" : [ ]
