@@ -47,7 +47,9 @@
   "paths" : {
     "/inventory/managedObjects/" : {
       "parameters" : [ {
-        "$ref" : "#/components/parameters/queryParam_currentPage"
+        "$ref" : "#/components/parameters/queryParam-currentPage"
+      }, {
+        "$ref" : "#/components/parameters/queryParam-pageSize"
       } ],
       "get" : {
         "tags" : [ "Managed Objects" ],
@@ -116,7 +118,7 @@
           "example" : 51994
         }
       },
-      "queryParam_currentPage" : {
+      "queryParam-currentPage" : {
         "name" : "currentPage",
         "in" : "query",
         "description" : "The current page of the paginated results.",
@@ -124,6 +126,17 @@
           "type" : "number",
           "minimum" : 1,
           "example" : 1
+        }
+      },
+      "queryParam-pageSize" : {
+        "name" : "pageSize",
+        "in" : "query",
+        "description" : "Number of objects returned in the current page of the paginated results.",
+        "schema" : {
+          "type" : "number",
+          "minimum" : 1,
+          "example" : 5,
+          "default" : 5
         }
       }
     },
