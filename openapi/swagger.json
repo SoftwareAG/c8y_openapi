@@ -53,6 +53,8 @@
       }, {
         "$ref" : "#/components/parameters/queryParam_pageSize"
       }, {
+        "$ref" : "#/components/parameters/queryParam_query"
+      }, {
         "$ref" : "#/components/parameters/queryParam_withTotalPages"
       } ],
       "get" : {
@@ -138,7 +140,8 @@
         "in" : "query",
         "description" : "A characteristic which identifies a managed object, e.g. geolocation, electricity sensor, relay state.",
         "schema" : {
-          "type" : "object",
+          "type" : "string",
+          "minLength" : 1,
           "example" : "c8y_IsDevice"
         }
       },
@@ -152,6 +155,16 @@
           "maximum" : 2000,
           "default" : 5,
           "example" : 10
+        }
+      },
+      "queryParam_query" : {
+        "name" : "query",
+        "in" : "query",
+        "description" : "Use query language to perform operations and/or filter the results. Details about the properties and supported operations can be found in [Query language](https://cumulocity.com/guides/reference/inventory/#query-language) on the Reference guide.\n",
+        "schema" : {
+          "type" : "string",
+          "minimum" : 1,
+          "example" : ""
         }
       },
       "queryParam_withTotalPages" : {
