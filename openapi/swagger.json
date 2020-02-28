@@ -46,10 +46,10 @@
   } ],
   "paths" : {
     "/inventory/managedObjects/" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/queryParam_currentPage"
+      } ],
       "get" : {
-        "parameters" : [ {
-          "$ref" : "#/components/parameters/queryParam_currentPage"
-        } ],
         "tags" : [ "Managed Objects" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
