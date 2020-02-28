@@ -173,19 +173,39 @@
               "type" : "object",
               "properties" : {
                 "id" : {
-                  "$ref" : "#/components/schemas/schemaObjectId"
+                  "allOf" : [ {
+                    "$ref" : "#/components/schemas/schemaObjectId"
+                  }, {
+                    "example" : 51994
+                  } ]
                 },
                 "self" : {
-                  "$ref" : "#/components/schemas/schemaObjectSelf"
+                  "allOf" : [ {
+                    "$ref" : "#/components/schemas/schemaObjectSelf"
+                  }, {
+                    "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/51994"
+                  } ]
                 },
                 "name" : {
-                  "$ref" : "#/components/schemas/schemaObjectName"
+                  "allOf" : [ {
+                    "$ref" : "#/components/schemas/schemaObjectName"
+                  }, {
+                    "example" : "My tracking device"
+                  } ]
                 },
                 "creationTime" : {
-                  "$ref" : "#/components/schemas/schemaObjectcreationTime"
+                  "allOf" : [ {
+                    "$ref" : "#/components/schemas/schemaObjectcreationTime"
+                  }, {
+                    "example" : "2017-12-12T22:09:06.881+01:00"
+                  } ]
                 },
                 "lastUpdated" : {
-                  "$ref" : "#/components/schemas/schemaObjectLastUpdated"
+                  "allOf" : [ {
+                    "$ref" : "#/components/schemas/schemaObjectLastUpdated"
+                  }, {
+                    "example" : "2018-07-19T12:01:50.731Z"
+                  } ]
                 },
                 "childDevices" : {
                   "$ref" : "#/components/schemas/schemaObjectchildDevices"
@@ -211,30 +231,25 @@
       },
       "schemaObjectId" : {
         "description" : "Unique identifier of the object.",
-        "type" : "string",
-        "example" : 51994
+        "type" : "string"
       },
       "schemaObjectSelf" : {
         "description" : "Link to this resource.",
-        "type" : "string",
-        "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/51994"
+        "type" : "string"
       },
       "schemaObjectName" : {
         "description" : "Human-readable name that is used for representing the object in user interfaces.",
-        "type" : "string",
-        "example" : "My tracking device"
+        "type" : "string"
       },
       "schemaObjectLastUpdated" : {
         "description" : "The date and time when the object was updated for the last time.",
         "type" : "string",
-        "format" : "date-time",
-        "example" : "2018-07-19T12:01:50.731Z"
+        "format" : "date-time"
       },
       "schemaObjectcreationTime" : {
         "description" : "The date and time when the object was created.",
         "type" : "string",
-        "format" : "date-time",
-        "example" : "2017-12-12T22:09:06.881+01:00"
+        "format" : "date-time"
       },
       "schemaObjectchildDevices" : {
         "description" : "A collection of references to child devices.",
@@ -248,7 +263,8 @@
           "references" : {
             "description" : "An array with the references to child devices.",
             "type" : "array",
-            "items" : { }
+            "items" : { },
+            "example" : [ ]
           }
         }
       }
