@@ -56,7 +56,7 @@
         } ],
         "summary" : "Get a specific managed object",
         "operationId" : "ManagedObjectResource",
-        "description" : "Get a specific managed object (e.g. device, group, template) by a given ID.\n\n**Request body schema:** None\n**Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Get a specific managed object (e.g. device, group, template) by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
           "200" : {
             "$ref" : "#/components/responses/inventoryObjectFound"
