@@ -47,9 +47,9 @@
   "paths" : {
     "/inventory/managedObjects/" : {
       "parameters" : [ {
-        "$ref" : "#/components/parameters/queryParam-currentPage"
+        "$ref" : "#/components/parameters/queryParam_currentPage"
       }, {
-        "$ref" : "#/components/parameters/queryParam-pageSize"
+        "$ref" : "#/components/parameters/queryParam_pageSize"
       } ],
       "get" : {
         "tags" : [ "Managed Objects" ],
@@ -118,7 +118,7 @@
           "example" : 51994
         }
       },
-      "queryParam-currentPage" : {
+      "queryParam_currentPage" : {
         "name" : "currentPage",
         "in" : "query",
         "description" : "The current page of the paginated results.",
@@ -129,7 +129,16 @@
           "example" : 3
         }
       },
-      "queryParam-pageSize" : {
+      "queryParam_fragmentType" : {
+        "name" : "fragmentType",
+        "in" : "query",
+        "description" : "A characteristic which identifies a managed object, e.g. geolocation, electricity sensor, relay state.",
+        "schema" : {
+          "type" : "object",
+          "example" : "c8y_IsDevice"
+        }
+      },
+      "queryParam_pageSize" : {
         "name" : "pageSize",
         "in" : "query",
         "description" : "Indicates how many entries of the collection shall be returned.",
@@ -141,7 +150,7 @@
           "example" : 10
         }
       },
-      "queryParam-withTotalPages" : {
+      "queryParam_withTotalPages" : {
         "name" : "withTotalPages",
         "in" : "query",
         "description" : "When set to true, the returned results will contain full page statistics at the expense of slightly slower performance.",
