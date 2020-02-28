@@ -38,10 +38,11 @@
   } ],
   "tags" : [ {
     "name" : "Managed Object",
-    "description" : "The managed object resource represents individual managed objects that can be queried and deleted.\n\nThe managed object resource represents individual managed objects that can be queried and deleted.\n\n\nThe managed object resource represents individual managed objects that can be queried and deleted.\n\nThe managed object resource represents individual managed objects that can be queried and deleted.\n"
+    "description" : "The managed object resource represents individual managed objects that can be queried and deleted.\n"
   } ],
   "x-tagGroups" : [ {
     "name" : "Inventory",
+    "description" : "The inventory interface consists of the following parts: <ul><li>The inventory API resource returns URIs and URI templates to collections of managed objects, so that all objects, all objects of a particular type and all objects with particular capabilities can be queried.</li> <li>The managed object collection resource retrieves sets of managed objects and enables creating new managed objects.</li> <li>The managed object resource represents individual managed objects that can be queried and deleted.</li> <li>The managed object reference collection resource retrieves sets of references to managed objects. These could be, for example, child devices of a particular managed object. It also enables adding new references to a collection (e.g., adding a new child device).</li> <li>The managed object reference resource represents one individual reference to a managed object, which can be retrieved or deleted.</li></ul>\n",
     "tags" : [ "Managed Object", "Device Group" ]
   } ],
   "paths" : {
