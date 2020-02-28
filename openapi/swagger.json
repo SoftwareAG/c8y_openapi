@@ -121,7 +121,11 @@
                   } ]
                 },
                 "info" : {
-                  "$ref" : "#/components/schemas/schema40XInfo"
+                  "allOf" : [ {
+                    "$ref" : "#/components/schemas/schema40XInfo"
+                  }, {
+                    "example" : "https://www.cumulocity.com/guides/reference-guide/#error_reporting"
+                  } ]
                 }
               }
             }
@@ -150,7 +154,11 @@
                   } ]
                 },
                 "info" : {
-                  "$ref" : "#/components/schemas/schema40XInfo"
+                  "allOf" : [ {
+                    "$ref" : "#/components/schemas/schema40XInfo"
+                  }, {
+                    "example" : "https://www.cumulocity.com/guides/reference-guide/#error_reporting"
+                  } ]
                 }
               }
             }
@@ -199,8 +207,7 @@
       },
       "schema40XInfo" : {
         "description" : "A URL to more information about the error code reported.",
-        "type" : "string",
-        "example" : "https://www.cumulocity.com/guides/reference-guide/#error_reporting"
+        "type" : "string"
       },
       "schemaObjectId" : {
         "description" : "Unique identifier of the object.",
