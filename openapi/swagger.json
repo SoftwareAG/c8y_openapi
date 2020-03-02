@@ -370,11 +370,7 @@
                   "description" : "A ManagedObjectCollection array containing the results (managed objects) of the request.",
                   "type" : "array",
                   "items" : {
-                    "allOf" : [ {
-                      "$ref" : "#/components/schemas/schemaResponseObject"
-                    }, {
-                      "$ref" : "#/components/schemas/schemaResponseObject"
-                    } ]
+                    "$ref" : "#/components/schemas/schemaResponseObject"
                   }
                 }
               }
