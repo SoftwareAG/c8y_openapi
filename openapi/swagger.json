@@ -325,7 +325,32 @@
           "application/vnd.com.nsn.cumulocity.managedobjectcollection+json" : {
             "schema" : {
               "type" : "object",
-              "properties" : null
+              "properties" : {
+                "prev" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_prevPage"
+                  }, {
+                    "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects?pageSize=5&currentPage=1"
+                  } ]
+                },
+                "self" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_objectSelf"
+                  }, {
+                    "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects?pageSize=5&currentPage=2"
+                  } ]
+                },
+                "next" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_nextPage"
+                  }, {
+                    "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects?pageSize=5&currentPage=3"
+                  } ]
+                },
+                "statistics" : {
+                  "type" : "object"
+                }
+              }
             }
           }
         }
@@ -370,12 +395,12 @@
         "description" : "Marks devices that can be managed using Cumulocity IoT’s Device Management application.",
         "type" : "object"
       },
-      "desc_nextPage" : {
-        "description" : "the next",
+      "desc_prevPage" : {
+        "description" : "A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] to a potential previous page of managed objects.",
         "type" : "string"
       },
-      "desc_prevPage" : {
-        "description" : "the previous",
+      "desc_nextPage" : {
+        "description" : "A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] to a potential next page of managed objects.",
         "type" : "string"
       }
     },
