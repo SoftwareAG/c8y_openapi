@@ -79,6 +79,9 @@
       }
     },
     "/inventory/managedObjects/count" : {
+      "parameters" : [ {
+        "$ref" : "#/components/x-queryParams"
+      } ],
       "get" : {
         "tags" : [ "Managed Objects" ],
         "security" : [ {
@@ -135,15 +138,25 @@
     "/inventory/managedObjects/{id}/supportedMeasurements" : {
       "parameters" : [ {
         "$ref" : "#/components/parameters/managedObjectId"
+      }, {
+        "$ref" : "#/components/parameters/queryParam_currentPage"
+      }, {
+        "$ref" : "#/components/parameters/queryParam_fragmentType"
+      }, {
+        "$ref" : "#/components/parameters/queryParam_pageSize"
+      }, {
+        "$ref" : "#/components/parameters/queryParam_query"
+      }, {
+        "$ref" : "#/components/parameters/queryParam_withTotalPages"
       } ],
       "get" : {
         "tags" : [ "Managed Objects" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
         } ],
-        "summary" : "Get a specific managed object",
+        "summary" : "Get all measurements of a specific managed object",
         "operationId" : "getManagedObjectSupportedMeasurements",
-        "description" : "Get a specific managed object (e.g. device, group, template) by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Get all supported measurements of a specific managed object by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
           "200" : {
             "$ref" : "#/components/responses/res_inventoryObjectFound"
@@ -461,6 +474,19 @@
         "description" : "A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] to a potential next page of managed objects.",
         "type" : "string"
       }
+    },
+    "x-queryParams" : {
+      "allOf" : [ {
+        "$ref" : "#/components/parameters/queryParam_currentPage"
+      }, {
+        "$ref" : "#/components/parameters/queryParam_fragmentType"
+      }, {
+        "$ref" : "#/components/parameters/queryParam_pageSize"
+      }, {
+        "$ref" : "#/components/parameters/queryParam_query"
+      }, {
+        "$ref" : "#/components/parameters/queryParam_withTotalPages"
+      } ]
     },
     "schemas" : {
       "schemaResponseObject" : {
