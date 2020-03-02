@@ -64,7 +64,7 @@
         } ],
         "summary" : "Get all managed objects",
         "operationId" : "getManagedObjects",
-        "description" : "Get all managed objects (e.g. devices, assets, etc.) of your tenant.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Get all managed objects (e.g. devices, assets, etc.) registered in your tenant.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
           "200" : {
             "$ref" : "#/components/responses/res_inventoryObjectCollectionFound"
@@ -74,6 +74,34 @@
           },
           "422" : {
             "$ref" : "#/components/responses/res_invalidData"
+          }
+        }
+      }
+    },
+    "/inventory/managedObjects/count" : {
+      "get" : {
+        "tags" : [ "Managed Objects" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Get the total number of managed objects",
+        "operationId" : "getManagedObjectsCount",
+        "description" : "Get the total number of managed objects (e.g. devices, assets, etc.) registered in your tenant.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded and the total number of managed objects is sent in the response.",
+            "content" : {
+              "text/plain" : {
+                "schema" : {
+                  "type" : "number",
+                  "minimum" : 0,
+                  "example" : 38
+                }
+              }
+            }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/res_unauthorizedError"
           }
         }
       }
