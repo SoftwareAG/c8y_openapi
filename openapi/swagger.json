@@ -71,6 +71,9 @@
           },
           "401" : {
             "$ref" : "#/components/responses/res_unauthorizedError"
+          },
+          "422" : {
+            "$ref" : "#/components/responses/res_invalidData"
           }
         }
       }
@@ -259,6 +262,39 @@
                     "$ref" : "#/components/x-descriptions/desc_40XMessage"
                   }, {
                     "example" : "Finding device data from database failed"
+                  } ]
+                },
+                "info" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_40XInfo"
+                  }, {
+                    "example" : "https://www.cumulocity.com/guides/reference-guide/#error_reporting"
+                  } ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "res_invalidData" : {
+        "description" : "Invalid data was sent.",
+        "content" : {
+          "application/vnd.com.nsn.cumulocity.error+json" : {
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "error" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_40XError"
+                  }, {
+                    "example" : "inventory/Invalid Data"
+                  } ]
+                },
+                "message" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_40XMessage"
+                  }, {
+                    "example" : "Find by filter query failed : Query could not be understood."
                   } ]
                 },
                 "info" : {
