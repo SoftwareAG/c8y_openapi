@@ -216,21 +216,21 @@
               "properties" : {
                 "error" : {
                   "allOf" : [ {
-                    "$ref" : "#/components/x-descriptions/desc40XError"
+                    "$ref" : "#/components/x-descriptions/desc_40XError"
                   }, {
                     "example" : "security/Unauthorized"
                   } ]
                 },
                 "message" : {
                   "allOf" : [ {
-                    "$ref" : "#/components/schemas/schema40XMessage"
+                    "$ref" : "#/components/x-descriptions/desc_40XMessage"
                   }, {
                     "example" : "Invalid credentials! : Bad credentials"
                   } ]
                 },
                 "info" : {
                   "allOf" : [ {
-                    "$ref" : "#/components/schemas/schema40XInfo"
+                    "$ref" : "#/components/x-descriptions/desc_40XInfo"
                   }, {
                     "example" : "https://www.cumulocity.com/guides/reference-guide/#error_reporting"
                   } ]
@@ -249,21 +249,21 @@
               "properties" : {
                 "error" : {
                   "allOf" : [ {
-                    "$ref" : "#/components/x-descriptions/desc40XError"
+                    "$ref" : "#/components/x-descriptions/desc_40XError"
                   }, {
                     "example" : "inventory/Not Found"
                   } ]
                 },
                 "message" : {
                   "allOf" : [ {
-                    "$ref" : "#/components/schemas/schema40XMessage"
+                    "$ref" : "#/components/x-descriptions/desc_40XMessage"
                   }, {
                     "example" : "Finding device data from database failed"
                   } ]
                 },
                 "info" : {
                   "allOf" : [ {
-                    "$ref" : "#/components/schemas/schema40XInfo"
+                    "$ref" : "#/components/x-descriptions/desc_40XInfo"
                   }, {
                     "example" : "https://www.cumulocity.com/guides/reference-guide/#error_reporting"
                   } ]
@@ -295,61 +295,87 @@
       }
     },
     "x-descriptions" : {
-      "desc40XError" : {
+      "desc_40XError" : {
         "description" : "The type of error returned.",
         "type" : "string"
-      }
-    },
-    "schemas" : {
-      "schema40XMessage" : {
+      },
+      "desc_40XMessage" : {
         "description" : "A human-readable message providing more details about the error.",
         "type" : "string"
       },
-      "schema40XInfo" : {
+      "desc_40XInfo" : {
         "description" : "A URL to more information about the error code reported.",
         "type" : "string"
       },
+      "desc_objectId" : {
+        "description" : "Unique identifier of the object.",
+        "type" : "string"
+      },
+      "desc_objectSelf" : {
+        "description" : "Link to this resource.",
+        "type" : "string"
+      },
+      "desc_objectName" : {
+        "description" : "Human-readable name that is used for representing the object in user interfaces.",
+        "type" : "string"
+      },
+      "desc_objectCreationTime" : {
+        "description" : "The date and time when the object was created.",
+        "type" : "string",
+        "format" : "date-time"
+      },
+      "desc_objectLastUpdated" : {
+        "description" : "The date and time when the object was updated for the last time.",
+        "type" : "string",
+        "format" : "date-time"
+      },
+      "desc_objectC8y_IsDevice" : {
+        "description" : "Marks devices that can be managed using Cumulocity IoT’s Device Management application.",
+        "type" : "object"
+      }
+    },
+    "schemas" : {
       "schemaResponseObject" : {
         "type" : "object",
         "properties" : {
           "id" : {
             "allOf" : [ {
-              "$ref" : "#/components/schemas/schemaObjectId"
+              "$ref" : "#/components/x-descriptions/desc_objectId"
             }, {
               "example" : 51994
             } ]
           },
           "self" : {
             "allOf" : [ {
-              "$ref" : "#/components/schemas/schemaObjectSelf"
+              "$ref" : "#/components/x-descriptions/desc_objectSelf"
             }, {
               "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}"
             } ]
           },
           "name" : {
             "allOf" : [ {
-              "$ref" : "#/components/schemas/schemaObjectName"
+              "$ref" : "#/components/x-descriptions/desc_objectName"
             }, {
               "example" : "My tracking device"
             } ]
           },
           "creationTime" : {
             "allOf" : [ {
-              "$ref" : "#/components/schemas/schemaObjectCreationTime"
+              "$ref" : "#/components/x-descriptions/desc_objectCreationTime"
             }, {
               "example" : "2017-12-12T22:09:06.881+01:00"
             } ]
           },
           "lastUpdated" : {
             "allOf" : [ {
-              "$ref" : "#/components/schemas/schemaObjectLastUpdated"
+              "$ref" : "#/components/x-descriptions/desc_objectLastUpdated"
             }, {
               "example" : "2018-07-19T12:01:50.731Z"
             } ]
           },
           "c8y_IsDevice" : {
             "allOf" : [ {
-              "$ref" : "#/components/schemas/schemaObjectC8y_IsDevice"
+              "$ref" : "#/components/x-descriptions/desc_objectC8y_IsDevice"
             }, {
               "example" : { }
             } ]
@@ -370,32 +396,6 @@
             "$ref" : "#/components/schemas/schemaObjectAssetParents"
           }
         }
-      },
-      "schemaObjectId" : {
-        "description" : "Unique identifier of the object.",
-        "type" : "string"
-      },
-      "schemaObjectSelf" : {
-        "description" : "Link to this resource.",
-        "type" : "string"
-      },
-      "schemaObjectName" : {
-        "description" : "Human-readable name that is used for representing the object in user interfaces.",
-        "type" : "string"
-      },
-      "schemaObjectLastUpdated" : {
-        "description" : "The date and time when the object was updated for the last time.",
-        "type" : "string",
-        "format" : "date-time"
-      },
-      "schemaObjectCreationTime" : {
-        "description" : "The date and time when the object was created.",
-        "type" : "string",
-        "format" : "date-time"
-      },
-      "schemaObjectC8y_IsDevice" : {
-        "description" : "Marks devices that can be managed using Cumulocity IoT’s Device Management application.",
-        "type" : "object"
       },
       "schemaObjectChildDevices" : {
         "description" : "A collection of references to child devices.",
