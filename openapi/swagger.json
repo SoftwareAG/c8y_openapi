@@ -379,6 +379,12 @@
                   "description" : "Information about paging statistics.",
                   "type" : "object",
                   "properties" : {
+                    "totalPages" : {
+                      "description" : "The total number of pages.",
+                      "type" : "number",
+                      "minimum" : 1,
+                      "example" : 3
+                    },
                     "currentPage" : {
                       "description" : "The current page of the paginated results.",
                       "type" : "number",
