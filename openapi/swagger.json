@@ -216,7 +216,7 @@
               "properties" : {
                 "error" : {
                   "allOf" : [ {
-                    "$ref" : "#/components/schemas/schema40XError"
+                    "$ref" : "#/components/x-descriptions/desc40XError"
                   }, {
                     "example" : "security/Unauthorized"
                   } ]
@@ -249,7 +249,7 @@
               "properties" : {
                 "error" : {
                   "allOf" : [ {
-                    "$ref" : "#/components/schemas/schema40XError"
+                    "$ref" : "#/components/x-descriptions/desc40XError"
                   }, {
                     "example" : "inventory/Not Found"
                   } ]
@@ -294,11 +294,13 @@
         }
       }
     },
-    "schemas" : {
-      "schema40XError" : {
+    "x-descriptions" : {
+      "desc40XError" : {
         "description" : "The type of error returned.",
         "type" : "string"
-      },
+      }
+    },
+    "schemas" : {
       "schema40XMessage" : {
         "description" : "A human-readable message providing more details about the error.",
         "type" : "string"
