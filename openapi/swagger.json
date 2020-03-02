@@ -45,7 +45,7 @@
     "tags" : [ "Managed Objects", "Device Group" ]
   } ],
   "paths" : {
-    "/inventory/managedObjects/" : {
+    "/inventory/managedObjects" : {
       "parameters" : [ {
         "$ref" : "#/components/parameters/queryParam_currentPage"
       }, {
@@ -86,6 +86,31 @@
         } ],
         "summary" : "Get a specific managed object",
         "operationId" : "getManagedObjectById",
+        "description" : "Get a specific managed object (e.g. device, group, template) by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "responses" : {
+          "200" : {
+            "$ref" : "#/components/responses/res_inventoryObjectFound"
+          },
+          "401" : {
+            "$ref" : "#/components/responses/res_unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/res_inventoryObjectNotFound"
+          }
+        }
+      }
+    },
+    "/inventory/managedObjects/{id}/supportedMeasurements" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/managedObjectId"
+      } ],
+      "get" : {
+        "tags" : [ "Managed Objects" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Get a specific managed object",
+        "operationId" : "getManagedObjectSupportedMeasurements",
         "description" : "Get a specific managed object (e.g. device, group, template) by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
           "200" : {
