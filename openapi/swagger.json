@@ -96,7 +96,7 @@
           "200" : {
             "description" : "The request has succeeded and the total number of managed objects is sent in the response.",
             "content" : {
-              "\ttext/strings" : {
+              "\tapplication/text" : {
                 "schema" : {
                   "description" : "Total number of managed objects registered in your tenant.",
                   "type" : "number",
