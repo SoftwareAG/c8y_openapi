@@ -107,8 +107,8 @@
               "text/plain" : {
                 "schema" : {
                   "description" : "Total number of managed objects registered in your tenant.",
-                  "type" : "number",
-                  "minimum" : 0,
+                  "type" : "string",
+                  "minLength" : 0,
                   "example" : 38
                 }
               }
