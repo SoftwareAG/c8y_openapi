@@ -96,7 +96,7 @@
           "200" : {
             "description" : "The request has succeeded and the total number of managed objects is sent in the response.",
             "content" : {
-              "\tapplication/text" : {
+              "application/text" : {
                 "schema" : {
                   "description" : "Total number of managed objects registered in your tenant.",
                   "type" : "number",
@@ -142,8 +142,6 @@
         "$ref" : "#/components/parameters/managedObjectId"
       }, {
         "$ref" : "#/components/parameters/queryParam_currentPage"
-      }, {
-        "$ref" : "#/components/parameters/queryParam_fragmentType"
       }, {
         "$ref" : "#/components/parameters/queryParam_pageSize"
       }, {
