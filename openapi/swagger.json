@@ -348,7 +348,28 @@
                   } ]
                 },
                 "statistics" : {
-                  "type" : "object"
+                  "description" : "Information about paging statistics.",
+                  "type" : "object",
+                  "properties" : {
+                    "currentPage" : {
+                      "description" : "The current page of the paginated results.",
+                      "type" : "number",
+                      "minimum" : 1,
+                      "example" : 2
+                    },
+                    "pageSize" : {
+                      "description" : "Indicates the number of objects that the collection may contain.",
+                      "type" : "number",
+                      "minimum" : 1,
+                      "maximum" : 2000,
+                      "example" : 5
+                    }
+                  }
+                },
+                "managedObjects" : {
+                  "description" : "colle",
+                  "type" : "array",
+                  "items" : { }
                 }
               }
             }
