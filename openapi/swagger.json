@@ -341,7 +341,7 @@
         "type" : "string"
       },
       "desc_40XInfo" : {
-        "description" : "A URL to more information about the error code reported.",
+        "description" : "A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] that identifies the error code reported.",
         "type" : "string"
       },
       "desc_objectId" : {
