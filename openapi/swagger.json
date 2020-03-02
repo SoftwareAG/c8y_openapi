@@ -91,7 +91,7 @@
           "200" : {
             "description" : "The request has succeeded and the total number of managed objects is sent in the response.",
             "content" : {
-              "text/plain" : {
+              "application/vnd.com.nsn.cumulocity.managedobject+json" : {
                 "schema" : {
                   "description" : "Total number of managed objects registered in your tenant.",
                   "type" : "number",
