@@ -67,7 +67,7 @@
         "description" : "Get all managed objects (e.g. devices, assets, etc.) of your tenant.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
           "200" : {
-            "$ref" : "#/components/responses/res_inventoryObjectFound"
+            "$ref" : "#/components/responses/res_inventoryObjectCollectionFound"
           },
           "401" : {
             "$ref" : "#/components/responses/res_unauthorizedError"
