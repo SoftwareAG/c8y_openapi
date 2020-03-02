@@ -116,6 +116,9 @@
           },
           "401" : {
             "$ref" : "#/components/responses/res_unauthorizedError"
+          },
+          "422" : {
+            "$ref" : "#/components/responses/res_invalidData"
           }
         }
       }
