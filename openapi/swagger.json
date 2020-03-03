@@ -303,7 +303,7 @@
         } ],
         "summary" : "Get the username and status of a specific managed object",
         "operationId" : "getManagedObjectUsernameAndStatus",
-        "description" : "Get the owner's username of a specific managed object (by a given ID) and if it is enabled for that managed object.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Get the device's owner's username of a specific managed object (by a given ID) and if it is enabled for that managed object.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded the username and status are sent in the response.",
