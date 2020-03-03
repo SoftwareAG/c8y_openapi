@@ -55,6 +55,10 @@
       }, {
         "$ref" : "#/components/parameters/queryParam_query"
       }, {
+        "$ref" : "#/components/parameters/queryParam_skipChildrenNames"
+      }, {
+        "$ref" : "#/components/parameters/queryParam_withParents"
+      }, {
         "$ref" : "#/components/parameters/queryParam_withTotalPages"
       } ],
       "get" : {
@@ -126,6 +130,10 @@
     "/inventory/managedObjects/{id}" : {
       "parameters" : [ {
         "$ref" : "#/components/parameters/managedObjectId"
+      }, {
+        "$ref" : "#/components/parameters/queryParam_skipChildrenNames"
+      }, {
+        "$ref" : "#/components/parameters/queryParam_withParents"
       } ],
       "get" : {
         "tags" : [ "Managed Objects" ],
@@ -367,11 +375,11 @@
       "queryParam_withParents" : {
         "name" : "withParents",
         "in" : "query",
-        "description" : "When set to false, the returned references of child parents will be an empty array. Otherwise, it will return its parents if any.",
+        "description" : "When set to true, the returned references of child parents will return the device's parents (if any). Otherwise, it will be an empty array.",
         "schema" : {
           "type" : "boolean",
-          "default" : true,
-          "example" : false
+          "default" : false,
+          "example" : true
         }
       },
       "queryParam_withTotalPages" : {
