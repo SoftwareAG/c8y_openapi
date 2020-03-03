@@ -344,6 +344,16 @@
           "example" : 10
         }
       },
+      "queryParam_skipChildrenNames" : {
+        "name" : "skipChildrenNames",
+        "in" : "query",
+        "description" : "When set to true, the returned references of child devices won't contain their names.",
+        "schema" : {
+          "type" : "boolean",
+          "default" : false,
+          "example" : true
+        }
+      },
       "queryParam_query" : {
         "name" : "query",
         "in" : "query",
@@ -352,6 +362,16 @@
           "type" : "string",
           "minLength" : 1,
           "example" : "$filter=(owner+eq+'manga')"
+        }
+      },
+      "queryParam_withParents" : {
+        "name" : "withParents",
+        "in" : "query",
+        "description" : "When set to false, the returned references of child parents will be an empty array. Otherwise, it will return its parents if any.",
+        "schema" : {
+          "type" : "boolean",
+          "default" : true,
+          "example" : false
         }
       },
       "queryParam_withTotalPages" : {
