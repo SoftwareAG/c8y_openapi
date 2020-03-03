@@ -237,6 +237,54 @@
           }
         }
       }
+    },
+    "/inventory/managedObjects/{id}/availability" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/managedObjectId"
+      }, {
+        "$ref" : "#/components/parameters/queryParam_query"
+      } ],
+      "get" : {
+        "tags" : [ "Managed Objects" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Get the latest availability date of a specific managed object",
+        "operationId" : "getManagedObjectAvailability",
+        "description" : "Get the date when a specific managed object (by a given ID) sent the last message to Cumulocity IoT.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded and the date is sent in the response.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "description" : "Latest availability date of a specific managed object.",
+                  "type" : "string",
+                  "minimum" : 0,
+                  "example" : 38
+                }
+              },
+              "text/plain" : {
+                "schema" : {
+                  "description" : "Latest availability date of a specific managed object.",
+                  "type" : "string",
+                  "minLength" : 0,
+                  "example" : 38
+                }
+              }
+            }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/res_unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/res_inventoryObjectNotFound"
+          },
+          "422" : {
+            "$ref" : "#/components/responses/res_invalidData"
+          }
+        }
+      }
     }
   },
   "components" : {
