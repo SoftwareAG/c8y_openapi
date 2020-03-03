@@ -170,13 +170,31 @@
         "description" : "Get all supported measurements of a specific managed object by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
           "200" : {
-            "$ref" : "#/components/responses/res_inventoryObjectFound"
+            "description" : "The request has succeeded and all supported measurements are sent in the response.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "c8y_SupportedMeasurements" : {
+                      "description" : "An array containing all supported measurements of the specified device.",
+                      "type" : "array",
+                      "items" : { },
+                      "example" : [ "c8y_MemoryMeasurement", "c8y_CPUMeasurement" ]
+                    }
+                  }
+                }
+              }
+            }
           },
           "401" : {
             "$ref" : "#/components/responses/res_unauthorizedError"
           },
           "404" : {
             "$ref" : "#/components/responses/res_inventoryObjectNotFound"
+          },
+          "422" : {
+            "$ref" : "#/components/responses/res_invalidData"
           }
         }
       }
