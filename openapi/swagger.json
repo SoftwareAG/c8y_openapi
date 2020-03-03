@@ -254,7 +254,7 @@
       "queryParam_withTotalPages" : {
         "name" : "withTotalPages",
         "in" : "query",
-        "description" : "When set to true, the returned results will contain full page statistics at the expense of slightly slower performance.",
+        "description" : "When set to true, the returned result will contain in the statistics object the total number of pages (at the expense of slightly slower performance).",
         "schema" : {
           "type" : "boolean",
           "default" : false,
