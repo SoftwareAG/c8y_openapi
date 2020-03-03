@@ -435,7 +435,7 @@
                       "example" : 2
                     },
                     "pageSize" : {
-                      "description" : "Indicates the number of objects that the collection may contain.",
+                      "description" : "Indicates the number of objects that the collection may contain per page. The upper limit for one page is 2,000 objects.",
                       "type" : "number",
                       "minimum" : 1,
                       "maximum" : 2000,
