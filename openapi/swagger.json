@@ -260,16 +260,14 @@
                 "schema" : {
                   "description" : "Latest availability date of a specific managed object.",
                   "type" : "string",
-                  "minimum" : 0,
-                  "example" : 38
+                  "example" : "2019-08-08T08:36:32.896Z"
                 }
               },
               "text/plain" : {
                 "schema" : {
                   "description" : "Latest availability date of a specific managed object.",
                   "type" : "string",
-                  "minLength" : 0,
-                  "example" : 38
+                  "example" : "2019-08-08T08:36:32.896Z"
                 }
               }
             }
