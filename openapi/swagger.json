@@ -384,8 +384,7 @@
                       "type" : "array",
                       "items" : {
                         "$ref" : "#/components/schemas/schemaResponseObject"
-                      },
-                      "example" : [ ]
+                      }
                     },
                     "statistics" : {
                       "$ref" : "#/components/schemas/pageStatistics"
