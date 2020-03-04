@@ -385,7 +385,11 @@
                       "items" : {
                         "properties" : {
                           "managedObject" : {
-                            "$ref" : "#/components/schemas/managedObject"
+                            "allOf" : [ {
+                              "minItems" : 0
+                            }, {
+                              "$ref" : "#/components/schemas/managedObject"
+                            } ]
                           }
                         }
                       }
