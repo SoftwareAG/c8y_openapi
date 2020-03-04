@@ -385,7 +385,7 @@
                       "items" : {
                         "properties" : {
                           "managedObject" : {
-                            "$ref" : "#/components/schemas/schemaResponseObject"
+                            "$ref" : "#/components/schemas/managedObject"
                           }
                         }
                       }
@@ -616,7 +616,7 @@
         "content" : {
           "application/vnd.com.nsn.cumulocity.managedobject+json" : {
             "schema" : {
-              "$ref" : "#/components/schemas/schemaResponseObject"
+              "$ref" : "#/components/schemas/managedObject"
             }
           }
         }
@@ -678,7 +678,7 @@
                   "description" : "An array containing the results (managed objects) of the request.",
                   "type" : "array",
                   "items" : {
-                    "$ref" : "#/components/schemas/schemaResponseObject"
+                    "$ref" : "#/components/schemas/managedObject"
                   }
                 }
               }
@@ -736,7 +736,7 @@
       }
     },
     "schemas" : {
-      "schemaResponseObject" : {
+      "managedObject" : {
         "type" : "object",
         "properties" : {
           "id" : {
