@@ -355,7 +355,7 @@
         "security" : [ {
           "BasicAuthentication" : [ ]
         } ],
-        "summary" : "Get all supported series of a specific managed object",
+        "summary" : "Get all child devices of a specific managed object",
         "operationId" : "getManagedObjectChildDevices",
         "description" : "Get all child devices of a specific managed object by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
