@@ -348,7 +348,13 @@
       "parameters" : [ {
         "$ref" : "#/components/parameters/managedObjectId"
       }, {
+        "$ref" : "#/components/parameters/queryParam_currentPage"
+      }, {
+        "$ref" : "#/components/parameters/queryParam_pageSize"
+      }, {
         "$ref" : "#/components/parameters/queryParam_query"
+      }, {
+        "$ref" : "#/components/parameters/queryParam_withTotalPages"
       } ],
       "get" : {
         "tags" : [ "Managed Objects" ],
@@ -360,7 +366,7 @@
         "description" : "Get all child devices of a specific managed object by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
           "200" : {
-            "description" : "The request has succeeded and all supported series are sent in the response.",
+            "description" : "The request has succeeded and all child devices are sent in the response.",
             "content" : {
               "application/json" : {
                 "schema" : {
