@@ -368,15 +368,27 @@
           "200" : {
             "description" : "The request has succeeded and all child devices are sent in the response.",
             "content" : {
-              "application/json" : {
+              "application/vnd.com.nsn.cumulocity.managedobjectreferencecollection+json" : {
                 "schema" : {
                   "type" : "object",
                   "properties" : {
-                    "c8y_SupportedSeries" : {
-                      "description" : "An array containing all supported series of the specified device.",
-                      "type" : "array",
-                      "items" : { },
-                      "example" : [ "c8y_MemoryMeasurement.Total", "c8y_CPUMeasurement.Workload", "c8y_MemoryMeasurement.Used" ]
+                    "self" : {
+                      "allOf" : [ {
+                        "$ref" : "#/components/x-descriptions/desc_objectSelf"
+                      }, {
+                        "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/user"
+                      } ]
+                    },
+                    "userName" : {
+                      "description" : "The username of the device's owner.",
+                      "type" : "string",
+                      "minLength" : 1,
+                      "example" : "manga"
+                    },
+                    "enabled" : {
+                      "description" : "Specifies if the device's owner is enabled or not.",
+                      "type" : "boolean",
+                      "example" : true
                     }
                   }
                 }
@@ -865,6 +877,31 @@
             "type" : "array",
             "items" : { },
             "example" : [ ]
+          }
+        }
+      },
+      "schemaPageStatistics" : {
+        "description" : "Information about paging statistics.",
+        "type" : "object",
+        "properties" : {
+          "totalPages" : {
+            "description" : "The total number of pages.",
+            "type" : "number",
+            "minimum" : 1,
+            "example" : 3
+          },
+          "currentPage" : {
+            "description" : "The current page of the paginated results.",
+            "type" : "number",
+            "minimum" : 1,
+            "example" : 2
+          },
+          "pageSize" : {
+            "description" : "Indicates the number of objects that the collection may contain per page. The upper limit for one page is 2,000 objects.",
+            "type" : "number",
+            "minimum" : 1,
+            "maximum" : 2000,
+            "example" : 5
           }
         }
       }
