@@ -379,11 +379,13 @@
                         "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/user"
                       } ]
                     },
-                    "userName" : {
-                      "description" : "The username of the device's owner.",
-                      "type" : "string",
-                      "minLength" : 1,
-                      "example" : "manga"
+                    "references" : {
+                      "description" : "An array containing the details of all child devices (if any).",
+                      "type" : "array",
+                      "items" : {
+                        "$ref" : "#/components/schemas/schemaResponseObject"
+                      },
+                      "example" : [ ]
                     },
                     "statistics" : {
                       "$ref" : "#/components/schemas/pageStatistics"
@@ -670,7 +672,7 @@
                   }
                 },
                 "managedObjects" : {
-                  "description" : "A ManagedObjectCollection array containing the results (managed objects) of the request.",
+                  "description" : "An array containing the results (managed objects) of the request.",
                   "type" : "array",
                   "items" : {
                     "$ref" : "#/components/schemas/schemaResponseObject"
