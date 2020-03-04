@@ -880,7 +880,7 @@
           }
         }
       },
-      "schemaPageStatistics" : {
+      "pageStatistics" : {
         "description" : "Information about paging statistics.",
         "type" : "object",
         "properties" : {
