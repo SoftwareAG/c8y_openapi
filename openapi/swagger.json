@@ -427,33 +427,14 @@
         "description" : "Get a specific child device (by a given child ID) of a specific managed object (by a given ID).<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
           "200" : {
-            "description" : "The request has succeeded and all child devices are sent in the response.",
+            "description" : "The request has succeeded and the child device is sent in the response.",
             "content" : {
-              "application/vnd.com.nsn.cumulocity.managedobjectreferencecollection+json" : {
+              "application/vnd.com.nsn.cumulocity.managedobjectreference+json" : {
                 "schema" : {
                   "type" : "object",
                   "properties" : {
-                    "self" : {
-                      "allOf" : [ {
-                        "$ref" : "#/components/x-descriptions/desc_objectSelf"
-                      }, {
-                        "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/user"
-                      } ]
-                    },
-                    "references" : {
-                      "description" : "An array containing the details of all child devices (if any).",
-                      "type" : "array",
-                      "minItems" : 0,
-                      "items" : {
-                        "properties" : {
-                          "managedObject" : {
-                            "$ref" : "#/components/schemas/managedObject"
-                          }
-                        }
-                      }
-                    },
-                    "statistics" : {
-                      "$ref" : "#/components/schemas/pageStatistics"
+                    "managedObject" : {
+                      "$ref" : "#/components/schemas/managedObject"
                     }
                   }
                 }
