@@ -306,7 +306,7 @@
         "description" : "Get the device's owner's username of a specific managed object (by a given ID) and if it is enabled for that managed object.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
           "200" : {
-            "description" : "The request has succeeded the username and status are sent in the response.",
+            "description" : "The request has succeeded and the username and status are sent in the response.",
             "content" : {
               "application/vnd.com.nsn.cumulocity.managedobjectuser+json" : {
                 "schema" : {
