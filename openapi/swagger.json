@@ -385,10 +385,8 @@
                       "minLength" : 1,
                       "example" : "manga"
                     },
-                    "enabled" : {
-                      "description" : "Specifies if the device's owner is enabled or not.",
-                      "type" : "boolean",
-                      "example" : true
+                    "statistics" : {
+                      "$ref" : "#/components/schemas/pageStatistics"
                     }
                   }
                 }
