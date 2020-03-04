@@ -343,6 +343,51 @@
           }
         }
       }
+    },
+    "/inventory/managedObjects/{id}/childDevices" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/managedObjectId"
+      }, {
+        "$ref" : "#/components/parameters/queryParam_query"
+      } ],
+      "get" : {
+        "tags" : [ "Managed Objects" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Get all supported series of a specific managed object",
+        "operationId" : "getManagedObjectChildDevices",
+        "description" : "Get all child devices of a specific managed object by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded and all supported series are sent in the response.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "c8y_SupportedSeries" : {
+                      "description" : "An array containing all supported series of the specified device.",
+                      "type" : "array",
+                      "items" : { },
+                      "example" : [ "c8y_MemoryMeasurement.Total", "c8y_CPUMeasurement.Workload", "c8y_MemoryMeasurement.Used" ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/res_unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/res_inventoryObjectNotFound"
+          },
+          "422" : {
+            "$ref" : "#/components/responses/res_invalidData"
+          }
+        }
+      }
     }
   },
   "components" : {
