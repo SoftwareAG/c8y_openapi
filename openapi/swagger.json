@@ -382,14 +382,11 @@
                     "references" : {
                       "description" : "An array containing the details of all child devices (if any).",
                       "type" : "array",
+                      "minItems" : 0,
                       "items" : {
                         "properties" : {
                           "managedObject" : {
-                            "allOf" : [ {
-                              "minItems" : 0
-                            }, {
-                              "$ref" : "#/components/schemas/managedObject"
-                            } ]
+                            "$ref" : "#/components/schemas/managedObject"
                           }
                         }
                       }
