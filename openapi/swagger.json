@@ -410,6 +410,67 @@
           }
         }
       }
+    },
+    "/inventory/managedObjects/{id}/childDevices/{childId}" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/managedObjectId"
+      }, {
+        "$ref" : "#/components/parameters/managedObjectChildId"
+      } ],
+      "get" : {
+        "tags" : [ "Managed Objects" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Get a specific child device of a specific managed object",
+        "operationId" : "getManagedObjectChildDevice",
+        "description" : "Get a specific child device (by a given child ID) of a specific managed object (by a given ID).<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded and all child devices are sent in the response.",
+            "content" : {
+              "application/vnd.com.nsn.cumulocity.managedobjectreferencecollection+json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "self" : {
+                      "allOf" : [ {
+                        "$ref" : "#/components/x-descriptions/desc_objectSelf"
+                      }, {
+                        "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/user"
+                      } ]
+                    },
+                    "references" : {
+                      "description" : "An array containing the details of all child devices (if any).",
+                      "type" : "array",
+                      "minItems" : 0,
+                      "items" : {
+                        "properties" : {
+                          "managedObject" : {
+                            "$ref" : "#/components/schemas/managedObject"
+                          }
+                        }
+                      }
+                    },
+                    "statistics" : {
+                      "$ref" : "#/components/schemas/pageStatistics"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/res_unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/res_inventoryObjectNotFound"
+          },
+          "422" : {
+            "$ref" : "#/components/responses/res_invalidChildId"
+          }
+        }
+      }
     }
   },
   "components" : {
@@ -435,7 +496,18 @@
         "schema" : {
           "type" : "string",
           "minLength" : 1,
-          "example" : 51994
+          "example" : 251982
+        }
+      },
+      "managedObjectChildId" : {
+        "name" : "childId",
+        "in" : "path",
+        "description" : "Unique identifier of the child object.",
+        "required" : true,
+        "schema" : {
+          "type" : "string",
+          "minLength" : 1,
+          "example" : 72022
         }
       },
       "queryParam_currentPage" : {
@@ -598,6 +670,39 @@
                     "$ref" : "#/components/x-descriptions/desc_40XMessage"
                   }, {
                     "example" : "Find by filter query failed : Query could not be understood."
+                  } ]
+                },
+                "info" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_40XInfo"
+                  }, {
+                    "example" : "https://www.cumulocity.com/guides/reference-guide/#error_reporting"
+                  } ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "res_invalidChildId" : {
+        "description" : "Invalid data was sent.",
+        "content" : {
+          "application/vnd.com.nsn.cumulocity.error+json" : {
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "error" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_40XError"
+                  }, {
+                    "example" : "inventory/Invalid Data"
+                  } ]
+                },
+                "message" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_40XMessage"
+                  }, {
+                    "example" : "managedObject 10213 is not a child of 10215"
                   } ]
                 },
                 "info" : {
