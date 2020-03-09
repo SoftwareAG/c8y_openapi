@@ -682,6 +682,56 @@
           }
         }
       }
+    },
+    "/inventory/managedObjects/{id}/childAssets/{childId}" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/managedObjectId"
+      }, {
+        "$ref" : "#/components/parameters/managedObjectChildId"
+      } ],
+      "get" : {
+        "tags" : [ "Managed Objects" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Get a specific child asset of a specific managed object",
+        "operationId" : "getManagedObjectChildAsset",
+        "description" : "Get a specific child asset (by a given child ID) of a specific managed object (by a given ID).<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded and the child asset is sent in the response.",
+            "content" : {
+              "application/vnd.com.nsn.cumulocity.managedobjectreference+json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "managedObject" : {
+                      "$ref" : "#/components/schemas/managedObject"
+                    },
+                    "self" : {
+                      "allOf" : [ {
+                        "$ref" : "#/components/x-descriptions/desc_objectSelf"
+                      }, {
+                        "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childAssets/{childId}"
+                      } ]
+                    }
+                  }
+                }
+              }
+            },
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/res_unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/res_inventoryObjectNotFound"
+          },
+          "422" : {
+            "$ref" : "#/components/responses/res_invalidChildId"
+          }
+        }
+      }
     }
   },
   "components" : {
