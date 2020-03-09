@@ -116,7 +116,8 @@
                   "example" : 38
                 }
               }
-            }
+            },
+            "links" : { }
           },
           "401" : {
             "$ref" : "#/components/responses/res_unauthorizedError"
