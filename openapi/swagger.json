@@ -230,6 +230,53 @@
         }
       }
     },
+    "/inventory/managedObjects/{id}/availability" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/managedObjectId"
+      }, {
+        "$ref" : "#/components/parameters/queryParam_query"
+      } ],
+      "get" : {
+        "tags" : [ "Managed Objects" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Retrieve the latest availability date of a specific managed object",
+        "operationId" : "getManagedObjectAvailability",
+        "description" : "Retrieve the date when a specific managed object (by a given ID) sent the last message to Cumulocity IoT.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded and the date is sent in the response.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "description" : "Latest availability date of a specific managed object.",
+                  "type" : "string",
+                  "example" : "2019-08-08T08:36:32.896Z"
+                }
+              },
+              "text/plain" : {
+                "schema" : {
+                  "description" : "Latest availability date of a specific managed object.",
+                  "type" : "string",
+                  "example" : "2019-08-08T08:36:32.896Z"
+                }
+              }
+            },
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/res_unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/res_inventoryObjectNotFound"
+          },
+          "422" : {
+            "$ref" : "#/components/responses/res_invalidData"
+          }
+        }
+      }
+    },
     "/inventory/managedObjects/{id}/supportedMeasurements" : {
       "parameters" : [ {
         "$ref" : "#/components/parameters/managedObjectId"
@@ -305,53 +352,6 @@
                       "example" : [ "c8y_MemoryMeasurement.Total", "c8y_CPUMeasurement.Workload", "c8y_MemoryMeasurement.Used" ]
                     }
                   }
-                }
-              }
-            },
-            "links" : { }
-          },
-          "401" : {
-            "$ref" : "#/components/responses/res_unauthorizedError"
-          },
-          "404" : {
-            "$ref" : "#/components/responses/res_inventoryObjectNotFound"
-          },
-          "422" : {
-            "$ref" : "#/components/responses/res_invalidData"
-          }
-        }
-      }
-    },
-    "/inventory/managedObjects/{id}/availability" : {
-      "parameters" : [ {
-        "$ref" : "#/components/parameters/managedObjectId"
-      }, {
-        "$ref" : "#/components/parameters/queryParam_query"
-      } ],
-      "get" : {
-        "tags" : [ "Managed Objects" ],
-        "security" : [ {
-          "BasicAuthentication" : [ ]
-        } ],
-        "summary" : "Retrieve the latest availability date of a specific managed object",
-        "operationId" : "getManagedObjectAvailability",
-        "description" : "Retrieve the date when a specific managed object (by a given ID) sent the last message to Cumulocity IoT.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
-        "responses" : {
-          "200" : {
-            "description" : "The request has succeeded and the date is sent in the response.",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "description" : "Latest availability date of a specific managed object.",
-                  "type" : "string",
-                  "example" : "2019-08-08T08:36:32.896Z"
-                }
-              },
-              "text/plain" : {
-                "schema" : {
-                  "description" : "Latest availability date of a specific managed object.",
-                  "type" : "string",
-                  "example" : "2019-08-08T08:36:32.896Z"
                 }
               }
             },
