@@ -65,11 +65,47 @@
                 "schema" : {
                   "type" : "object",
                   "properties" : {
-                    "c8y_SupportedMeasurements" : {
-                      "description" : "An array containing all supported measurements of the specified device.",
-                      "type" : "array",
-                      "items" : { },
-                      "example" : [ "c8y_MemoryMeasurement", "c8y_CPUMeasurement" ]
+                    "self" : {
+                      "allOf" : [ {
+                        "$ref" : "#/components/x-descriptions/desc_objectSelf"
+                      }, {
+                        "example" : "PROTOCOL://TENANT_DOMAIN/inventory"
+                      } ]
+                    },
+                    "managedObjectsForFragmentType" : {
+                      "description" : "Read-only collection of all managed objects with a particular fragment type or capability (placeholder {fragmentType}).",
+                      "type" : "string",
+                      "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects?fragmentType={fragmentType}"
+                    },
+                    "managedObjectsForType" : {
+                      "description" : "Read-only collection of all managed objects of a particular type (placeholder {type}).",
+                      "type" : "string",
+                      "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects?type={type}"
+                    },
+                    "managedObjectsForListOfIds" : {
+                      "description" : "Read-only collection of managed objects fetched for a given list of ids, e.g. “?ids=41,43,68”.",
+                      "type" : "string",
+                      "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects?ids={ids}"
+                    },
+                    "managedObjects" : {
+                      "description" : "Collection of all managed objects",
+                      "type" : "object",
+                      "properties" : {
+                        "self" : {
+                          "allOf" : [ {
+                            "$ref" : "#/components/x-descriptions/desc_objectSelf"
+                          }, {
+                            "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects"
+                          } ]
+                        },
+                        "references" : {
+                          "description" : " ",
+                          "type" : "array",
+                          "minItems" : 0,
+                          "items" : { },
+                          "example" : [ ]
+                        }
+                      }
                     }
                   }
                 }
