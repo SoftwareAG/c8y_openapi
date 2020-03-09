@@ -83,7 +83,7 @@
                       "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects?type={type}"
                     },
                     "managedObjectsForListOfIds" : {
-                      "description" : "Read-only collection of managed objects fetched for a given list of ids, e.g. “?ids=41,43,68”.",
+                      "description" : "Read-only collection of managed objects fetched for a given list of ids, e.g. “ids=41,43,68”.",
                       "type" : "string",
                       "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects?ids={ids}"
                     },
@@ -1244,17 +1244,17 @@
           }
         }
       },
-      "objectChildDevices" : {
-        "description" : "A collection of references to child devices.",
+      "objectAssetParents" : {
+        "description" : "A collection of references to asset parent objects.",
         "type" : "object",
         "properties" : {
           "self" : {
-            "description" : "Link to this resource's child devices.",
+            "description" : "Link to this resource's asset parent objects.",
             "type" : "string",
-            "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childDevices"
+            "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/assetParents"
           },
           "references" : {
-            "description" : "An array with the references to child devices.",
+            "description" : "An array with the references to asset parent objects.",
             "type" : "array",
             "items" : { },
             "example" : [ ]
@@ -1295,6 +1295,23 @@
           }
         }
       },
+      "objectChildDevices" : {
+        "description" : "A collection of references to child devices.",
+        "type" : "object",
+        "properties" : {
+          "self" : {
+            "description" : "Link to this resource's child devices.",
+            "type" : "string",
+            "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childDevices"
+          },
+          "references" : {
+            "description" : "An array with the references to child devices.",
+            "type" : "array",
+            "items" : { },
+            "example" : [ ]
+          }
+        }
+      },
       "objectDeviceParents" : {
         "description" : "A collection of references to device parent objects.",
         "type" : "object",
@@ -1306,23 +1323,6 @@
           },
           "references" : {
             "description" : "An array with the references to parent objects.",
-            "type" : "array",
-            "items" : { },
-            "example" : [ ]
-          }
-        }
-      },
-      "objectAssetParents" : {
-        "description" : "A collection of references to asset parent objects.",
-        "type" : "object",
-        "properties" : {
-          "self" : {
-            "description" : "Link to this resource's asset parent objects.",
-            "type" : "string",
-            "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/assetParents"
-          },
-          "references" : {
-            "description" : "An array with the references to asset parent objects.",
             "type" : "array",
             "items" : { },
             "example" : [ ]
