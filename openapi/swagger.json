@@ -649,7 +649,7 @@
                       } ]
                     },
                     "references" : {
-                      "description" : "An array containing the details of all child additions (if any).",
+                      "description" : "An array containing the details of all child assets (if any).",
                       "type" : "array",
                       "minItems" : 0,
                       "items" : { },
