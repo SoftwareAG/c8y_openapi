@@ -277,59 +277,6 @@
         }
       }
     },
-    "/inventory/managedObjects/{id}/user" : {
-      "parameters" : [ {
-        "$ref" : "#/components/parameters/managedObjectId"
-      } ],
-      "get" : {
-        "tags" : [ "Managed Objects" ],
-        "security" : [ {
-          "BasicAuthentication" : [ ]
-        } ],
-        "summary" : "Retrieve the username and status of a specific managed object",
-        "operationId" : "getManagedObjectUsernameAndStatus",
-        "description" : "Retrieve the device's owner's username of a specific managed object (by a given ID) and if it is enabled for that managed object.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
-        "responses" : {
-          "200" : {
-            "description" : "The request has succeeded and the username and status are sent in the response.",
-            "content" : {
-              "application/vnd.com.nsn.cumulocity.managedobjectuser+json" : {
-                "schema" : {
-                  "type" : "object",
-                  "properties" : {
-                    "self" : {
-                      "allOf" : [ {
-                        "$ref" : "#/components/x-descriptions/desc_objectSelf"
-                      }, {
-                        "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/user"
-                      } ]
-                    },
-                    "userName" : {
-                      "description" : "The username of the device's owner.",
-                      "type" : "string",
-                      "minLength" : 1,
-                      "example" : "manga"
-                    },
-                    "enabled" : {
-                      "description" : "Specifies if the device's owner is enabled or not.",
-                      "type" : "boolean",
-                      "example" : true
-                    }
-                  }
-                }
-              }
-            },
-            "links" : { }
-          },
-          "401" : {
-            "$ref" : "#/components/responses/res_unauthorizedError"
-          },
-          "404" : {
-            "$ref" : "#/components/responses/res_inventoryObjectNotFound"
-          }
-        }
-      }
-    },
     "/inventory/managedObjects/{id}/childDevices" : {
       "parameters" : [ {
         "$ref" : "#/components/parameters/managedObjectId"
@@ -802,6 +749,59 @@
           },
           "422" : {
             "$ref" : "#/components/responses/res_invalidData"
+          }
+        }
+      }
+    },
+    "/inventory/managedObjects/{id}/user" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/managedObjectId"
+      } ],
+      "get" : {
+        "tags" : [ "Managed Objects" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Retrieve the username and status of a specific managed object",
+        "operationId" : "getManagedObjectUsernameAndStatus",
+        "description" : "Retrieve the device's owner's username of a specific managed object (by a given ID) and if it is enabled for that managed object.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded and the username and status are sent in the response.",
+            "content" : {
+              "application/vnd.com.nsn.cumulocity.managedobjectuser+json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "self" : {
+                      "allOf" : [ {
+                        "$ref" : "#/components/x-descriptions/desc_objectSelf"
+                      }, {
+                        "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/user"
+                      } ]
+                    },
+                    "userName" : {
+                      "description" : "The username of the device's owner.",
+                      "type" : "string",
+                      "minLength" : 1,
+                      "example" : "manga"
+                    },
+                    "enabled" : {
+                      "description" : "Specifies if the device's owner is enabled or not.",
+                      "type" : "boolean",
+                      "example" : true
+                    }
+                  }
+                }
+              }
+            },
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/res_unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/res_inventoryObjectNotFound"
           }
         }
       }
