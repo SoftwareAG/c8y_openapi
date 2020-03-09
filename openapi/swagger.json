@@ -119,22 +119,33 @@
       }
     },
     "/inventory/managedObjects" : {
-      "parameters" : [ {
-        "$ref" : "#/components/parameters/queryParam_currentPage"
-      }, {
-        "$ref" : "#/components/parameters/queryParam_fragmentType"
-      }, {
-        "$ref" : "#/components/parameters/queryParam_pageSize"
-      }, {
-        "$ref" : "#/components/parameters/queryParam_query"
-      }, {
-        "$ref" : "#/components/parameters/queryParam_skipChildrenNames"
-      }, {
-        "$ref" : "#/components/parameters/queryParam_withParents"
-      }, {
-        "$ref" : "#/components/parameters/queryParam_withTotalPages"
-      } ],
+      "post" : {
+        "tags" : [ "Managed Objects" ],
+        "summary" : "Create a managed object",
+        "operationId" : "postManagedObject",
+        "description" : "Create a managed object <plhld...>\n",
+        "responses" : {
+          "401" : {
+            "$ref" : "#/components/responses/res_unauthorizedError"
+          }
+        }
+      },
       "get" : {
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/queryParam_currentPage"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_fragmentType"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_pageSize"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_query"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_skipChildrenNames"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_withParents"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_withTotalPages"
+        } ],
         "tags" : [ "Managed Objects" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
