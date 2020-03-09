@@ -1035,23 +1035,23 @@
             } ]
           },
           "childDevices" : {
-            "$ref" : "#/components/schemas/schemaObjectChildDevices"
+            "$ref" : "#/components/schemas/objectChildDevices"
           },
           "childAdditions" : {
-            "$ref" : "#/components/schemas/schemaObjectChildAdditions"
+            "$ref" : "#/components/schemas/objectChildAdditions"
           },
           "childAssets" : {
-            "$ref" : "#/components/schemas/schemaObjectChildAssets"
+            "$ref" : "#/components/schemas/objectChildAssets"
           },
           "deviceParents" : {
-            "$ref" : "#/components/schemas/schemaObjectDeviceParents"
+            "$ref" : "#/components/schemas/objectDeviceParents"
           },
           "assetParents" : {
-            "$ref" : "#/components/schemas/schemaObjectAssetParents"
+            "$ref" : "#/components/schemas/objectAssetParents"
           }
         }
       },
-      "schemaObjectChildDevices" : {
+      "objectChildDevices" : {
         "description" : "A collection of references to child devices.",
         "type" : "object",
         "properties" : {
@@ -1068,7 +1068,7 @@
           }
         }
       },
-      "schemaObjectChildAdditions" : {
+      "objectChildAdditions" : {
         "description" : "A collection of references to child additions.",
         "type" : "object",
         "properties" : {
@@ -1085,7 +1085,7 @@
           }
         }
       },
-      "schemaObjectChildAssets" : {
+      "objectChildAssets" : {
         "description" : "A collection of references to child assets.",
         "type" : "object",
         "properties" : {
@@ -1102,7 +1102,7 @@
           }
         }
       },
-      "schemaObjectDeviceParents" : {
+      "objectDeviceParents" : {
         "description" : "A collection of references to device parent objects.",
         "type" : "object",
         "properties" : {
@@ -1119,7 +1119,7 @@
           }
         }
       },
-      "schemaObjectAssetParents" : {
+      "objectAssetParents" : {
         "description" : "A collection of references to asset parent objects.",
         "type" : "object",
         "properties" : {
