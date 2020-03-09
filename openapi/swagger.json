@@ -37,14 +37,33 @@
     "JWTAuthentication" : [ ]
   } ],
   "tags" : [ {
+    "name" : "Inventory API",
+    "description" : "The inventory stores all master data related to devices, their configuration and their connections. It also contains all related assets (e.g. vehicles, machines, buildings) and their structure. The inventory API resource returns URIs and URI templates to collections of managed objects.\n"
+  }, {
     "name" : "Managed Objects",
-    "description" : "The inventory stores devices and other assets relevant to your IoT solution. We refer to them as managed objects.\n"
+    "description" : "The inventory stores devices and other assets relevant to your IoT solution. We refer to them as managed objects and such can be “smart objects”, e.g. smart electricity meters, home automation gateways or GPS devices.\n"
   } ],
   "x-tagGroups" : [ {
     "name" : "Inventory",
-    "tags" : [ "Managed Objects", "Device Group" ]
+    "tags" : [ "Inventory API", "Managed Objects" ]
   } ],
   "paths" : {
+    "/inventory" : {
+      "get" : {
+        "tags" : [ "Inventory API" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Get all managed objects",
+        "operationId" : "getInventoryApi",
+        "description" : "Get all managed objects (e.g. devices, assets, etc.) registered in your tenant.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "responses" : {
+          "200" : {
+            "$ref" : "#/components/responses/res_inventoryObjectCollectionFound"
+          }
+        }
+      }
+    },
     "/inventory/managedObjects" : {
       "parameters" : [ {
         "$ref" : "#/components/parameters/queryParam_currentPage"
