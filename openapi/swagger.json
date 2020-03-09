@@ -54,12 +54,30 @@
         "security" : [ {
           "BasicAuthentication" : [ ]
         } ],
-        "summary" : "Get all managed objects",
+        "summary" : "Retrieve URIs to collections of managed objects",
         "operationId" : "getInventoryApi",
-        "description" : "Get all managed objects (e.g. devices, assets, etc.) registered in your tenant.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Retrieve URIs and URI templates to collections of managed objects.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
           "200" : {
-            "$ref" : "#/components/responses/res_inventoryObjectCollectionFound"
+            "description" : "The request has succeeded and the URIs are sent in the response.",
+            "content" : {
+              "application/vnd.com.nsn.cumulocity.inventoryapi+json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "c8y_SupportedMeasurements" : {
+                      "description" : "An array containing all supported measurements of the specified device.",
+                      "type" : "array",
+                      "items" : { },
+                      "example" : [ "c8y_MemoryMeasurement", "c8y_CPUMeasurement" ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/res_unauthorizedError"
           }
         }
       }
@@ -85,9 +103,9 @@
         "security" : [ {
           "BasicAuthentication" : [ ]
         } ],
-        "summary" : "Get all managed objects",
+        "summary" : "Retrieve all managed objects",
         "operationId" : "getManagedObjects",
-        "description" : "Get all managed objects (e.g. devices, assets, etc.) registered in your tenant.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Retrieve all managed objects (e.g. devices, assets, etc.) registered in your tenant.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
           "200" : {
             "$ref" : "#/components/responses/res_inventoryObjectCollectionFound"
@@ -112,9 +130,9 @@
         "security" : [ {
           "BasicAuthentication" : [ ]
         } ],
-        "summary" : "Get the total number of managed objects",
+        "summary" : "Retrieve the total number of managed objects",
         "operationId" : "getManagedObjectsCount",
-        "description" : "Get the total number of managed objects (e.g. devices, assets, etc.) registered in your tenant.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Retrieve the total number of managed objects (e.g. devices, assets, etc.) registered in your tenant.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the total number of managed objects is sent in the response.",
@@ -160,9 +178,9 @@
         "security" : [ {
           "BasicAuthentication" : [ ]
         } ],
-        "summary" : "Get a specific managed object",
+        "summary" : "Retrieve a specific managed object",
         "operationId" : "getManagedObjectById",
-        "description" : "Get a specific managed object (e.g. device, group, template) by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Retrieve a specific managed object (e.g. device, group, template) by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
           "200" : {
             "$ref" : "#/components/responses/res_inventoryObjectFound"
@@ -187,9 +205,9 @@
         "security" : [ {
           "BasicAuthentication" : [ ]
         } ],
-        "summary" : "Get all measurements of a specific managed object",
+        "summary" : "Retrieve all measurements of a specific managed object",
         "operationId" : "getManagedObjectSupportedMeasurements",
-        "description" : "Get all supported measurements of a specific managed object by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Retrieve all supported measurements of a specific managed object by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and all supported measurements are sent in the response.",
@@ -233,9 +251,9 @@
         "security" : [ {
           "BasicAuthentication" : [ ]
         } ],
-        "summary" : "Get all supported series of a specific managed object",
+        "summary" : "Retrieve all supported series of a specific managed object",
         "operationId" : "getManagedObjectSupportedSeries",
-        "description" : "Get all supported series of a specific managed object by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Retrieve all supported series of a specific managed object by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and all supported series are sent in the response.",
@@ -279,9 +297,9 @@
         "security" : [ {
           "BasicAuthentication" : [ ]
         } ],
-        "summary" : "Get the latest availability date of a specific managed object",
+        "summary" : "Retrieve the latest availability date of a specific managed object",
         "operationId" : "getManagedObjectAvailability",
-        "description" : "Get the date when a specific managed object (by a given ID) sent the last message to Cumulocity IoT.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Retrieve the date when a specific managed object (by a given ID) sent the last message to Cumulocity IoT.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the date is sent in the response.",
@@ -324,9 +342,9 @@
         "security" : [ {
           "BasicAuthentication" : [ ]
         } ],
-        "summary" : "Get the username and status of a specific managed object",
+        "summary" : "Retrieve the username and status of a specific managed object",
         "operationId" : "getManagedObjectUsernameAndStatus",
-        "description" : "Get the device's owner's username of a specific managed object (by a given ID) and if it is enabled for that managed object.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Retrieve the device's owner's username of a specific managed object (by a given ID) and if it is enabled for that managed object.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the username and status are sent in the response.",
@@ -385,9 +403,9 @@
         "security" : [ {
           "BasicAuthentication" : [ ]
         } ],
-        "summary" : "Get all child devices of a specific managed object",
+        "summary" : "Retrieve all child devices of a specific managed object",
         "operationId" : "getManagedObjectChildDevices",
-        "description" : "Get all child devices of a specific managed object by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Retrieve all child devices of a specific managed object by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and all child devices are sent in the response.",
@@ -461,9 +479,9 @@
         "security" : [ {
           "BasicAuthentication" : [ ]
         } ],
-        "summary" : "Get a specific child device of a specific managed object",
+        "summary" : "Retrieve a specific child device of a specific managed object",
         "operationId" : "getManagedObjectChildDevice",
-        "description" : "Get a specific child device (by a given child ID) of a specific managed object (by a given ID).<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Retrieve a specific child device (by a given child ID) of a specific managed object (by a given ID).<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the child device is sent in the response.",
@@ -517,9 +535,9 @@
         "security" : [ {
           "BasicAuthentication" : [ ]
         } ],
-        "summary" : "Get all child additions of a specific managed object",
+        "summary" : "Retrieve all child additions of a specific managed object",
         "operationId" : "getManagedObjectChildAdditions",
-        "description" : "Get all child additions of a specific managed object by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Retrieve all child additions of a specific managed object by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and all child additions are sent in the response.",
@@ -593,9 +611,9 @@
         "security" : [ {
           "BasicAuthentication" : [ ]
         } ],
-        "summary" : "Get a specific child addition of a specific managed object",
+        "summary" : "Retrieve a specific child addition of a specific managed object",
         "operationId" : "getManagedObjectChildAddition",
-        "description" : "Get a specific child addition (by a given child ID) of a specific managed object (by a given ID).<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Retrieve a specific child addition (by a given child ID) of a specific managed object (by a given ID).<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the child addition is sent in the response.",
@@ -649,9 +667,9 @@
         "security" : [ {
           "BasicAuthentication" : [ ]
         } ],
-        "summary" : "Get all child assets of a specific managed object",
+        "summary" : "Retrieve all child assets of a specific managed object",
         "operationId" : "getManagedObjectChildAssets",
-        "description" : "Get all child assets of a specific managed object by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Retrieve all child assets of a specific managed object by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and all child assets are sent in the response.",
@@ -713,9 +731,9 @@
         "security" : [ {
           "BasicAuthentication" : [ ]
         } ],
-        "summary" : "Get a specific child asset of a specific managed object",
+        "summary" : "Retrieve a specific child asset of a specific managed object",
         "operationId" : "getManagedObjectChildAsset",
-        "description" : "Get a specific child asset (by a given child ID) of a specific managed object (by a given ID).<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Retrieve a specific child asset (by a given child ID) of a specific managed object (by a given ID).<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the child asset is sent in the response.",
@@ -756,7 +774,7 @@
   "components" : {
     "securitySchemes" : {
       "BasicAuthentication" : {
-        "description" : "The authorization header is formed as `Basic <Base64(<tenantID>/<c8yuser>:<password>)>`. For instance, if your tenantID, username and password are **t0071234**, **testuser** and **secret123** respectively, you can get the Base64 string with the following command:\n\n  ```shell\n  $ echo -n t0071234/testuser:secret123 | base64\n  ```\n\n  and your authorization header would look like\n  \n  ```\n  \"Authorization\": \"Basic dDAwNzEyMzQvdGVzdHVzZXI6c2VjcmV0MTIz\" \n  ```\n  \n  On UI interfaces, your username name shall be plain text in the format `<tenantID>/<c8yuser>`. \n  \n",
+        "description" : "The authorization header is formed as `Basic <Base64(<tenantID>/<c8yuser>:<password>)>`. For instance, if your tenantID, username and password are **t0071234**, **testuser** and **secret123** respectively, you can generate the Base64 string with the following command:\n\n  ```shell\n  $ echo -n t0071234/testuser:secret123 | base64\n  ```\n\n  and your authorization header would look like\n  \n  ```\n  \"Authorization\": \"Basic dDAwNzEyMzQvdGVzdHVzZXI6c2VjcmV0MTIz\" \n  ```\n  \n  On UI interfaces, your username name shall be plain text in the format `<tenantID>/<c8yuser>`. \n  \n",
         "type" : "http",
         "scheme" : "basic"
       },
