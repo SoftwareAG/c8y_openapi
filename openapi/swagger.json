@@ -277,138 +277,6 @@
         }
       }
     },
-    "/inventory/managedObjects/{id}/childDevices" : {
-      "parameters" : [ {
-        "$ref" : "#/components/parameters/managedObjectId"
-      }, {
-        "$ref" : "#/components/parameters/queryParam_currentPage"
-      }, {
-        "$ref" : "#/components/parameters/queryParam_pageSize"
-      }, {
-        "$ref" : "#/components/parameters/queryParam_query"
-      }, {
-        "$ref" : "#/components/parameters/queryParam_withTotalPages"
-      } ],
-      "get" : {
-        "tags" : [ "Managed Objects" ],
-        "security" : [ {
-          "BasicAuthentication" : [ ]
-        } ],
-        "summary" : "Retrieve all child devices of a specific managed object",
-        "operationId" : "getManagedObjectChildDevices",
-        "description" : "Retrieve all child devices of a specific managed object by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
-        "responses" : {
-          "200" : {
-            "description" : "The request has succeeded and all child devices are sent in the response.",
-            "content" : {
-              "application/vnd.com.nsn.cumulocity.managedobjectreferencecollection+json" : {
-                "schema" : {
-                  "type" : "object",
-                  "properties" : {
-                    "prev" : {
-                      "allOf" : [ {
-                        "$ref" : "#/components/x-descriptions/desc_prevPage"
-                      }, {
-                        "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childDevices?pageSize=5&currentPage=1"
-                      } ]
-                    },
-                    "self" : {
-                      "allOf" : [ {
-                        "$ref" : "#/components/x-descriptions/desc_objectSelf"
-                      }, {
-                        "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childDevices?pageSize=5&currentPage=2"
-                      } ]
-                    },
-                    "next" : {
-                      "allOf" : [ {
-                        "$ref" : "#/components/x-descriptions/desc_nextPage"
-                      }, {
-                        "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childDevices?pageSize=5&currentPage=3"
-                      } ]
-                    },
-                    "references" : {
-                      "description" : "An array containing the details of all child devices (if any).",
-                      "type" : "array",
-                      "minItems" : 0,
-                      "items" : {
-                        "properties" : {
-                          "managedObject" : {
-                            "$ref" : "#/components/schemas/managedObject"
-                          }
-                        }
-                      }
-                    },
-                    "statistics" : {
-                      "$ref" : "#/components/schemas/pageStatistics"
-                    }
-                  }
-                }
-              }
-            },
-            "links" : { }
-          },
-          "401" : {
-            "$ref" : "#/components/responses/res_unauthorizedError"
-          },
-          "404" : {
-            "$ref" : "#/components/responses/res_inventoryObjectNotFound"
-          },
-          "422" : {
-            "$ref" : "#/components/responses/res_invalidData"
-          }
-        }
-      }
-    },
-    "/inventory/managedObjects/{id}/childDevices/{childId}" : {
-      "parameters" : [ {
-        "$ref" : "#/components/parameters/managedObjectId"
-      }, {
-        "$ref" : "#/components/parameters/managedObjectChildId"
-      } ],
-      "get" : {
-        "tags" : [ "Managed Objects" ],
-        "security" : [ {
-          "BasicAuthentication" : [ ]
-        } ],
-        "summary" : "Retrieve a specific child device of a specific managed object",
-        "operationId" : "getManagedObjectChildDevice",
-        "description" : "Retrieve a specific child device (by a given child ID) of a specific managed object (by a given ID).<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
-        "responses" : {
-          "200" : {
-            "description" : "The request has succeeded and the child device is sent in the response.",
-            "content" : {
-              "application/vnd.com.nsn.cumulocity.managedobjectreference+json" : {
-                "schema" : {
-                  "type" : "object",
-                  "properties" : {
-                    "managedObject" : {
-                      "$ref" : "#/components/schemas/managedObject"
-                    },
-                    "self" : {
-                      "allOf" : [ {
-                        "$ref" : "#/components/x-descriptions/desc_objectSelf"
-                      }, {
-                        "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childDevices/{childId}"
-                      } ]
-                    }
-                  }
-                }
-              }
-            },
-            "links" : { }
-          },
-          "401" : {
-            "$ref" : "#/components/responses/res_unauthorizedError"
-          },
-          "404" : {
-            "$ref" : "#/components/responses/res_inventoryObjectNotFound"
-          },
-          "422" : {
-            "$ref" : "#/components/responses/res_invalidChildId"
-          }
-        }
-      }
-    },
     "/inventory/managedObjects/{id}/childAdditions" : {
       "parameters" : [ {
         "$ref" : "#/components/parameters/managedObjectId"
@@ -641,6 +509,138 @@
                         "$ref" : "#/components/x-descriptions/desc_objectSelf"
                       }, {
                         "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childAssets/{childId}"
+                      } ]
+                    }
+                  }
+                }
+              }
+            },
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/res_unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/res_inventoryObjectNotFound"
+          },
+          "422" : {
+            "$ref" : "#/components/responses/res_invalidChildId"
+          }
+        }
+      }
+    },
+    "/inventory/managedObjects/{id}/childDevices" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/managedObjectId"
+      }, {
+        "$ref" : "#/components/parameters/queryParam_currentPage"
+      }, {
+        "$ref" : "#/components/parameters/queryParam_pageSize"
+      }, {
+        "$ref" : "#/components/parameters/queryParam_query"
+      }, {
+        "$ref" : "#/components/parameters/queryParam_withTotalPages"
+      } ],
+      "get" : {
+        "tags" : [ "Managed Objects" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Retrieve all child devices of a specific managed object",
+        "operationId" : "getManagedObjectChildDevices",
+        "description" : "Retrieve all child devices of a specific managed object by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded and all child devices are sent in the response.",
+            "content" : {
+              "application/vnd.com.nsn.cumulocity.managedobjectreferencecollection+json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "prev" : {
+                      "allOf" : [ {
+                        "$ref" : "#/components/x-descriptions/desc_prevPage"
+                      }, {
+                        "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childDevices?pageSize=5&currentPage=1"
+                      } ]
+                    },
+                    "self" : {
+                      "allOf" : [ {
+                        "$ref" : "#/components/x-descriptions/desc_objectSelf"
+                      }, {
+                        "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childDevices?pageSize=5&currentPage=2"
+                      } ]
+                    },
+                    "next" : {
+                      "allOf" : [ {
+                        "$ref" : "#/components/x-descriptions/desc_nextPage"
+                      }, {
+                        "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childDevices?pageSize=5&currentPage=3"
+                      } ]
+                    },
+                    "references" : {
+                      "description" : "An array containing the details of all child devices (if any).",
+                      "type" : "array",
+                      "minItems" : 0,
+                      "items" : {
+                        "properties" : {
+                          "managedObject" : {
+                            "$ref" : "#/components/schemas/managedObject"
+                          }
+                        }
+                      }
+                    },
+                    "statistics" : {
+                      "$ref" : "#/components/schemas/pageStatistics"
+                    }
+                  }
+                }
+              }
+            },
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/res_unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/res_inventoryObjectNotFound"
+          },
+          "422" : {
+            "$ref" : "#/components/responses/res_invalidData"
+          }
+        }
+      }
+    },
+    "/inventory/managedObjects/{id}/childDevices/{childId}" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/managedObjectId"
+      }, {
+        "$ref" : "#/components/parameters/managedObjectChildId"
+      } ],
+      "get" : {
+        "tags" : [ "Managed Objects" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Retrieve a specific child device of a specific managed object",
+        "operationId" : "getManagedObjectChildDevice",
+        "description" : "Retrieve a specific child device (by a given child ID) of a specific managed object (by a given ID).<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded and the child device is sent in the response.",
+            "content" : {
+              "application/vnd.com.nsn.cumulocity.managedobjectreference+json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "managedObject" : {
+                      "$ref" : "#/components/schemas/managedObject"
+                    },
+                    "self" : {
+                      "allOf" : [ {
+                        "$ref" : "#/components/x-descriptions/desc_objectSelf"
+                      }, {
+                        "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childDevices/{childId}"
                       } ]
                     }
                   }
