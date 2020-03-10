@@ -60,6 +60,7 @@
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the URIs are sent in the response.",
+            "links" : { },
             "content" : {
               "application/vnd.com.nsn.cumulocity.inventoryapi+json" : {
                 "schema" : {
@@ -140,7 +141,7 @@
                   },
                   "c8y_SupportedMeasurements" : {
                     "allOf" : [ {
-                      "$ref" : "#/components/schemas/c8y_SupportedMeasurements"
+                      "$ref" : "#/components/x-descriptions/desc_c8y_SupportedMeasurements"
                     }, {
                       "example" : [ "c8y_TemperatureMeasurement" ]
                     } ]
@@ -195,7 +196,7 @@
                     },
                     "c8y_SupportedMeasurements" : {
                       "allOf" : [ {
-                        "$ref" : "#/components/schemas/c8y_SupportedMeasurements"
+                        "$ref" : "#/components/x-descriptions/desc_c8y_SupportedMeasurements"
                       }, {
                         "example" : [ "c8y_TemperatureMeasurement" ]
                       } ]
@@ -823,7 +824,7 @@
                   "properties" : {
                     "c8y_SupportedMeasurements" : {
                       "allOf" : [ {
-                        "$ref" : "#/components/schemas/c8y_SupportedMeasurements"
+                        "$ref" : "#/components/x-descriptions/desc_c8y_SupportedMeasurements"
                       }, {
                         "example" : [ "c8y_MemoryMeasurement", "c8y_CPUMeasurement" ]
                       } ]
@@ -1285,6 +1286,11 @@
         "description" : "A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] that identifies the error code reported.",
         "type" : "string"
       },
+      "desc_c8y_SupportedMeasurements" : {
+        "description" : "An array containing all supported measurements of the specified managed object.",
+        "type" : "array",
+        "items" : { }
+      },
       "desc_objectId" : {
         "description" : "Unique identifier of the object.",
         "type" : "string"
@@ -1321,11 +1327,6 @@
       }
     },
     "schemas" : {
-      "c8y_SupportedMeasurements" : {
-        "description" : "An array containing all supported measurements of the specified managed object.",
-        "type" : "array",
-        "items" : { }
-      },
       "managedObject" : {
         "type" : "object",
         "properties" : {
