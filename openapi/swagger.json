@@ -370,6 +370,27 @@
             "$ref" : "#/components/responses/res_inventoryObjectNotFound"
           }
         }
+      },
+      "delete" : {
+        "tags" : [ "Managed Objects" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Delete a specific managed object",
+        "operationId" : "deleteManagedObject",
+        "description" : "Delete a specific managed object (e.g. device) by a given ID.<br><br> Required roles: **ROLE_INVENTORY_ADMIN**\n",
+        "responses" : {
+          "204" : {
+            "description" : "A managed object was deleted successfully.",
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/res_unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/res_inventoryObjectNotFound"
+          }
+        }
       }
     },
     "/inventory/managedObjects/{id}/availability" : {
@@ -1096,40 +1117,6 @@
           }
         }
       },
-      "res_inventoryObjectNotFound" : {
-        "description" : "Managed object not found.",
-        "links" : { },
-        "content" : {
-          "application/vnd.com.nsn.cumulocity.error+json" : {
-            "schema" : {
-              "type" : "object",
-              "properties" : {
-                "error" : {
-                  "allOf" : [ {
-                    "$ref" : "#/components/x-descriptions/desc_40XError"
-                  }, {
-                    "example" : "inventory/Not Found"
-                  } ]
-                },
-                "message" : {
-                  "allOf" : [ {
-                    "$ref" : "#/components/x-descriptions/desc_40XMessage"
-                  }, {
-                    "example" : "Finding device data from database failed"
-                  } ]
-                },
-                "info" : {
-                  "allOf" : [ {
-                    "$ref" : "#/components/x-descriptions/desc_40XInfo"
-                  }, {
-                    "example" : "https://www.cumulocity.com/guides/reference-guide/#error_reporting"
-                  } ]
-                }
-              }
-            }
-          }
-        }
-      },
       "res_invalidData" : {
         "description" : "Invalid data was sent.",
         "links" : { },
@@ -1198,17 +1185,6 @@
           }
         }
       },
-      "res_inventoryObjectFound" : {
-        "description" : "The request has succeeded and the object is sent in the response.",
-        "links" : { },
-        "content" : {
-          "application/vnd.com.nsn.cumulocity.managedobject+json" : {
-            "schema" : {
-              "$ref" : "#/components/schemas/managedObject"
-            }
-          }
-        }
-      },
       "res_inventoryObjectCollectionFound" : {
         "description" : "The request has succeeded and the collection of objects is sent in the response.",
         "links" : { },
@@ -1269,6 +1245,55 @@
                   "items" : {
                     "$ref" : "#/components/schemas/managedObject"
                   }
+                }
+              }
+            }
+          }
+        }
+      },
+      "inventoryObjectDeleted" : {
+        "description" : "A managed object was deleted successfully.",
+        "links" : { }
+      },
+      "res_inventoryObjectFound" : {
+        "description" : "The request has succeeded and the object is sent in the response.",
+        "links" : { },
+        "content" : {
+          "application/vnd.com.nsn.cumulocity.managedobject+json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/managedObject"
+            }
+          }
+        }
+      },
+      "res_inventoryObjectNotFound" : {
+        "description" : "Managed object not found.",
+        "links" : { },
+        "content" : {
+          "application/vnd.com.nsn.cumulocity.error+json" : {
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "error" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_40XError"
+                  }, {
+                    "example" : "inventory/Not Found"
+                  } ]
+                },
+                "message" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_40XMessage"
+                  }, {
+                    "example" : "Finding device data from database failed"
+                  } ]
+                },
+                "info" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_40XInfo"
+                  }, {
+                    "example" : "https://www.cumulocity.com/guides/reference-guide/#error_reporting"
+                  } ]
                 }
               }
             }
