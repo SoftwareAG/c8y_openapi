@@ -154,6 +154,7 @@
         "responses" : {
           "201" : {
             "description" : "A managed object was created successfully.",
+            "links" : { },
             "content" : {
               "application/vnd.com.nsn.cumulocity.managedobject+json" : {
                 "schema" : {
@@ -204,8 +205,7 @@
                   }
                 }
               }
-            },
-            "links" : { }
+            }
           },
           "401" : {
             "$ref" : "#/components/responses/res_unauthorizedError"
@@ -265,6 +265,7 @@
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the total number of managed objects is sent in the response.",
+            "links" : { },
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -282,8 +283,7 @@
                   "example" : 38
                 }
               }
-            },
-            "links" : { }
+            }
           },
           "401" : {
             "$ref" : "#/components/responses/res_unauthorizedError"
@@ -353,6 +353,7 @@
         "responses" : {
           "200" : {
             "description" : "A managed object was updated successfully.",
+            "links" : { },
             "content" : {
               "application/vnd.com.nsn.cumulocity.managedobject+json" : {
                 "schema" : {
@@ -360,8 +361,7 @@
                   "example" : " "
                 }
               }
-            },
-            "links" : { }
+            }
           },
           "401" : {
             "$ref" : "#/components/responses/res_unauthorizedError"
@@ -386,6 +386,7 @@
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the date is sent in the response.",
+            "links" : { },
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -401,8 +402,7 @@
                   "example" : "2019-08-08T08:36:32.896Z"
                 }
               }
-            },
-            "links" : { }
+            }
           },
           "401" : {
             "$ref" : "#/components/responses/res_unauthorizedError"
@@ -439,6 +439,7 @@
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and all child additions are sent in the response.",
+            "links" : { },
             "content" : {
               "application/vnd.com.nsn.cumulocity.managedobjectreferencecollection+json" : {
                 "schema" : {
@@ -483,8 +484,7 @@
                   }
                 }
               }
-            },
-            "links" : { }
+            }
           },
           "401" : {
             "$ref" : "#/components/responses/res_unauthorizedError"
@@ -515,6 +515,7 @@
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the child addition is sent in the response.",
+            "links" : { },
             "content" : {
               "application/vnd.com.nsn.cumulocity.managedobjectreference+json" : {
                 "schema" : {
@@ -533,8 +534,7 @@
                   }
                 }
               }
-            },
-            "links" : { }
+            }
           },
           "401" : {
             "$ref" : "#/components/responses/res_unauthorizedError"
@@ -571,6 +571,7 @@
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and all child assets are sent in the response.",
+            "links" : { },
             "content" : {
               "application/vnd.com.nsn.cumulocity.managedobjectreferencecollection+json" : {
                 "schema" : {
@@ -603,8 +604,7 @@
                   }
                 }
               }
-            },
-            "links" : { }
+            }
           },
           "401" : {
             "$ref" : "#/components/responses/res_unauthorizedError"
@@ -635,6 +635,7 @@
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the child asset is sent in the response.",
+            "links" : { },
             "content" : {
               "application/vnd.com.nsn.cumulocity.managedobjectreference+json" : {
                 "schema" : {
@@ -653,8 +654,7 @@
                   }
                 }
               }
-            },
-            "links" : { }
+            }
           },
           "401" : {
             "$ref" : "#/components/responses/res_unauthorizedError"
@@ -691,6 +691,7 @@
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and all child devices are sent in the response.",
+            "links" : { },
             "content" : {
               "application/vnd.com.nsn.cumulocity.managedobjectreferencecollection+json" : {
                 "schema" : {
@@ -735,8 +736,7 @@
                   }
                 }
               }
-            },
-            "links" : { }
+            }
           },
           "401" : {
             "$ref" : "#/components/responses/res_unauthorizedError"
@@ -767,6 +767,7 @@
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the child device is sent in the response.",
+            "links" : { },
             "content" : {
               "application/vnd.com.nsn.cumulocity.managedobjectreference+json" : {
                 "schema" : {
@@ -785,8 +786,7 @@
                   }
                 }
               }
-            },
-            "links" : { }
+            }
           },
           "401" : {
             "$ref" : "#/components/responses/res_unauthorizedError"
@@ -817,6 +817,7 @@
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and all supported measurements are sent in the response.",
+            "links" : { },
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -832,8 +833,7 @@
                   }
                 }
               }
-            },
-            "links" : { }
+            }
           },
           "401" : {
             "$ref" : "#/components/responses/res_unauthorizedError"
@@ -864,6 +864,7 @@
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and all supported series are sent in the response.",
+            "links" : { },
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -878,8 +879,7 @@
                   }
                 }
               }
-            },
-            "links" : { }
+            }
           },
           "401" : {
             "$ref" : "#/components/responses/res_unauthorizedError"
@@ -908,6 +908,7 @@
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the username and status are sent in the response.",
+            "links" : { },
             "content" : {
               "application/vnd.com.nsn.cumulocity.managedobjectuser+json" : {
                 "schema" : {
@@ -934,8 +935,7 @@
                   }
                 }
               }
-            },
-            "links" : { }
+            }
           },
           "401" : {
             "$ref" : "#/components/responses/res_unauthorizedError"
@@ -1061,6 +1061,7 @@
     "responses" : {
       "res_unauthorizedError" : {
         "description" : "Authentication information is missing or invalid.",
+        "links" : { },
         "content" : {
           "application/vnd.com.nsn.cumulocity.error+json" : {
             "schema" : {
@@ -1090,11 +1091,11 @@
               }
             }
           }
-        },
-        "links" : { }
+        }
       },
       "res_inventoryObjectNotFound" : {
         "description" : "Managed object not found.",
+        "links" : { },
         "content" : {
           "application/vnd.com.nsn.cumulocity.error+json" : {
             "schema" : {
@@ -1124,11 +1125,11 @@
               }
             }
           }
-        },
-        "links" : { }
+        }
       },
       "res_invalidData" : {
         "description" : "Invalid data was sent.",
+        "links" : { },
         "content" : {
           "application/vnd.com.nsn.cumulocity.error+json" : {
             "schema" : {
@@ -1158,11 +1159,11 @@
               }
             }
           }
-        },
-        "links" : { }
+        }
       },
       "res_invalidChildId" : {
         "description" : "Invalid data was sent.",
+        "links" : { },
         "content" : {
           "application/vnd.com.nsn.cumulocity.error+json" : {
             "schema" : {
@@ -1192,22 +1193,22 @@
               }
             }
           }
-        },
-        "links" : { }
+        }
       },
       "res_inventoryObjectFound" : {
         "description" : "The request has succeeded and the object is sent in the response.",
+        "links" : { },
         "content" : {
           "application/vnd.com.nsn.cumulocity.managedobject+json" : {
             "schema" : {
               "$ref" : "#/components/schemas/managedObject"
             }
           }
-        },
-        "links" : { }
+        }
       },
       "res_inventoryObjectCollectionFound" : {
         "description" : "The request has succeeded and the collection of objects is sent in the response.",
+        "links" : { },
         "content" : {
           "application/vnd.com.nsn.cumulocity.managedobjectcollection+json" : {
             "schema" : {
@@ -1269,8 +1270,7 @@
               }
             }
           }
-        },
-        "links" : { }
+        }
       }
     },
     "x-descriptions" : {
