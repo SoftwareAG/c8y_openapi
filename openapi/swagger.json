@@ -126,22 +126,27 @@
         } ],
         "summary" : "Create a managed object",
         "operationId" : "postManagedObject",
-        "description" : "Create a new managed object, e.g. a device with temperature measurements support.<br><br> Required roles: **ROLE_INVENTORY_ADMIN** or **ROLE_INVENTORY_CREATE**\n",
+        "description" : "Create a new managed object, e.g. a device with temperature measurements support or a binary switch.<br> In general, each managed object may consist of:\n<ul><li>A unique identifier that references the object.</li> <li>The name of the object.</li>         <li>A time stamp showing the last update.</li> <li>Additional fragments.</li></ul>\n\nImagine, for example, that you want to describe electric meters from different vendors. Depending on the make of the meter, one may have a relay and one may be capable to measure a single phase or three phases (e.g. a three-phase electricity sensor). A fragment `c8y_ThreePhaseElectricitySensor` would identify such electric meter. Devices'  characteristics are identified by storing fragments for each of them.<br><br>\nRequired roles: **ROLE_INVENTORY_ADMIN** or **ROLE_INVENTORY_CREATE**\n",
         "requestBody" : {
+          "required" : true,
           "content" : {
             "application/vnd.com.nsn.cumulocity.managedObject+json" : {
               "schema" : {
                 "type" : "object",
                 "properties" : {
-                  "id" : {
-                    "type" : "string"
+                  "name" : {
+                    "type" : "string",
+                    "example" : "Smart Thermometer"
+                  },
+                  "c8y_SupportedMeasurements" : {
+                    "type" : "array",
+                    "items" : { },
+                    "example" : [ "c8y_TemperatureMeasurement" ]
                   }
                 }
               }
             }
-          },
-          "description" : "MO resource",
-          "required" : true
+          }
         },
         "responses" : {
           "401" : {
