@@ -114,7 +114,7 @@
             }
           },
           "401" : {
-            "$ref" : "#/components/responses/res_unauthorizedError"
+            "$ref" : "#/components/responses/unauthorizedError"
           }
         }
       }
@@ -208,7 +208,7 @@
             }
           },
           "401" : {
-            "$ref" : "#/components/responses/res_unauthorizedError"
+            "$ref" : "#/components/responses/unauthorizedError"
           }
         }
       },
@@ -237,13 +237,13 @@
         "description" : "Retrieve all managed objects (e.g. devices, assets, etc.) registered in your tenant.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
           "200" : {
-            "$ref" : "#/components/responses/res_inventoryObjectCollectionFound"
+            "$ref" : "#/components/responses/inventoryObjectCollectionFound"
           },
           "401" : {
-            "$ref" : "#/components/responses/res_unauthorizedError"
+            "$ref" : "#/components/responses/unauthorizedError"
           },
           "422" : {
-            "$ref" : "#/components/responses/res_invalidData"
+            "$ref" : "#/components/responses/invalidData"
           }
         }
       }
@@ -286,10 +286,10 @@
             }
           },
           "401" : {
-            "$ref" : "#/components/responses/res_unauthorizedError"
+            "$ref" : "#/components/responses/unauthorizedError"
           },
           "422" : {
-            "$ref" : "#/components/responses/res_invalidData"
+            "$ref" : "#/components/responses/invalidData"
           }
         }
       }
@@ -313,13 +313,13 @@
         "description" : "Retrieve a specific managed object (e.g. device, group, template) by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
         "responses" : {
           "200" : {
-            "$ref" : "#/components/responses/res_inventoryObjectFound"
+            "$ref" : "#/components/responses/inventoryObjectFound"
           },
           "401" : {
-            "$ref" : "#/components/responses/res_unauthorizedError"
+            "$ref" : "#/components/responses/unauthorizedError"
           },
           "404" : {
-            "$ref" : "#/components/responses/res_inventoryObjectNotFound"
+            "$ref" : "#/components/responses/inventoryObjectNotFound"
           }
         }
       },
@@ -364,10 +364,10 @@
             }
           },
           "401" : {
-            "$ref" : "#/components/responses/res_unauthorizedError"
+            "$ref" : "#/components/responses/unauthorizedError"
           },
           "404" : {
-            "$ref" : "#/components/responses/res_inventoryObjectNotFound"
+            "$ref" : "#/components/responses/inventoryObjectNotFound"
           }
         }
       },
@@ -385,10 +385,10 @@
             "links" : { }
           },
           "401" : {
-            "$ref" : "#/components/responses/res_unauthorizedError"
+            "$ref" : "#/components/responses/unauthorizedError"
           },
           "404" : {
-            "$ref" : "#/components/responses/res_inventoryObjectNotFound"
+            "$ref" : "#/components/responses/inventoryObjectNotFound"
           }
         }
       }
@@ -429,13 +429,13 @@
             }
           },
           "401" : {
-            "$ref" : "#/components/responses/res_unauthorizedError"
+            "$ref" : "#/components/responses/unauthorizedError"
           },
           "404" : {
-            "$ref" : "#/components/responses/res_inventoryObjectNotFound"
+            "$ref" : "#/components/responses/inventoryObjectNotFound"
           },
           "422" : {
-            "$ref" : "#/components/responses/res_invalidData"
+            "$ref" : "#/components/responses/invalidData"
           }
         }
       }
@@ -511,13 +511,13 @@
             }
           },
           "401" : {
-            "$ref" : "#/components/responses/res_unauthorizedError"
+            "$ref" : "#/components/responses/unauthorizedError"
           },
           "404" : {
-            "$ref" : "#/components/responses/res_inventoryObjectNotFound"
+            "$ref" : "#/components/responses/inventoryObjectNotFound"
           },
           "422" : {
-            "$ref" : "#/components/responses/res_invalidData"
+            "$ref" : "#/components/responses/invalidData"
           }
         }
       }
@@ -561,13 +561,13 @@
             }
           },
           "401" : {
-            "$ref" : "#/components/responses/res_unauthorizedError"
+            "$ref" : "#/components/responses/unauthorizedError"
           },
           "404" : {
-            "$ref" : "#/components/responses/res_inventoryObjectNotFound"
+            "$ref" : "#/components/responses/inventoryObjectNotFound"
           },
           "422" : {
-            "$ref" : "#/components/responses/res_invalidChildId"
+            "$ref" : "#/components/responses/invalidChildId"
           }
         }
       }
@@ -631,13 +631,13 @@
             }
           },
           "401" : {
-            "$ref" : "#/components/responses/res_unauthorizedError"
+            "$ref" : "#/components/responses/unauthorizedError"
           },
           "404" : {
-            "$ref" : "#/components/responses/res_inventoryObjectNotFound"
+            "$ref" : "#/components/responses/inventoryObjectNotFound"
           },
           "422" : {
-            "$ref" : "#/components/responses/res_invalidData"
+            "$ref" : "#/components/responses/invalidData"
           }
         }
       }
@@ -681,13 +681,13 @@
             }
           },
           "401" : {
-            "$ref" : "#/components/responses/res_unauthorizedError"
+            "$ref" : "#/components/responses/unauthorizedError"
           },
           "404" : {
-            "$ref" : "#/components/responses/res_inventoryObjectNotFound"
+            "$ref" : "#/components/responses/inventoryObjectNotFound"
           },
           "422" : {
-            "$ref" : "#/components/responses/res_invalidChildId"
+            "$ref" : "#/components/responses/invalidChildId"
           }
         }
       }
@@ -763,13 +763,13 @@
             }
           },
           "401" : {
-            "$ref" : "#/components/responses/res_unauthorizedError"
+            "$ref" : "#/components/responses/unauthorizedError"
           },
           "404" : {
-            "$ref" : "#/components/responses/res_inventoryObjectNotFound"
+            "$ref" : "#/components/responses/inventoryObjectNotFound"
           },
           "422" : {
-            "$ref" : "#/components/responses/res_invalidData"
+            "$ref" : "#/components/responses/invalidData"
           }
         }
       }
@@ -813,13 +813,13 @@
             }
           },
           "401" : {
-            "$ref" : "#/components/responses/res_unauthorizedError"
+            "$ref" : "#/components/responses/unauthorizedError"
           },
           "404" : {
-            "$ref" : "#/components/responses/res_inventoryObjectNotFound"
+            "$ref" : "#/components/responses/inventoryObjectNotFound"
           },
           "422" : {
-            "$ref" : "#/components/responses/res_invalidChildId"
+            "$ref" : "#/components/responses/invalidChildId"
           }
         }
       }
@@ -860,13 +860,13 @@
             }
           },
           "401" : {
-            "$ref" : "#/components/responses/res_unauthorizedError"
+            "$ref" : "#/components/responses/unauthorizedError"
           },
           "404" : {
-            "$ref" : "#/components/responses/res_inventoryObjectNotFound"
+            "$ref" : "#/components/responses/inventoryObjectNotFound"
           },
           "422" : {
-            "$ref" : "#/components/responses/res_invalidData"
+            "$ref" : "#/components/responses/invalidData"
           }
         }
       }
@@ -906,13 +906,13 @@
             }
           },
           "401" : {
-            "$ref" : "#/components/responses/res_unauthorizedError"
+            "$ref" : "#/components/responses/unauthorizedError"
           },
           "404" : {
-            "$ref" : "#/components/responses/res_inventoryObjectNotFound"
+            "$ref" : "#/components/responses/inventoryObjectNotFound"
           },
           "422" : {
-            "$ref" : "#/components/responses/res_invalidData"
+            "$ref" : "#/components/responses/invalidData"
           }
         }
       }
@@ -962,10 +962,10 @@
             }
           },
           "401" : {
-            "$ref" : "#/components/responses/res_unauthorizedError"
+            "$ref" : "#/components/responses/unauthorizedError"
           },
           "404" : {
-            "$ref" : "#/components/responses/res_inventoryObjectNotFound"
+            "$ref" : "#/components/responses/inventoryObjectNotFound"
           }
         }
       }
@@ -1083,7 +1083,7 @@
       }
     },
     "responses" : {
-      "res_unauthorizedError" : {
+      "unauthorizedError" : {
         "description" : "Authentication information is missing or invalid.",
         "links" : { },
         "content" : {
@@ -1117,7 +1117,7 @@
           }
         }
       },
-      "res_invalidData" : {
+      "invalidData" : {
         "description" : "Invalid data was sent.",
         "links" : { },
         "content" : {
@@ -1151,7 +1151,7 @@
           }
         }
       },
-      "res_invalidChildId" : {
+      "invalidChildId" : {
         "description" : "Invalid data was sent.",
         "links" : { },
         "content" : {
@@ -1185,7 +1185,7 @@
           }
         }
       },
-      "res_inventoryObjectCollectionFound" : {
+      "inventoryObjectCollectionFound" : {
         "description" : "The request has succeeded and the collection of objects is sent in the response.",
         "links" : { },
         "content" : {
@@ -1255,7 +1255,7 @@
         "description" : "A managed object was deleted successfully.",
         "links" : { }
       },
-      "res_inventoryObjectFound" : {
+      "inventoryObjectFound" : {
         "description" : "The request has succeeded and the object is sent in the response.",
         "links" : { },
         "content" : {
@@ -1266,7 +1266,7 @@
           }
         }
       },
-      "res_inventoryObjectNotFound" : {
+      "inventoryObjectNotFound" : {
         "description" : "Managed object not found.",
         "links" : { },
         "content" : {
