@@ -295,12 +295,13 @@
     "/inventory/managedObjects/{id}" : {
       "parameters" : [ {
         "$ref" : "#/components/parameters/managedObjectId"
-      }, {
-        "$ref" : "#/components/parameters/queryParam_skipChildrenNames"
-      }, {
-        "$ref" : "#/components/parameters/queryParam_withParents"
       } ],
       "get" : {
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/queryParam_skipChildrenNames"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_withParents"
+        } ],
         "tags" : [ "Managed Objects" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
@@ -317,6 +318,50 @@
           },
           "404" : {
             "$ref" : "#/components/responses/res_inventoryObjectNotFound"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Managed Objects" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Update a specific managed object",
+        "operationId" : "putManagedObject",
+        "description" : "Update a specific managed object (e.g. device) by a given ID.<br><br> For example, if you want to specify that your managed object is a device, you would need to add the fragment `c8y_IsDevice`.<br><br> Required roles: **ROLE_INVENTORY_ADMIN**\n",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/vnd.com.nsn.cumulocity.managedObject+json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "c8y_IsDevice" : {
+                    "allOf" : [ {
+                      "$ref" : "#/components/x-descriptions/desc_objectC8y_IsDevice"
+                    }, {
+                      "example" : { }
+                    } ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "A managed object was updated successfully.",
+            "content" : {
+              "application/vnd.com.nsn.cumulocity.managedobject+json" : {
+                "schema" : {
+                  "type" : "object",
+                  "example" : " "
+                }
+              }
+            }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/res_unauthorizedError"
           }
         }
       }
