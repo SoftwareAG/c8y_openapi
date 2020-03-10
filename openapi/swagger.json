@@ -139,9 +139,11 @@
                     "example" : "Smart Thermometer"
                   },
                   "c8y_SupportedMeasurements" : {
-                    "type" : "array",
-                    "items" : { },
-                    "example" : [ "c8y_TemperatureMeasurement" ]
+                    "allOf" : [ {
+                      "$ref" : "#/components/schemas/c8y_SupportedMeasurements"
+                    }, {
+                      "example" : [ "c8y_TemperatureMeasurement" ]
+                    } ]
                   }
                 }
               }
@@ -149,6 +151,60 @@
           }
         },
         "responses" : {
+          "201" : {
+            "description" : "A managed object was created successfully.",
+            "content" : {
+              "application/vnd.com.nsn.cumulocity.managedobject+json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "id" : {
+                      "allOf" : [ {
+                        "$ref" : "#/components/x-descriptions/desc_objectId"
+                      }, {
+                        "example" : 251982
+                      } ]
+                    },
+                    "name" : {
+                      "allOf" : [ {
+                        "$ref" : "#/components/x-descriptions/desc_objectName"
+                      }, {
+                        "example" : "Smart Thermometer"
+                      } ]
+                    },
+                    "self" : {
+                      "allOf" : [ {
+                        "$ref" : "#/components/x-descriptions/desc_objectSelf"
+                      }, {
+                        "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}"
+                      } ]
+                    },
+                    "creationTime" : {
+                      "allOf" : [ {
+                        "$ref" : "#/components/x-descriptions/desc_objectCreationTime"
+                      }, {
+                        "example" : "2020-03-10T17:11:07.025Z"
+                      } ]
+                    },
+                    "lastUpdated" : {
+                      "allOf" : [ {
+                        "$ref" : "#/components/x-descriptions/desc_objectLastUpdated"
+                      }, {
+                        "example" : "2020-03-10T17:11:07.025Z"
+                      } ]
+                    },
+                    "c8y_SupportedMeasurements" : {
+                      "allOf" : [ {
+                        "$ref" : "#/components/schemas/c8y_SupportedMeasurements"
+                      }, {
+                        "example" : [ "c8y_TemperatureMeasurement" ]
+                      } ]
+                    }
+                  }
+                }
+              }
+            }
+          },
           "401" : {
             "$ref" : "#/components/responses/res_unauthorizedError"
           }
@@ -719,10 +775,11 @@
                   "type" : "object",
                   "properties" : {
                     "c8y_SupportedMeasurements" : {
-                      "description" : "An array containing all supported measurements of the specified device.",
-                      "type" : "array",
-                      "items" : { },
-                      "example" : [ "c8y_MemoryMeasurement", "c8y_CPUMeasurement" ]
+                      "allOf" : [ {
+                        "$ref" : "#/components/schemas/c8y_SupportedMeasurements"
+                      }, {
+                        "example" : [ "c8y_MemoryMeasurement", "c8y_CPUMeasurement" ]
+                      } ]
                     }
                   }
                 }
@@ -1217,6 +1274,11 @@
       }
     },
     "schemas" : {
+      "c8y_SupportedMeasurements" : {
+        "description" : "An array containing all supported measurements of the specified managed object.",
+        "type" : "array",
+        "items" : { }
+      },
       "managedObject" : {
         "type" : "object",
         "properties" : {
