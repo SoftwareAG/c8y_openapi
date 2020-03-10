@@ -121,9 +121,28 @@
     "/inventory/managedObjects" : {
       "post" : {
         "tags" : [ "Managed Objects" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
         "summary" : "Create a managed object",
         "operationId" : "postManagedObject",
-        "description" : "Create a managed object <plhld...>\n",
+        "description" : "Create a new managed object, e.g. a device with temperature measurements support.<br><br> Required roles: **ROLE_INVENTORY_ADMIN** or **ROLE_INVENTORY_CREATE**\n",
+        "requestBody" : {
+          "content" : {
+            "application/vnd.com.nsn.cumulocity.managedObject+json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "id" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          },
+          "description" : "MO resource",
+          "required" : true
+        },
         "responses" : {
           "401" : {
             "$ref" : "#/components/responses/res_unauthorizedError"
