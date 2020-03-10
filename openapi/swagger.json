@@ -365,6 +365,9 @@
           },
           "401" : {
             "$ref" : "#/components/responses/res_unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/res_inventoryObjectNotFound"
           }
         }
       }
