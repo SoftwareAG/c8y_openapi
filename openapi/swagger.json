@@ -42,10 +42,16 @@
   }, {
     "name" : "Managed Objects",
     "description" : "The inventory stores devices and other assets relevant to your IoT solution. We refer to them as managed objects and such can be “smart objects”, e.g. smart electricity meters, home automation gateways or GPS devices.\n"
+  }, {
+    "name" : "Alarm API",
+    "description" : "An alarm signals an event that requires manual action, for example, when the temperature of a fridge increases above a particular threshold.\n"
   } ],
   "x-tagGroups" : [ {
     "name" : "Inventory",
     "tags" : [ "Inventory API", "Managed Objects" ]
+  }, {
+    "name" : "Alarms",
+    "tags" : [ "Alarm API", "Alarms" ]
   } ],
   "paths" : {
     "/inventory" : {
@@ -353,15 +359,7 @@
         "responses" : {
           "200" : {
             "description" : "A managed object was updated successfully.",
-            "links" : { },
-            "content" : {
-              "application/vnd.com.nsn.cumulocity.managedobject+json" : {
-                "schema" : {
-                  "type" : "object",
-                  "example" : " "
-                }
-              }
-            }
+            "links" : { }
           },
           "401" : {
             "$ref" : "#/components/responses/unauthorizedError"
@@ -443,16 +441,62 @@
     "/inventory/managedObjects/{id}/childAdditions" : {
       "parameters" : [ {
         "$ref" : "#/components/parameters/managedObjectId"
-      }, {
-        "$ref" : "#/components/parameters/queryParam_currentPage"
-      }, {
-        "$ref" : "#/components/parameters/queryParam_pageSize"
-      }, {
-        "$ref" : "#/components/parameters/queryParam_query"
-      }, {
-        "$ref" : "#/components/parameters/queryParam_withTotalPages"
       } ],
+      "post" : {
+        "tags" : [ "Managed Objects" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Assign a specific managed object a child addition",
+        "operationId" : "postManagedObjectChildAddition",
+        "description" : "Assign a specific managed object (by a given child ID) as child addition of another managed object (by a given ID).<br><br> Required roles: **ROLE_INVENTORY_ADMIN** or **ROLE_INVENTORY_CREATE**\n",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "managedObject" : {
+                    "type" : "object",
+                    "properties" : {
+                      "id" : {
+                        "allOf" : [ {
+                          "$ref" : "#/components/x-descriptions/desc_objectId"
+                        }, {
+                          "example" : "{childId}"
+                        } ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "A managed object was successfully assigned as child addition.",
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/inventoryObjectNotFound"
+          }
+        }
+      },
       "get" : {
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/queryParam_currentPage"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_pageSize"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_query"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_withTotalPages"
+        } ],
         "tags" : [ "Managed Objects" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
@@ -570,21 +614,88 @@
             "$ref" : "#/components/responses/invalidChildId"
           }
         }
+      },
+      "delete" : {
+        "tags" : [ "Managed Objects" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Remove a specific child addition from its parent",
+        "operationId" : "deleteManagedObjectChildAddition",
+        "description" : "Remove a specific child addition (by a given child ID) from its parent (by a given ID).<br><br> Required roles: **ROLE_INVENTORY_ADMIN**\n",
+        "responses" : {
+          "204" : {
+            "description" : "A child addition was removed successfully.",
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/inventoryObjectNotFound"
+          }
+        }
       }
     },
     "/inventory/managedObjects/{id}/childAssets" : {
       "parameters" : [ {
         "$ref" : "#/components/parameters/managedObjectId"
-      }, {
-        "$ref" : "#/components/parameters/queryParam_currentPage"
-      }, {
-        "$ref" : "#/components/parameters/queryParam_pageSize"
-      }, {
-        "$ref" : "#/components/parameters/queryParam_query"
-      }, {
-        "$ref" : "#/components/parameters/queryParam_withTotalPages"
       } ],
+      "post" : {
+        "tags" : [ "Managed Objects" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Assign a specific managed object a child asset",
+        "operationId" : "postManagedObjectChildAsset",
+        "description" : "Assign a specific managed object (by a given child ID) as child asset of another managed object (by a given ID).<br><br> Required roles: **ROLE_INVENTORY_ADMIN** or **ROLE_INVENTORY_CREATE**\n",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "managedObject" : {
+                    "type" : "object",
+                    "properties" : {
+                      "id" : {
+                        "allOf" : [ {
+                          "$ref" : "#/components/x-descriptions/desc_objectId"
+                        }, {
+                          "example" : "{childId}"
+                        } ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "A managed object was successfully assigned as child asset.",
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/inventoryObjectNotFound"
+          }
+        }
+      },
       "get" : {
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/queryParam_currentPage"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_pageSize"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_query"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_withTotalPages"
+        } ],
         "tags" : [ "Managed Objects" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
@@ -690,21 +801,88 @@
             "$ref" : "#/components/responses/invalidChildId"
           }
         }
+      },
+      "delete" : {
+        "tags" : [ "Managed Objects" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Remove a specific child asset from its parent",
+        "operationId" : "deleteManagedObjectChildAsset",
+        "description" : "Remove a specific child asset (by a given child ID) from its parent (by a given ID).<br><br> Required roles: **ROLE_INVENTORY_ADMIN**\n",
+        "responses" : {
+          "204" : {
+            "description" : "A child asset was removed successfully.",
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/inventoryObjectNotFound"
+          }
+        }
       }
     },
     "/inventory/managedObjects/{id}/childDevices" : {
       "parameters" : [ {
         "$ref" : "#/components/parameters/managedObjectId"
-      }, {
-        "$ref" : "#/components/parameters/queryParam_currentPage"
-      }, {
-        "$ref" : "#/components/parameters/queryParam_pageSize"
-      }, {
-        "$ref" : "#/components/parameters/queryParam_query"
-      }, {
-        "$ref" : "#/components/parameters/queryParam_withTotalPages"
       } ],
+      "post" : {
+        "tags" : [ "Managed Objects" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Assign a specific managed object a child device",
+        "operationId" : "postManagedObjectChildDevice",
+        "description" : "Assign a specific managed object (by a given child ID) as child device of another managed object (by a given ID).<br><br> Required roles: **ROLE_INVENTORY_ADMIN** or **ROLE_INVENTORY_CREATE**\n",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "managedObject" : {
+                    "type" : "object",
+                    "properties" : {
+                      "id" : {
+                        "allOf" : [ {
+                          "$ref" : "#/components/x-descriptions/desc_objectId"
+                        }, {
+                          "example" : "{childId}"
+                        } ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "A managed object was successfully assigned as child device.",
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/inventoryObjectNotFound"
+          }
+        }
+      },
       "get" : {
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/queryParam_currentPage"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_pageSize"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_query"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_withTotalPages"
+        } ],
         "tags" : [ "Managed Objects" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
@@ -820,6 +998,27 @@
           },
           "422" : {
             "$ref" : "#/components/responses/invalidChildId"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Managed Objects" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Remove a specific child device from its parent",
+        "operationId" : "deleteManagedObjectChildDevice",
+        "description" : "Remove a specific child device (by a given child ID) from its parent (by a given ID).<br><br> Required roles: **ROLE_INVENTORY_ADMIN**\n",
+        "responses" : {
+          "204" : {
+            "description" : "A child device was removed successfully.",
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/inventoryObjectNotFound"
           }
         }
       }
@@ -966,6 +1165,46 @@
           },
           "404" : {
             "$ref" : "#/components/responses/inventoryObjectNotFound"
+          }
+        }
+      }
+    },
+    "/alarm" : {
+      "get" : {
+        "tags" : [ "Alarm API" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Retrieve URIs to collections of alarms",
+        "operationId" : "getAlarmApi",
+        "description" : "Retrieve URIs and URI templates to collections of alarms.<br><br> Required roles: **ROLE_ALARM_READ**\n",
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded and the URIs are sent in the response.",
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          }
+        }
+      }
+    },
+    "/alarm/alarms" : {
+      "get" : {
+        "tags" : [ "Alarm API" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Retrieve all alarms",
+        "operationId" : "getAlarms",
+        "description" : "Retrieve all alarms.<br><br> Required roles: **ROLE_ALARM_READ**\n",
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded and all alarms are sent in the response.",
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
           }
         }
       }
