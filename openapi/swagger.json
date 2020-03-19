@@ -90,6 +90,9 @@
           },
           "401" : {
             "$ref" : "#/components/responses/unauthorizedError"
+          },
+          "403" : {
+            "$ref" : "#/components/responses/unauthorizedError"
           }
         }
       }
