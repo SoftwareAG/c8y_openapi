@@ -77,7 +77,7 @@
                   "properties" : {
                     "self" : {
                       "allOf" : [ {
-                        "$ref" : "#/components/x-descriptions/desc_objectSelf"
+                        "$ref" : "#/components/x-descriptions/desc_self"
                       }, {
                         "example" : "PROTOCOL://TENANT_DOMAIN/alarm"
                       } ]
@@ -88,7 +88,7 @@
                       "properties" : {
                         "self" : {
                           "allOf" : [ {
-                            "$ref" : "#/components/x-descriptions/desc_objectSelf"
+                            "$ref" : "#/components/x-descriptions/desc_self"
                           }, {
                             "example" : "PROTOCOL://TENANT_DOMAIN/alarm/alarms"
                           } ]
@@ -159,9 +159,63 @@
         "requestBody" : {
           "required" : true,
           "content" : {
-            "application/vnd.com.nsn.cumulocity.managedObject+json" : {
+            "application/vnd.com.nsn.cumulocity.alarm+json" : {
               "schema" : {
-                "type" : "object"
+                "type" : "object",
+                "required" : [ "source", "type", "text", "severity", "time" ],
+                "properties" : {
+                  "source" : {
+                    "required" : [ "id" ],
+                    "allOf" : [ {
+                      "$ref" : "#/components/x-descriptions/alarm_source"
+                    }, {
+                      "properties" : {
+                        "id" : {
+                          "allOf" : [ {
+                            "$ref" : "#/components/x-descriptions/desc_objectId"
+                          }, {
+                            "example" : "251982"
+                          } ]
+                        }
+                      }
+                    } ]
+                  },
+                  "type" : {
+                    "allOf" : [ {
+                      "$ref" : "#/components/x-descriptions/alarm_type"
+                    }, {
+                      "example" : "c8y_UnavailabilityAlarm"
+                    } ]
+                  },
+                  "text" : {
+                    "allOf" : [ {
+                      "$ref" : "#/components/x-descriptions/alarm_text"
+                    }, {
+                      "example" : "No data received from the device within the required interval."
+                    } ]
+                  },
+                  "severity" : {
+                    "allOf" : [ {
+                      "$ref" : "#/components/x-descriptions/alarm_severity"
+                    }, {
+                      "example" : "MAJOR"
+                    } ]
+                  },
+                  "status" : {
+                    "allOf" : [ {
+                      "$ref" : "#/components/x-descriptions/alarm_status"
+                    }, {
+                      "example" : "ACTIVE"
+                    } ]
+                  },
+                  "time" : {
+                    "allOf" : [ {
+                      "$ref" : "#/components/x-descriptions/alarm_time"
+                    }, {
+                      "example" : "2020-03-19T12:03:27.845Z"
+                    } ]
+                  }
+                }
               }
             }
           }
@@ -270,7 +324,7 @@
                   "properties" : {
                     "self" : {
                       "allOf" : [ {
-                        "$ref" : "#/components/x-descriptions/desc_objectSelf"
+                        "$ref" : "#/components/x-descriptions/desc_self"
                       }, {
                         "example" : "PROTOCOL://TENANT_DOMAIN/inventory"
                       } ]
@@ -296,7 +350,7 @@
                       "properties" : {
                         "self" : {
                           "allOf" : [ {
-                            "$ref" : "#/components/x-descriptions/desc_objectSelf"
+                            "$ref" : "#/components/x-descriptions/desc_self"
                           }, {
                             "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects"
                           } ]
@@ -378,7 +432,7 @@
                     },
                     "self" : {
                       "allOf" : [ {
-                        "$ref" : "#/components/x-descriptions/desc_objectSelf"
+                        "$ref" : "#/components/x-descriptions/desc_self"
                       }, {
                         "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}"
                       } ]
@@ -718,7 +772,7 @@
                     },
                     "self" : {
                       "allOf" : [ {
-                        "$ref" : "#/components/x-descriptions/desc_objectSelf"
+                        "$ref" : "#/components/x-descriptions/desc_self"
                       }, {
                         "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childAdditions?pageSize=5&currentPage=2"
                       } ]
@@ -790,7 +844,7 @@
                     },
                     "self" : {
                       "allOf" : [ {
-                        "$ref" : "#/components/x-descriptions/desc_objectSelf"
+                        "$ref" : "#/components/x-descriptions/desc_self"
                       }, {
                         "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childAdditions/{childId}"
                       } ]
@@ -913,7 +967,7 @@
                   "properties" : {
                     "self" : {
                       "allOf" : [ {
-                        "$ref" : "#/components/x-descriptions/desc_objectSelf"
+                        "$ref" : "#/components/x-descriptions/desc_self"
                       }, {
                         "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childAssets"
                       } ]
@@ -980,7 +1034,7 @@
                     },
                     "self" : {
                       "allOf" : [ {
-                        "$ref" : "#/components/x-descriptions/desc_objectSelf"
+                        "$ref" : "#/components/x-descriptions/desc_self"
                       }, {
                         "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childAssets/{childId}"
                       } ]
@@ -1110,7 +1164,7 @@
                     },
                     "self" : {
                       "allOf" : [ {
-                        "$ref" : "#/components/x-descriptions/desc_objectSelf"
+                        "$ref" : "#/components/x-descriptions/desc_self"
                       }, {
                         "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childDevices?pageSize=5&currentPage=2"
                       } ]
@@ -1182,7 +1236,7 @@
                     },
                     "self" : {
                       "allOf" : [ {
-                        "$ref" : "#/components/x-descriptions/desc_objectSelf"
+                        "$ref" : "#/components/x-descriptions/desc_self"
                       }, {
                         "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childDevices/{childId}"
                       } ]
@@ -1344,7 +1398,7 @@
                   "properties" : {
                     "self" : {
                       "allOf" : [ {
-                        "$ref" : "#/components/x-descriptions/desc_objectSelf"
+                        "$ref" : "#/components/x-descriptions/desc_self"
                       }, {
                         "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/user"
                       } ]
@@ -1606,7 +1660,7 @@
                 },
                 "self" : {
                   "allOf" : [ {
-                    "$ref" : "#/components/x-descriptions/desc_objectSelf"
+                    "$ref" : "#/components/x-descriptions/desc_self"
                   }, {
                     "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects?pageSize=5&currentPage=2"
                   } ]
@@ -1727,10 +1781,6 @@
         "description" : "Unique identifier of the object.",
         "type" : "string"
       },
-      "desc_objectSelf" : {
-        "description" : "Link to this resource.",
-        "type" : "string"
-      },
       "desc_objectName" : {
         "description" : "Human-readable name that is used for representing the object in user interfaces.",
         "type" : "string"
@@ -1749,12 +1799,42 @@
         "description" : "Marks devices that can be managed using Cumulocity IoT’s Device Management application.",
         "type" : "object"
       },
+      "desc_self" : {
+        "description" : "Link to this resource.",
+        "type" : "string"
+      },
       "desc_prevPage" : {
         "description" : "A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] to a potential previous page of managed objects.",
         "type" : "string"
       },
       "desc_nextPage" : {
         "description" : "A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] to a potential next page of managed objects.",
+        "type" : "string"
+      },
+      "alarm_source" : {
+        "description" : "The managed object to which the alarm is associated.",
+        "type" : "object"
+      },
+      "alarm_type" : {
+        "description" : "Identifies the type of this alarm.",
+        "type" : "string"
+      },
+      "alarm_text" : {
+        "description" : "Description of the alarm.",
+        "type" : "string"
+      },
+      "alarm_severity" : {
+        "description" : "The severity of the alarm.",
+        "type" : "string",
+        "enum" : [ "CRITICAL", "MAJOR", "MINOR", "WARNING" ]
+      },
+      "alarm_status" : {
+        "description" : "The status of the alarm. If not specified, a new alarm will be created as ACTIVE.",
+        "type" : "string",
+        "enum" : [ "ACTIVE", "ACKNOWLEDGED", "CLEARED" ]
+      },
+      "alarm_time" : {
+        "description" : "The date and time when the alarm is triggered.",
         "type" : "string"
       }
     },
@@ -1771,7 +1851,7 @@
           },
           "self" : {
             "allOf" : [ {
-              "$ref" : "#/components/x-descriptions/desc_objectSelf"
+              "$ref" : "#/components/x-descriptions/desc_self"
             }, {
               "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}"
             } ]
@@ -1930,6 +2010,9 @@
             "example" : 5
           }
         }
+      },
+      "alarm" : {
+        "type" : "object"
       }
     }
   }
