@@ -712,9 +712,11 @@
             "application/json" : {
               "schema" : {
                 "type" : "object",
+                "required" : [ "managedObject" ],
                 "properties" : {
                   "managedObject" : {
                     "type" : "object",
+                    "required" : [ "id" ],
                     "properties" : {
                       "id" : {
                         "allOf" : [ {
@@ -914,9 +916,11 @@
             "application/json" : {
               "schema" : {
                 "type" : "object",
+                "required" : [ "managedObject" ],
                 "properties" : {
                   "managedObject" : {
                     "type" : "object",
+                    "required" : [ "id" ],
                     "properties" : {
                       "id" : {
                         "allOf" : [ {
@@ -1104,9 +1108,11 @@
             "application/json" : {
               "schema" : {
                 "type" : "object",
+                "required" : [ "managedObject" ],
                 "properties" : {
                   "managedObject" : {
                     "type" : "object",
+                    "required" : [ "id" ],
                     "properties" : {
                       "id" : {
                         "allOf" : [ {
