@@ -155,7 +155,7 @@
         } ],
         "summary" : "Create an alarm",
         "operationId" : "postAlarm",
-        "description" : "An alarm must be associated to a source (managed object) identified by ID.<br> In general, each alarm may consist of:\n<ul><li>A status showing whether the alarm is ACTIVE, ACKNOWLEDGED or CLEARED.</li> <li>A time stamp to indicate when the alarm was last updated.</li> <li>The severity of the alarm: CRITICAL, MAJOR, MINOR or WARNING.</li> <li>A history of changes to the event in form of audit logs.</li></ul>\n\nRequired roles: **ROLE_ALARM_ADMIN** or **owner of source**\n",
+        "description" : "An alarm must be associated to a source (managed object) identified by ID.<br> In general, each alarm may consist of:\n<ul><li>A status showing whether the alarm is ACTIVE, ACKNOWLEDGED or CLEARED.</li> <li>A time stamp to indicate when the alarm was last updated.</li> <li>The severity of the alarm: CRITICAL, MAJOR, MINOR or WARNING.</li> <li>A history of changes to the event in form of audit logs.</li></ul>\n\nRequired roles: **ROLE_ALARM_ADMIN** or **owner of the source**\n",
         "requestBody" : {
           "required" : true,
           "content" : {
