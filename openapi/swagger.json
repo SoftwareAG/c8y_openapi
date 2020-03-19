@@ -37,21 +37,21 @@
     "JWTAuthentication" : [ ]
   } ],
   "tags" : [ {
-    "name" : "Alarm API",
-    "description" : "An alarm signals an event that requires manual action, for example, when the temperature of a fridge increases above a particular threshold.\n"
-  }, {
     "name" : "Inventory API",
     "description" : "The inventory stores all master data related to devices, their configuration and their connections. It also contains all related assets (e.g. vehicles, machines, buildings) and their structure. The inventory API resource returns URIs and URI templates to collections of managed objects.\n"
   }, {
     "name" : "Managed Objects",
     "description" : "The inventory stores devices and other assets relevant to your IoT solution. We refer to them as managed objects and such can be “smart objects”, e.g. smart electricity meters, home automation gateways or GPS devices.\n"
+  }, {
+    "name" : "Alarm API",
+    "description" : "An alarm signals an event that requires manual action, for example, when the temperature of a fridge increases above a particular threshold.\n"
   } ],
   "x-tagGroups" : [ {
-    "name" : "Alarms",
-    "tags" : [ "Alarm API", "Alarms" ]
-  }, {
     "name" : "Inventory",
     "tags" : [ "Inventory API", "Managed Objects" ]
+  }, {
+    "name" : "Alarms",
+    "tags" : [ "Alarm API", "Alarms" ]
   } ],
   "paths" : {
     "/alarm" : {
