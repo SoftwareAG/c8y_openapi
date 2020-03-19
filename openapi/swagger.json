@@ -224,6 +224,32 @@
         }
       }
     },
+    "/alarm/alarms/{id}" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/managedObjectId"
+      } ],
+      "get" : {
+        "tags" : [ "Alarms" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Retrieve a specific alarm",
+        "operationId" : "getAlarmById",
+        "description" : "Retrieve a specific alarm by a given ID.<br><br> Required roles: **ROLE_ALARM_READ**\n",
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded and the alarm is sent in the response.",
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/inventoryObjectNotFound"
+          }
+        }
+      }
+    },
     "/inventory" : {
       "get" : {
         "tags" : [ "Inventory API" ],
