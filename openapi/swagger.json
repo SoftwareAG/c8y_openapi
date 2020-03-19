@@ -1,9 +1,9 @@
 {
-  "openapi" : "3.0.3",
+  "openapi" : "3.0.2",
   "info" : {
     "version" : "1.0.0",
     "title" : "Cumulocity IoT OpenAPI",
-    "description" : "# Introduction\nStandard OpenAPI specification, language-agnostic interface to the Cumulocity IoT RESTful API which allows – both humans and computers – to discover and understand the capabilities of the platform.\n\nCumulocity IoT uses HTTP and REST, which is today the most widely used interfacing technology and which works on any internet-connected device ranging from small embedded microcontrollers up to desktop PCs. The secure variant, HTTPS, is used for the most security critical applications and will give you the best possible security.\n\nRegardless the communication originates from IoT devices, web applications or from back-office IT systems, Cumulocity IoT employs the protocol REST for all external communication. Our API has predictable resource-oriented URLs, accepts form-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication and verbs.\n### **Just Getting Started?**\nCumulocity IoT exposes its complete functionality through programming interfaces; this means that all of Cumulocity IoT’s functionality is available for you to use in different contexts outside of what the platform directly provides - in your own applications, in your own devices. Cumulocity IoT gives you very fast visibility and control over your remote assets, be these houses, cars, machines or any other assets that you want to manage. \n\nCheck out <a href=\"https://cumulocity.com/guides/concepts/introduction/\" target=\"_new\">our online guides</a> to learn more about the platform.\n# Authentication\nWhen you sign up for an account on the [Cumulocity IoT platform](https://cumulocity.com/), for example by using a free trial, you will be provided with a dedicated URL address for your tenant. All requests to the platform have to be authenticated employing your tenant ID, Cumulocity IoT user (c8yuser for short) and password. Cumulocity IoT offers the following forms of authentication:\n<ul><li>Basic authentication</li> <li>JWT token authentication</li> <li>OAuth authentication code grant</li></ul>\n\nCumulocity IoT also supports two factor authentication. For more details, see [Authentication](https://cumulocity.com/guides/reference/rest-implementation/#authentication) in the Reference Guide.\n# Response Codes\nCumulocity IoT uses conventional HTTP response codes to indicate the success or failure of an API request. Codes in the `2xx` range indicate success. Codes in the `4xx` range indicate an error that failed given the information provided (e.g., a required parameter was omitted). Codes in the `5xx` range indicate an error with Cumulocity IoT's servers ([these are very rare](https://www.softwareag.cloud/site/sla/cumulocity-iot.html#/)).\n<table>\n  <caption>HTTP STATUS CODE SUMMARY</caption>\n  <tr><th>Code</th><th>Description</th></tr>\n  <tr><td>200 - OK</td><td>Everything worked as expected.</td></tr>\n  <tr><td>201 - Created</td><td>A managed object was created successfully.</td></tr>\n  <tr><td>204 - No content</td><td>A managed object was deleted successfully.</td></tr>\n  <tr><td>400 - Bad Request</td><td>The request was unacceptable, often due to missing a required parameter.</td></tr>\n  <tr><td>401 - Unauthorized</td><td>Authentication has failed, or credentials were required but not provided..</td></tr>\n  <tr><td>403 - Forbidden</td><td>The authenticated user doesn't have permissions to perform the request.</td></tr>\n  <tr><td>404 - Not Found</td><td>The requested resource doesn't exist.</td></tr>\n  <tr><td>405 - Method not allowed</td><td>The employed HTTP method cannot be used on this resource (e.g., using POST on a read-only resource).</td></tr>\n  <tr><td>422 - Invalid data</td><td>Invalid data was sent on the request and/or a query could not be understood.</td></tr>\n  <tr><td>500, 503 - Server Errors</td><td>Something went wrong on Cumulocity IoT's end.</td></tr>\n</table>\n\nAll error codes and their interpretations can be found in [Error reporting](https://cumulocity.com/guides/reference/rest-implementation/#a-name-error-reporting-a-error-reporting) in the Reference guide.\n",
+    "description" : "# Introduction\nStandard OpenAPI specification, language-agnostic interface to the Cumulocity IoT RESTful API which allows – both humans and computers – to discover and understand the capabilities of the platform.\n\nCumulocity IoT uses HTTP and REST, which is today the most widely used interfacing technology and which works on any Internet-connected device ranging from small embedded microcontrollers up to desktop PCs. The secure variant, HTTPS, is used for the most security critical applications and will give you the best possible security.\n\nRegardless the communication originates from IoT devices, web applications or from back-office IT systems, Cumulocity IoT employs the protocol REST for all external communication. Our API has predictable resource-oriented URLs, accepts form-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication and verbs.\n### **Just Getting Started?**\nCumulocity IoT exposes its complete functionality through programming interfaces; this means that all of Cumulocity IoT’s functionality is available for you to use in different contexts outside of what the platform directly provides - in your own applications, in your own devices. Cumulocity IoT gives you very fast visibility and control over your remote assets, be these houses, cars, machines or any other assets that you want to manage.\n\nCheck out <a href=\"https://cumulocity.com/guides/concepts/introduction/\" target=\"_new\">our online guides</a> to learn more about the platform.\n# Authentication\nWhen you sign up for an account on the [Cumulocity IoT platform](https://cumulocity.com/), for example by using a free trial, you will be provided with a dedicated URL address for your tenant. All requests to the platform have to be authenticated employing your tenant ID, Cumulocity IoT user (c8yuser for short) and password. Cumulocity IoT offers the following forms of authentication:\n<ul><li>Basic authentication</li> <li>JWT token authentication</li> <li>OAuth authentication code grant</li></ul>\n\nCumulocity IoT also supports two factor authentication. For more details, see [Authentication](https://cumulocity.com/guides/reference/rest-implementation/#authentication) in the Reference Guide.\n# Response Codes\nCumulocity IoT uses conventional HTTP response codes to indicate the success or failure of an API request. Codes in the `2xx` range indicate success. Codes in the `4xx` range indicate an error that failed given the information provided (e.g., a required parameter was omitted). Codes in the `5xx` range indicate an error with Cumulocity IoT's servers ([these are very rare](https://www.softwareag.cloud/site/sla/cumulocity-iot.html#/)).\n<table>\n  <caption>HTTP STATUS CODE SUMMARY</caption>\n  <tr><th>Code</th><th>Description</th></tr>\n  <tr><td>200 - OK</td><td>Everything worked as expected.</td></tr>\n  <tr><td>201 - Created</td><td>A managed object was created successfully.</td></tr>\n  <tr><td>204 - No content</td><td>A managed object was deleted successfully.</td></tr>\n  <tr><td>400 - Bad Request</td><td>The request was unacceptable, often due to missing a required parameter.</td></tr>\n  <tr><td>401 - Unauthorized</td><td>Authentication has failed, or credentials were required but not provided..</td></tr>\n  <tr><td>403 - Forbidden</td><td>The authenticated user doesn't have permissions to perform the request.</td></tr>\n  <tr><td>404 - Not Found</td><td>The requested resource doesn't exist.</td></tr>\n  <tr><td>405 - Method not allowed</td><td>The employed HTTP method cannot be used on this resource (e.g., using PUT on a read-only resource).</td></tr>\n  <tr><td>422 - Invalid data</td><td>Invalid data was sent on the request and/or a query could not be understood.</td></tr>\n  <tr><td>422 - Unprocessable Entity</td><td>The requested resource cannot be updated.</td></tr>\n  <tr><td>500, 503 - Server Errors</td><td>Something went wrong on Cumulocity IoT's end.</td></tr>\n</table>\n\nAll error codes and their interpretations can be found in [Error reporting](https://cumulocity.com/guides/reference/rest-implementation/#a-name-error-reporting-a-error-reporting) in the Reference guide.\n",
     "contact" : {
       "name" : "Cumulocity IoT",
       "url" : "https://www.cumulocity.com",
@@ -54,6 +54,46 @@
     "tags" : [ "Alarm API", "Alarms" ]
   } ],
   "paths" : {
+    "/alarm" : {
+      "get" : {
+        "tags" : [ "Alarm API" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Retrieve URIs to collections of alarms",
+        "operationId" : "getAlarmApi",
+        "description" : "Retrieve URIs and URI templates to collections of alarms.<br><br> Required roles: **ROLE_ALARM_READ**\n",
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded and the URIs are sent in the response.",
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          }
+        }
+      }
+    },
+    "/alarm/alarms" : {
+      "get" : {
+        "tags" : [ "Alarm API" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Retrieve all alarms",
+        "operationId" : "getAlarms",
+        "description" : "Retrieve all alarms.<br><br> Required roles: **ROLE_ALARM_READ**\n",
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded and all alarms are sent in the response.",
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          }
+        }
+      }
+    },
     "/inventory" : {
       "get" : {
         "tags" : [ "Inventory API" ],
@@ -133,7 +173,7 @@
         } ],
         "summary" : "Create a managed object",
         "operationId" : "postManagedObject",
-        "description" : "Create a new managed object, e.g. a device with temperature measurements support or a binary switch.<br> In general, each managed object may consist of:\n<ul><li>A unique identifier that references the object.</li> <li>The name of the object.</li>         <li>A time stamp showing the last update.</li> <li>Additional fragments.</li></ul>\n\nImagine, for example, that you want to describe electric meters from different vendors. Depending on the make of the meter, one may have a relay and one may be capable to measure a single phase or three phases (e.g. a three-phase electricity sensor). A fragment `c8y_ThreePhaseElectricitySensor` would identify such electric meter. Devices'  characteristics are identified by storing fragments for each of them.<br><br>\nRequired roles: **ROLE_INVENTORY_ADMIN** or **ROLE_INVENTORY_CREATE**\n",
+        "description" : "Create a new managed object, e.g. a device with temperature measurements support or a binary switch.<br> In general, each managed object may consist of:\n<ul><li>A unique identifier that references the object.</li> <li>The name of the object.</li> <li>A time stamp showing the last update.</li> <li>Additional fragments.</li></ul>\n\nImagine, for example, that you want to describe electric meters from different vendors. Depending on the make of the meter, one may have a relay and one may be capable to measure a single phase or three phases (e.g. a three-phase electricity sensor). A fragment `c8y_ThreePhaseElectricitySensor` would identify such electric meter. Devices'  characteristics are identified by storing fragments for each of them.<br><br>\nRequired roles: **ROLE_INVENTORY_ADMIN** or **ROLE_INVENTORY_CREATE**\n",
         "requestBody" : {
           "required" : true,
           "content" : {
@@ -633,6 +673,9 @@
           },
           "404" : {
             "$ref" : "#/components/responses/inventoryObjectNotFound"
+          },
+          "422" : {
+            "$ref" : "#/components/responses/invalidChildId"
           }
         }
       }
@@ -820,6 +863,9 @@
           },
           "404" : {
             "$ref" : "#/components/responses/inventoryObjectNotFound"
+          },
+          "422" : {
+            "$ref" : "#/components/responses/invalidChildId"
           }
         }
       }
@@ -1019,6 +1065,9 @@
           },
           "404" : {
             "$ref" : "#/components/responses/inventoryObjectNotFound"
+          },
+          "422" : {
+            "$ref" : "#/components/responses/invalidChildId"
           }
         }
       }
@@ -1168,57 +1217,17 @@
           }
         }
       }
-    },
-    "/alarm" : {
-      "get" : {
-        "tags" : [ "Alarm API" ],
-        "security" : [ {
-          "BasicAuthentication" : [ ]
-        } ],
-        "summary" : "Retrieve URIs to collections of alarms",
-        "operationId" : "getAlarmApi",
-        "description" : "Retrieve URIs and URI templates to collections of alarms.<br><br> Required roles: **ROLE_ALARM_READ**\n",
-        "responses" : {
-          "200" : {
-            "description" : "The request has succeeded and the URIs are sent in the response.",
-            "links" : { }
-          },
-          "401" : {
-            "$ref" : "#/components/responses/unauthorizedError"
-          }
-        }
-      }
-    },
-    "/alarm/alarms" : {
-      "get" : {
-        "tags" : [ "Alarm API" ],
-        "security" : [ {
-          "BasicAuthentication" : [ ]
-        } ],
-        "summary" : "Retrieve all alarms",
-        "operationId" : "getAlarms",
-        "description" : "Retrieve all alarms.<br><br> Required roles: **ROLE_ALARM_READ**\n",
-        "responses" : {
-          "200" : {
-            "description" : "The request has succeeded and all alarms are sent in the response.",
-            "links" : { }
-          },
-          "401" : {
-            "$ref" : "#/components/responses/unauthorizedError"
-          }
-        }
-      }
     }
   },
   "components" : {
     "securitySchemes" : {
       "BasicAuthentication" : {
-        "description" : "The authorization header is formed as `Basic <Base64(<tenantID>/<c8yuser>:<password>)>`. For instance, if your tenantID, username and password are **t0071234**, **testuser** and **secret123** respectively, you can generate the Base64 string with the following command:\n\n  ```shell\n  $ echo -n t0071234/testuser:secret123 | base64\n  ```\n\n  and your authorization header would look like\n  \n  ```\n  \"Authorization\": \"Basic dDAwNzEyMzQvdGVzdHVzZXI6c2VjcmV0MTIz\" \n  ```\n  \n  On UI interfaces, your username name shall be plain text in the format `<tenantID>/<c8yuser>`. \n  \n",
+        "description" : "The authorization header is formed as `Basic <Base64(<tenantID>/<c8yuser>:<password>)>`. For instance, if your tenantID, username and password are **t0071234**, **testuser** and **secret123** respectively, you can generate the Base64 string with the following command:\n\n  ```shell\n  $ echo -n t0071234/testuser:secret123 | base64\n  ```\n\n  and your authorization header would look like\n\n  ```\n  \"Authorization\": \"Basic dDAwNzEyMzQvdGVzdHVzZXI6c2VjcmV0MTIz\"\n  ```\n\n  On UI interfaces, your username name shall be plain text in the format `<tenantID>/<c8yuser>`.\n",
         "type" : "http",
         "scheme" : "basic"
       },
       "JWTAuthentication" : {
-        "description" : "Cumulocity IoT supports JWT token authentication. The HTTP header must include:\n```\n  \"Authorization\": \"Bearer <<Base64 encoded JWT token>>\"\n```\nThe JWT token must be signed using RSA signature with SHA-256 (RS256). \nThe minimal RSA key size is 512 bit. \nYou must upload your public key to the tenant options on the “token.publicKey” category.\n",
+        "description" : "Cumulocity IoT supports JWT token authentication. The HTTP header must include:\n```\n  \"Authorization\": \"Bearer <<Base64 encoded JWT token>>\"\n```\nThe JWT token must be signed using RSA signature with SHA-256 (RS256).\nThe minimal RSA key size is 512 bit.\nYou must upload your public key to the tenant options on the “token.publicKey” category.\n",
         "type" : "http",
         "scheme" : "bearer",
         "bearerFormat" : "JWT"
