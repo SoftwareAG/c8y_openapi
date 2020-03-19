@@ -201,6 +201,29 @@
         }
       }
     },
+    "/alarm/alarms/count" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/queryParam_query"
+      } ],
+      "get" : {
+        "tags" : [ "Alarms" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Retrieve the total number of alarms",
+        "operationId" : "getAlarmsCount",
+        "description" : "Retrieve the total number of active alarms in your tenant.<br><br> Required roles: **ROLE_ALARM_READ**\n",
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded and the total number of alarms is sent in the response.",
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          }
+        }
+      }
+    },
     "/inventory" : {
       "get" : {
         "tags" : [ "Inventory API" ],
