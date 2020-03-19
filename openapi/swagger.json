@@ -3,7 +3,7 @@
   "info" : {
     "version" : "1.0.0",
     "title" : "Cumulocity IoT OpenAPI",
-    "description" : "# Introduction\nStandard OpenAPI specification, language-agnostic interface to the Cumulocity IoT RESTful API which allows – both humans and computers – to discover and understand the capabilities of the platform.\n\nCumulocity IoT uses HTTP and REST, which is today the most widely used interfacing technology and which works on any Internet-connected device ranging from small embedded microcontrollers up to desktop PCs. The secure variant, HTTPS, is used for the most security critical applications and will give you the best possible security.\n\nRegardless the communication originates from IoT devices, web applications or from back-office IT systems, Cumulocity IoT employs the protocol REST for all external communication. Our API has predictable resource-oriented URLs, accepts form-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication and verbs.\n### **Just Getting Started?**\nCumulocity IoT exposes its complete functionality through programming interfaces; this means that all of Cumulocity IoT’s functionality is available for you to use in different contexts outside of what the platform directly provides - in your own applications, in your own devices. Cumulocity IoT gives you very fast visibility and control over your remote assets, be these houses, cars, machines or any other assets that you want to manage.\n\nCheck out <a href=\"https://cumulocity.com/guides/concepts/introduction/\" target=\"_new\">our online guides</a> to learn more about the platform.\n# Authentication\nWhen you sign up for an account on the [Cumulocity IoT platform](https://cumulocity.com/), for example by using a free trial, you will be provided with a dedicated URL address for your tenant. All requests to the platform have to be authenticated employing your tenant ID, Cumulocity IoT user (c8yuser for short) and password. Cumulocity IoT offers the following forms of authentication:\n<ul><li>Basic authentication</li> <li>JWT token authentication</li> <li>OAuth authentication code grant</li></ul>\n\nCumulocity IoT also supports two factor authentication. For more details, see [Authentication](https://cumulocity.com/guides/reference/rest-implementation/#authentication) in the Reference Guide.\n# Response Codes\nCumulocity IoT uses conventional HTTP response codes to indicate the success or failure of an API request. Codes in the `2xx` range indicate success. Codes in the `4xx` range indicate an error that failed given the information provided (e.g., a required parameter was omitted). Codes in the `5xx` range indicate an error with Cumulocity IoT's servers ([these are very rare](https://www.softwareag.cloud/site/sla/cumulocity-iot.html#/)).\n<table>\n  <caption>HTTP STATUS CODE SUMMARY</caption>\n  <tr><th>Code</th><th>Description</th></tr>\n  <tr><td>200 - OK</td><td>Everything worked as expected.</td></tr>\n  <tr><td>201 - Created</td><td>A managed object was created successfully.</td></tr>\n  <tr><td>204 - No content</td><td>A managed object was deleted successfully.</td></tr>\n  <tr><td>400 - Bad Request</td><td>The request was unacceptable, often due to missing a required parameter.</td></tr>\n  <tr><td>401 - Unauthorized</td><td>Authentication has failed, or credentials were required but not provided..</td></tr>\n  <tr><td>403 - Forbidden</td><td>The authenticated user doesn't have permissions to perform the request.</td></tr>\n  <tr><td>404 - Not Found</td><td>The requested resource doesn't exist.</td></tr>\n  <tr><td>405 - Method not allowed</td><td>The employed HTTP method cannot be used on this resource (e.g., using PUT on a read-only resource).</td></tr>\n  <tr><td>422 - Invalid data</td><td>Invalid data was sent on the request and/or a query could not be understood.</td></tr>\n  <tr><td>422 - Unprocessable Entity</td><td>The requested resource cannot be updated.</td></tr>\n  <tr><td>500, 503 - Server Errors</td><td>Something went wrong on Cumulocity IoT's end.</td></tr>\n</table>\n\nAll error codes and their interpretations can be found in [Error reporting](https://cumulocity.com/guides/reference/rest-implementation/#a-name-error-reporting-a-error-reporting) in the Reference guide.\n",
+    "description" : "# Introduction\nStandard OpenAPI specification, language-agnostic interface to the Cumulocity IoT RESTful API which allows – both humans and computers – to discover and understand the capabilities of the platform.\n\nCumulocity IoT uses HTTP and REST, which is today the most widely used interfacing technology and which works on any Internet-connected device ranging from small embedded microcontrollers up to desktop PCs. The secure variant, HTTPS, is used for the most security critical applications and will give you the best possible security.\n\nRegardless the communication originates from IoT devices, web applications or from back-office IT systems, Cumulocity IoT employs the protocol REST for all external communication. Our API has predictable resource-oriented URLs, accepts form-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication and verbs.\n### **Just Getting Started?**\nCumulocity IoT exposes its complete functionality through programming interfaces; this means that all of Cumulocity IoT’s functionality is available for you to use in different contexts outside of what the platform directly provides - in your own applications, in your own devices. Cumulocity IoT gives you very fast visibility and control over your remote assets, be these houses, cars, machines or any other assets that you want to manage.\n\nCheck out <a href=\"https://cumulocity.com/guides/concepts/introduction/\" target=\"_new\">our online guides</a> to learn more about the platform.\n# Authentication\nWhen you sign up for an account on the [Cumulocity IoT platform](https://cumulocity.com/), for example by using a free trial, you will be provided with a dedicated URL address for your tenant. All requests to the platform have to be authenticated employing your tenant ID, Cumulocity IoT user (c8yuser for short) and password. Cumulocity IoT offers the following forms of authentication:\n<ul><li>Basic authentication</li> <li>JWT token authentication</li> <li>OAuth authentication code grant</li></ul>\n\nCumulocity IoT also supports two factor authentication. For more details, see [Authentication](https://cumulocity.com/guides/reference/rest-implementation/#authentication) in the Reference Guide.\n# Response Codes\nCumulocity IoT uses conventional HTTP response codes to indicate the success or failure of an API request. Codes in the `2xx` range indicate success. Codes in the `4xx` range indicate an error that failed given the information provided (e.g., a required parameter was omitted). Codes in the `5xx` range indicate an error with Cumulocity IoT's servers ([these are very rare](https://www.softwareag.cloud/site/sla/cumulocity-iot.html#/)).\n<table>\n  <caption>HTTP STATUS CODE SUMMARY</caption>\n  <tr><th>Code</th><th>Description</th></tr>\n  <tr><td>200 - OK</td><td>Everything worked as expected.</td></tr>\n  <tr><td>201 - Created</td><td>A managed object was created successfully.</td></tr>\n  <tr><td>204 - No content</td><td>A managed object was deleted successfully.</td></tr>\n  <tr><td>400 - Bad Request</td><td>The request was unacceptable, often due to missing a required parameter.</td></tr>\n  <tr><td>401 - Unauthorized</td><td>Authentication has failed, or credentials were required but not provided..</td></tr>\n  <tr><td>403 - Forbidden</td><td>The authenticated user doesn't have permissions to perform the request.</td></tr>\n  <tr><td>404 - Not Found</td><td>The requested resource doesn't exist.</td></tr>\n  <tr><td>405 - Method not allowed</td><td>The employed HTTP method cannot be used on this resource (e.g., using PUT on a read-only resource).</td></tr>\n  <tr><td>422 - Invalid data</td><td>Invalid data was sent on the request and/or a query could not be understood.</td></tr>\n  <tr><td>422 - Unprocessable Entity</td><td>The requested resource cannot be updated.</td></tr>\n  <tr><td>500, 503 - Server Errors</td><td>Something went wrong on Cumulocity IoT's end.</td></tr>\n</table>\n\nAll error codes and their interpretations can be found in [Error reporting](https://cumulocity.com/guides/reference/rest-implementation/#a-name-error-reporting-a-error-reporting) in the Reference guide.\n# Roles\n**ToDo:** add details about the roles.\n",
     "contact" : {
       "name" : "Cumulocity IoT",
       "url" : "https://www.cumulocity.com",
@@ -37,21 +37,21 @@
     "JWTAuthentication" : [ ]
   } ],
   "tags" : [ {
+    "name" : "Alarm API",
+    "description" : "An alarm signals an event that requires manual action, for example, when the temperature of a fridge increases above a particular threshold.\n"
+  }, {
     "name" : "Inventory API",
     "description" : "The inventory stores all master data related to devices, their configuration and their connections. It also contains all related assets (e.g. vehicles, machines, buildings) and their structure. The inventory API resource returns URIs and URI templates to collections of managed objects.\n"
   }, {
     "name" : "Managed Objects",
     "description" : "The inventory stores devices and other assets relevant to your IoT solution. We refer to them as managed objects and such can be “smart objects”, e.g. smart electricity meters, home automation gateways or GPS devices.\n"
-  }, {
-    "name" : "Alarm API",
-    "description" : "An alarm signals an event that requires manual action, for example, when the temperature of a fridge increases above a particular threshold.\n"
   } ],
   "x-tagGroups" : [ {
-    "name" : "Inventory",
-    "tags" : [ "Inventory API", "Managed Objects" ]
-  }, {
     "name" : "Alarms",
     "tags" : [ "Alarm API", "Alarms" ]
+  }, {
+    "name" : "Inventory",
+    "tags" : [ "Inventory API", "Managed Objects" ]
   } ],
   "paths" : {
     "/alarm" : {
@@ -82,16 +82,13 @@
         } ],
         "summary" : "Retrieve all alarms",
         "operationId" : "getAlarms",
-        "description" : "Retrieve all alarms on your tenant at once.<br><br> Required roles: **ROLE_ALARM_READ**\n",
+        "description" : "Retrieve all alarms on your tenant.<br><br> Required roles: **ROLE_ALARM_READ**\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and all alarms are sent in the response.",
             "links" : { }
           },
           "401" : {
-            "$ref" : "#/components/responses/unauthorizedError"
-          },
-          "403" : {
             "$ref" : "#/components/responses/unauthorizedError"
           }
         }
@@ -105,7 +102,7 @@
         } ],
         "summary" : "Retrieve URIs to collections of managed objects",
         "operationId" : "getInventoryApi",
-        "description" : "Retrieve URIs and URI templates to collections of managed objects.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Retrieve URIs and URI templates to collections of managed objects.<br><br> Required roles: **ROLE_INVENTORY_READ**\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the URIs are sent in the response.",
@@ -283,7 +280,7 @@
         } ],
         "summary" : "Retrieve all managed objects",
         "operationId" : "getManagedObjects",
-        "description" : "Retrieve all managed objects (e.g. devices, assets, etc.) registered in your tenant.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Retrieve all managed objects (e.g. devices, assets, etc.) registered in your tenant.<br><br> Required roles: **ROLE_INVENTORY_READ**\n",
         "responses" : {
           "200" : {
             "$ref" : "#/components/responses/inventoryObjectCollectionFound"
@@ -310,7 +307,7 @@
         } ],
         "summary" : "Retrieve the total number of managed objects",
         "operationId" : "getManagedObjectsCount",
-        "description" : "Retrieve the total number of managed objects (e.g. devices, assets, etc.) registered in your tenant.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Retrieve the total number of managed objects (e.g. devices, assets, etc.) registered in your tenant.<br><br> Required roles: **ROLE_INVENTORY_READ**\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the total number of managed objects is sent in the response.",
@@ -359,7 +356,7 @@
         } ],
         "summary" : "Retrieve a specific managed object",
         "operationId" : "getManagedObjectById",
-        "description" : "Retrieve a specific managed object (e.g. device, group, template) by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Retrieve a specific managed object (e.g. device, group, template) by a given ID.<br><br> Required roles: **ROLE_INVENTORY_READ**\n",
         "responses" : {
           "200" : {
             "$ref" : "#/components/responses/inventoryObjectFound"
@@ -447,7 +444,7 @@
         } ],
         "summary" : "Retrieve the latest availability date of a specific managed object",
         "operationId" : "getManagedObjectAvailability",
-        "description" : "Retrieve the date when a specific managed object (by a given ID) sent the last message to Cumulocity IoT.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Retrieve the date when a specific managed object (by a given ID) sent the last message to Cumulocity IoT.<br><br> Required roles: **ROLE_INVENTORY_READ**\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the date is sent in the response.",
@@ -546,7 +543,7 @@
         } ],
         "summary" : "Retrieve all child additions of a specific managed object",
         "operationId" : "getManagedObjectChildAdditions",
-        "description" : "Retrieve all child additions of a specific managed object by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Retrieve all child additions of a specific managed object by a given ID.<br><br> Required roles: **ROLE_INVENTORY_READ**\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and all child additions are sent in the response.",
@@ -622,7 +619,7 @@
         } ],
         "summary" : "Retrieve a specific child addition of a specific managed object",
         "operationId" : "getManagedObjectChildAddition",
-        "description" : "Retrieve a specific child addition (by a given child ID) of a specific managed object (by a given ID).<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Retrieve a specific child addition (by a given child ID) of a specific managed object (by a given ID).<br><br> Required roles: **ROLE_INVENTORY_READ**\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the child addition is sent in the response.",
@@ -748,7 +745,7 @@
         } ],
         "summary" : "Retrieve all child assets of a specific managed object",
         "operationId" : "getManagedObjectChildAssets",
-        "description" : "Retrieve all child assets of a specific managed object by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Retrieve all child assets of a specific managed object by a given ID.<br><br> Required roles: **ROLE_INVENTORY_READ**\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and all child assets are sent in the response.",
@@ -812,7 +809,7 @@
         } ],
         "summary" : "Retrieve a specific child asset of a specific managed object",
         "operationId" : "getManagedObjectChildAsset",
-        "description" : "Retrieve a specific child asset (by a given child ID) of a specific managed object (by a given ID).<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Retrieve a specific child asset (by a given child ID) of a specific managed object (by a given ID).<br><br> Required roles: **ROLE_INVENTORY_READ**\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the child asset is sent in the response.",
@@ -938,7 +935,7 @@
         } ],
         "summary" : "Retrieve all child devices of a specific managed object",
         "operationId" : "getManagedObjectChildDevices",
-        "description" : "Retrieve all child devices of a specific managed object by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Retrieve all child devices of a specific managed object by a given ID.<br><br> Required roles: **ROLE_INVENTORY_READ**\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and all child devices are sent in the response.",
@@ -1014,7 +1011,7 @@
         } ],
         "summary" : "Retrieve a specific child device of a specific managed object",
         "operationId" : "getManagedObjectChildDevice",
-        "description" : "Retrieve a specific child device (by a given child ID) of a specific managed object (by a given ID).<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Retrieve a specific child device (by a given child ID) of a specific managed object (by a given ID).<br><br> Required roles: **ROLE_INVENTORY_READ**\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the child device is sent in the response.",
@@ -1088,7 +1085,7 @@
         } ],
         "summary" : "Retrieve all measurements of a specific managed object",
         "operationId" : "getManagedObjectSupportedMeasurements",
-        "description" : "Retrieve all supported measurements of a specific managed object by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Retrieve all supported measurements of a specific managed object by a given ID.<br><br> Required roles: **ROLE_INVENTORY_READ**\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and all supported measurements are sent in the response.",
@@ -1135,7 +1132,7 @@
         } ],
         "summary" : "Retrieve all supported series of a specific managed object",
         "operationId" : "getManagedObjectSupportedSeries",
-        "description" : "Retrieve all supported series of a specific managed object by a given ID.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Retrieve all supported series of a specific managed object by a given ID.<br><br> Required roles: **ROLE_INVENTORY_READ**\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and all supported series are sent in the response.",
@@ -1179,7 +1176,7 @@
         } ],
         "summary" : "Retrieve the username and status of a specific managed object",
         "operationId" : "getManagedObjectUsernameAndStatus",
-        "description" : "Retrieve the device's owner's username of a specific managed object (by a given ID) and if it is enabled for that managed object.<br><br> **Request body schema:** None<br> **Required roles:** ROLE_INVENTORY_READ\n",
+        "description" : "Retrieve the device's owner's username of a specific managed object (by a given ID) and if it is enabled for that managed object.<br><br> Required roles: **ROLE_INVENTORY_READ**\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the username and status are sent in the response.",
