@@ -68,10 +68,10 @@
         "description" : "Retrieve URIs and URI templates to collections of alarms.<br><br> Required roles: **ROLE_ALARM_READ**\n",
         "responses" : {
           "200" : {
-            "description" : "The request has succeeded and all alarms are sent in the response.",
+            "description" : "The request has succeeded and the URIs are sent in the response.",
             "links" : { },
             "content" : {
-              "application/vnd.com.nsn.cumulocity.inventoryapi+json" : {
+              "application/vnd.com.nsn.cumulocity.alarmapi+json" : {
                 "schema" : {
                   "type" : "object",
                   "properties" : {
