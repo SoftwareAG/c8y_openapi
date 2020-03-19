@@ -82,7 +82,7 @@
         } ],
         "summary" : "Retrieve all alarms",
         "operationId" : "getAlarms",
-        "description" : "Retrieve all alarms.<br><br> Required roles: **ROLE_ALARM_READ**\n",
+        "description" : "Retrieve all alarms on your tenant.<br><br> Required roles: **ROLE_ALARM_READ**\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and all alarms are sent in the response.",
