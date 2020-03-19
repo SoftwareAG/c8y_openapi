@@ -222,8 +222,14 @@
         },
         "responses" : {
           "201" : {
-            "description" : "A managed object was created successfully.",
+            "description" : "An alarm was created successfully.",
             "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/inventoryObjectNotFound"
           }
         }
       },
