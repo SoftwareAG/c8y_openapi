@@ -259,9 +259,6 @@
       }
     },
     "/alarm/alarms/count" : {
-      "parameters" : [ {
-        "$ref" : "#/components/parameters/queryParam_query"
-      } ],
       "get" : {
         "tags" : [ "Alarms" ],
         "security" : [ {
@@ -269,7 +266,7 @@
         } ],
         "summary" : "Retrieve the total number of alarms",
         "operationId" : "getAlarmsCount",
-        "description" : "Retrieve the total number of active alarms in your tenant.<br><br> Required roles: **ROLE_ALARM_READ**\n",
+        "description" : "Count the total number of all active alarms in your tenant.<br><br> Required roles: **ROLE_ALARM_READ**\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the total number of alarms is sent in the response.",
@@ -1692,29 +1689,7 @@
                   } ]
                 },
                 "statistics" : {
-                  "description" : "Information about paging statistics.",
-                  "type" : "object",
-                  "properties" : {
-                    "totalPages" : {
-                      "description" : "The total number of pages.",
-                      "type" : "number",
-                      "minimum" : 1,
-                      "example" : 3
-                    },
-                    "currentPage" : {
-                      "description" : "The current page of the paginated results.",
-                      "type" : "number",
-                      "minimum" : 1,
-                      "example" : 2
-                    },
-                    "pageSize" : {
-                      "description" : "Indicates the number of objects that the collection may contain per page. The upper limit for one page is 2,000 objects.",
-                      "type" : "number",
-                      "minimum" : 1,
-                      "maximum" : 2000,
-                      "example" : 5
-                    }
-                  }
+                  "$ref" : "#/components/schemas/pageStatistics"
                 },
                 "managedObjects" : {
                   "description" : "An array containing the results (managed objects) of the request.",
@@ -1980,7 +1955,7 @@
             "allOf" : [ {
               "$ref" : "#/components/x-descriptions/alarm_time"
             }, {
-              "example" : "2020-03-19T12:03:27.845Z"
+              "example" : "2020-03-19T00:00:00.000Z"
             } ]
           },
           "type" : {
