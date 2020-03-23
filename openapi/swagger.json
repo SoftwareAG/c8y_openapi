@@ -227,9 +227,6 @@
           },
           "401" : {
             "$ref" : "#/components/responses/unauthorizedError"
-          },
-          "404" : {
-            "$ref" : "#/components/responses/inventoryObjectNotFound"
           }
         }
       },
@@ -286,7 +283,7 @@
     },
     "/alarm/alarms/{id}" : {
       "parameters" : [ {
-        "$ref" : "#/components/parameters/managedObjectId"
+        "$ref" : "#/components/parameters/alarmId"
       } ],
       "get" : {
         "tags" : [ "Alarms" ],
@@ -298,14 +295,13 @@
         "description" : "Retrieve a specific alarm by a given ID.<br><br> Required roles: **ROLE_ALARM_READ**\n",
         "responses" : {
           "200" : {
-            "description" : "The request has succeeded and the alarm is sent in the response.",
-            "links" : { }
+            "$ref" : "#/components/responses/alarmFound"
           },
           "401" : {
             "$ref" : "#/components/responses/unauthorizedError"
           },
           "404" : {
-            "$ref" : "#/components/responses/inventoryObjectNotFound"
+            "$ref" : "#/components/responses/alarmNotFound"
           }
         }
       }
@@ -1456,6 +1452,17 @@
       }
     },
     "parameters" : {
+      "alarmId" : {
+        "name" : "id",
+        "in" : "path",
+        "description" : "Unique identifier of the alarm.",
+        "required" : true,
+        "schema" : {
+          "type" : "string",
+          "minLength" : 1,
+          "example" : 20200301
+        }
+      },
       "managedObjectId" : {
         "name" : "id",
         "in" : "path",
@@ -1769,6 +1776,51 @@
             }
           }
         }
+      },
+      "alarmFound" : {
+        "description" : "The request has succeeded and the alarm is sent in the response.",
+        "links" : { },
+        "content" : {
+          "application/vnd.com.nsn.cumulocity.alarm+json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/alarm"
+            }
+          }
+        }
+      },
+      "alarmNotFound" : {
+        "description" : "Alarm not found.",
+        "links" : { },
+        "content" : {
+          "application/vnd.com.nsn.cumulocity.error+json" : {
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "error" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_40XError"
+                  }, {
+                    "example" : "alarm/Not Found"
+                  } ]
+                },
+                "message" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_40XMessage"
+                  }, {
+                    "example" : "Finding alarm from database failed"
+                  } ]
+                },
+                "info" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_40XInfo"
+                  }, {
+                    "example" : "https://www.cumulocity.com/guides/reference-guide/#error_reporting"
+                  } ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "x-descriptions" : {
@@ -1848,9 +1900,98 @@
       "alarm_time" : {
         "description" : "The date and time when the alarm is triggered.",
         "type" : "string"
+      },
+      "alarm_creationTime" : {
+        "description" : "The date and time when the alarm was created.",
+        "type" : "string",
+        "format" : "date-time"
+      },
+      "alarm_count" : {
+        "description" : "Number of times that this alarm has been triggered.",
+        "type" : "string"
+      },
+      "alarm_id" : {
+        "description" : "Unique identifier of the alarm.",
+        "type" : "string"
       }
     },
     "schemas" : {
+      "alarm" : {
+        "type" : "object",
+        "properties" : {
+          "count" : {
+            "allOf" : [ {
+              "$ref" : "#/components/x-descriptions/alarm_count"
+            }, {
+              "example" : 1
+            } ]
+          },
+          "creationTime" : {
+            "allOf" : [ {
+              "$ref" : "#/components/x-descriptions/alarm_creationTime"
+            }, {
+              "example" : "2020-03-19T12:16:31.586Z"
+            } ]
+          },
+          "id" : {
+            "allOf" : [ {
+              "$ref" : "#/components/x-descriptions/alarm_id"
+            }, {
+              "example" : 20200301
+            } ]
+          },
+          "severity" : {
+            "allOf" : [ {
+              "$ref" : "#/components/x-descriptions/alarm_severity"
+            }, {
+              "example" : "MAJOR"
+            } ]
+          },
+          "source" : {
+            "allOf" : [ {
+              "$ref" : "#/components/x-descriptions/alarm_source"
+            }, {
+              "properties" : {
+                "id" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_objectId"
+                  }, {
+                    "example" : "251982"
+                  } ]
+                }
+              }
+            } ]
+          },
+          "status" : {
+            "allOf" : [ {
+              "$ref" : "#/components/x-descriptions/alarm_status"
+            }, {
+              "example" : "ACTIVE"
+            } ]
+          },
+          "text" : {
+            "allOf" : [ {
+              "$ref" : "#/components/x-descriptions/alarm_text"
+            }, {
+              "example" : "No data received from the device within the required interval."
+            } ]
+          },
+          "time" : {
+            "allOf" : [ {
+              "$ref" : "#/components/x-descriptions/alarm_time"
+            }, {
+              "example" : "2020-03-19T12:03:27.845Z"
+            } ]
+          },
+          "type" : {
+            "allOf" : [ {
+              "$ref" : "#/components/x-descriptions/alarm_type"
+            }, {
+              "example" : "c8y_UnavailabilityAlarm"
+            } ]
+          }
+        }
+      },
       "managedObject" : {
         "type" : "object",
         "properties" : {
@@ -2022,9 +2163,6 @@
             "example" : 5
           }
         }
-      },
-      "alarm" : {
-        "type" : "object"
       }
     }
   }
