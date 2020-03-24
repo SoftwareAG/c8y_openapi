@@ -267,6 +267,43 @@
             "$ref" : "#/components/responses/unauthorizedError"
           }
         }
+      },
+      "delete" : {
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/queryParam_alarm_dateFrom"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_alarm_dateTo"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_alarm_resolved"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_alarm_severity"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_alarm_source"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_alarm_status"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_alarm_type"
+        } ],
+        "tags" : [ "Alarms" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Remove alarm collections",
+        "operationId" : "deleteAlarms",
+        "description" : "Remove alarm collections specified by query parameters.<br><br> **Important:** Note that it is possible to call this endpoint without providing any parameter - it will result in deleting all alarms and it is not recommended.<br><br> Required roles: **ROLE_ALARM_ADMIN**\n",
+        "responses" : {
+          "204" : {
+            "description" : "A collection of alarms was deleted successfully.",
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          },
+          "405" : {
+            "description" : "Not authorized to perform this operation.",
+            "links" : { }
+          }
+        }
       }
     },
     "/alarm/alarms/count" : {
@@ -322,11 +359,19 @@
         "operationId" : "deleteAlarmById",
         "description" : "Remove a specific alarm by a given ID.<br><br> Required roles: **ROLE_ALARM_ADMIN**\n",
         "responses" : {
+          "204" : {
+            "description" : "An alarm was deleted successfully.",
+            "links" : { }
+          },
           "401" : {
             "$ref" : "#/components/responses/unauthorizedError"
           },
           "404" : {
             "$ref" : "#/components/responses/alarmNotFound"
+          },
+          "405" : {
+            "description" : "Not authorized to perform this operation.",
+            "links" : { }
           }
         }
       }
