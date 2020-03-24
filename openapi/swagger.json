@@ -232,11 +232,23 @@
       },
       "get" : {
         "parameters" : [ {
+          "$ref" : "#/components/parameters/queryParam_alarm_dateFrom"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_alarm_dateTo"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_alarm_resolved"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_alarm_severity"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_alarm_source"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_alarm_status"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_alarm_type"
+        }, {
           "$ref" : "#/components/parameters/queryParam_currentPage"
         }, {
           "$ref" : "#/components/parameters/queryParam_pageSize"
-        }, {
-          "$ref" : "#/components/parameters/queryParam_query"
         }, {
           "$ref" : "#/components/parameters/queryParam_withTotalPages"
         } ],
@@ -249,8 +261,7 @@
         "description" : "Retrieve all alarms on your tenant.<br><br> Required roles: **ROLE_ALARM_READ**\n",
         "responses" : {
           "200" : {
-            "description" : "The request has succeeded and all alarms are sent in the response.",
-            "links" : { }
+            "$ref" : "#/components/responses/alarmCollectionFound"
           },
           "401" : {
             "$ref" : "#/components/responses/unauthorizedError"
@@ -1554,6 +1565,76 @@
           "default" : false,
           "example" : true
         }
+      },
+      "queryParam_alarm_type" : {
+        "name" : "type",
+        "in" : "query",
+        "description" : "The type of alarm to search for.",
+        "schema" : {
+          "type" : "string",
+          "minLength" : 1,
+          "example" : "c8y_UnavailabilityAlarm"
+        }
+      },
+      "queryParam_alarm_source" : {
+        "name" : "source",
+        "in" : "query",
+        "description" : "The managed object ID to which the alarm is associated.",
+        "schema" : {
+          "type" : "string",
+          "minLength" : 1,
+          "example" : 251994
+        }
+      },
+      "queryParam_alarm_resolved" : {
+        "name" : "resolved",
+        "in" : "query",
+        "description" : "When set to `true` only alarms with status CLEARED will be fetched, whereas `false` will fetch all alarms with status ACTIVE or ACKNOWLEDGED.",
+        "schema" : {
+          "type" : "boolean",
+          "default" : false,
+          "example" : true
+        }
+      },
+      "queryParam_alarm_severity" : {
+        "name" : "severity",
+        "in" : "query",
+        "description" : "The severity of the alarm to search for.",
+        "schema" : {
+          "type" : "string",
+          "enum" : [ "CRITICAL", "MAJOR", "MINOR", "WARNING" ]
+        }
+      },
+      "queryParam_alarm_status" : {
+        "name" : "status",
+        "in" : "query",
+        "description" : "The status of the alarm to search for.",
+        "schema" : {
+          "type" : "string",
+          "enum" : [ "ACTIVE", "ACKNOWLEDGED", "CLEARED" ]
+        }
+      },
+      "queryParam_alarm_dateFrom" : {
+        "name" : "dateFrom",
+        "in" : "query",
+        "description" : "Start date or date and time of the alarm occurrence.",
+        "schema" : {
+          "type" : "string",
+          "format" : "date-time",
+          "minLength" : 1,
+          "example" : "2020-03-01"
+        }
+      },
+      "queryParam_alarm_dateTo" : {
+        "name" : "dateTo",
+        "in" : "query",
+        "description" : "End date or date and time of the alarm occurrence.",
+        "schema" : {
+          "type" : "string",
+          "format" : "date-time",
+          "minLength" : 1,
+          "example" : "2020-03-01"
+        }
       }
     },
     "responses" : {
@@ -1748,6 +1829,17 @@
                   } ]
                 }
               }
+            }
+          }
+        }
+      },
+      "alarmCollectionFound" : {
+        "description" : "The request has succeeded and all alarms are sent in the response.",
+        "links" : { },
+        "content" : {
+          "application/vnd.com.nsn.cumulocity.alarmcollection+json" : {
+            "schema" : {
+              "type" : "object"
             }
           }
         }
