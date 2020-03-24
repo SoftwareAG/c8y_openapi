@@ -1858,7 +1858,40 @@
         "content" : {
           "application/vnd.com.nsn.cumulocity.alarmcollection+json" : {
             "schema" : {
-              "type" : "object"
+              "type" : "object",
+              "properties" : {
+                "prev" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_prevPage"
+                  }, {
+                    "example" : "PROTOCOL://TENANT_DOMAIN/alarm/alarms?pageSize=5&currentPage=1"
+                  } ]
+                },
+                "self" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_self"
+                  }, {
+                    "example" : "PROTOCOL://TENANT_DOMAIN/alarm/alarms?pageSize=5&currentPage=2"
+                  } ]
+                },
+                "next" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_nextPage"
+                  }, {
+                    "example" : "PROTOCOL://TENANT_DOMAIN/alarm/alarms?pageSize=5&currentPage=3"
+                  } ]
+                },
+                "statistics" : {
+                  "$ref" : "#/components/schemas/pageStatistics"
+                },
+                "alarms" : {
+                  "description" : "An array containing the results (alarms) of the request.",
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/alarm"
+                  }
+                }
+              }
             }
           }
         }
