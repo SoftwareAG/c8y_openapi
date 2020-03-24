@@ -1602,7 +1602,8 @@
         "description" : "The severity of the alarm to search for.",
         "schema" : {
           "type" : "string",
-          "enum" : [ "CRITICAL", "MAJOR", "MINOR", "WARNING" ]
+          "enum" : [ "CRITICAL", "MAJOR", "MINOR", "WARNING" ],
+          "example" : "MAJOR"
         }
       },
       "queryParam_alarm_status" : {
@@ -1611,7 +1612,8 @@
         "description" : "The status of the alarm to search for.",
         "schema" : {
           "type" : "string",
-          "enum" : [ "ACTIVE", "ACKNOWLEDGED", "CLEARED" ]
+          "enum" : [ "ACTIVE", "ACKNOWLEDGED", "CLEARED" ],
+          "example" : "ACKNOWLEDGED"
         }
       },
       "queryParam_alarm_dateFrom" : {
