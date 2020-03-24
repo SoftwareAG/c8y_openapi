@@ -312,6 +312,23 @@
             "$ref" : "#/components/responses/alarmNotFound"
           }
         }
+      },
+      "delete" : {
+        "tags" : [ "Alarms" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Remove a specific alarm",
+        "operationId" : "deleteAlarmById",
+        "description" : "Remove a specific alarm by a given ID.<br><br> Required roles: **ROLE_ALARM_ADMIN**\n",
+        "responses" : {
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/alarmNotFound"
+          }
+        }
       }
     },
     "/inventory" : {
