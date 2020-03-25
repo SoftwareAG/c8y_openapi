@@ -43,6 +43,9 @@
     "name" : "Alarms",
     "description" : "An alarm signals an event that requires manual action, for example, when the temperature of a fridge increases above a particular threshold.\n"
   }, {
+    "name" : "Event API",
+    "description" : "The event API resource returns URIs and URI templates to collections of events, so that all events or events of a specified type and/or source device can be retrieved.\n"
+  }, {
     "name" : "Inventory API",
     "description" : "The inventory stores all master data related to devices, their configuration and their connections. It also contains all related assets (e.g. vehicles, machines, buildings) and their structure. The inventory API resource returns URIs and URI templates to collections of managed objects.\n"
   }, {
@@ -52,6 +55,9 @@
   "x-tagGroups" : [ {
     "name" : "Alarms",
     "tags" : [ "Alarm API", "Alarms" ]
+  }, {
+    "name" : "Events",
+    "tags" : [ "Events API", "Events" ]
   }, {
     "name" : "Inventory",
     "tags" : [ "Inventory API", "Managed Objects" ]
@@ -464,6 +470,26 @@
           "405" : {
             "description" : "Not authorized to perform this operation.",
             "links" : { }
+          }
+        }
+      }
+    },
+    "/event" : {
+      "get" : {
+        "tags" : [ "Event API" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Retrieve URIs to collections of events",
+        "operationId" : "getEventApi",
+        "description" : "Retrieve URIs and URI templates to collections of events.<br><br> Required roles: **ROLE_EVENT_READ**\n",
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded and the URIs are sent in the response.",
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
           }
         }
       }
