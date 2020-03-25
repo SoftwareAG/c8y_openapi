@@ -290,7 +290,7 @@
         } ],
         "summary" : "Remove alarm collections",
         "operationId" : "deleteAlarms",
-        "description" : "Remove alarm collections specified by query parameters.<br><br> **Important:** Note that it is possible to call this endpoint without providing any parameter - it will result in deleting all alarms and it is not recommended.<br><br> Required roles: **ROLE_ALARM_ADMIN**\n",
+        "description" : "Remove alarm collections specified by query parameters.<br><br> **⚠️ Important:** Note that it is possible to call this endpoint without providing any parameter - it will result in deleting all alarms and it is not recommended.<br><br> Required roles: **ROLE_ALARM_ADMIN**\n",
         "responses" : {
           "204" : {
             "description" : "A collection of alarms was deleted successfully.",
