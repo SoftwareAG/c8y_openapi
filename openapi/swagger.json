@@ -57,7 +57,7 @@
     "tags" : [ "Alarm API", "Alarms" ]
   }, {
     "name" : "Events",
-    "tags" : [ "Events API", "Events" ]
+    "tags" : [ "Event API", "Events" ]
   }, {
     "name" : "Inventory",
     "tags" : [ "Inventory API", "Managed Objects" ]
