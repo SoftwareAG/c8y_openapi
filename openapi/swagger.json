@@ -268,6 +268,54 @@
           }
         }
       },
+      "put" : {
+        "tags" : [ "Alarms" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Update alarm collections",
+        "operationId" : "putAlarms",
+        "description" : "Update alarm collections specified by query parameters. At least one query parameter is required to avoid accidentally updating all existing alarms.<br> Currently, only the status of alarms can be modified.<br><br> **ℹ️ Info:** Since this operation can take considerable time, the request returns after maximum 0.5 seconds of processing, and the update operation continues as a background process in the platform.<br><br> Required roles: **ROLE_ALARM_ADMIN**\n",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/vnd.com.nsn.cumulocity.alarm+json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "status" : {
+                    "allOf" : [ {
+                      "$ref" : "#/components/x-descriptions/alarm_status"
+                    }, {
+                      "example" : "CLEARED"
+                    } ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "An alarm collection was updated successfully.",
+            "links" : { }
+          },
+          "202" : {
+            "description" : "An alarm collection is being updated.",
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/alarmNotFound"
+          },
+          "422" : {
+            "description" : "Not authorized to perform this operation.",
+            "links" : { }
+          }
+        }
+      },
       "delete" : {
         "parameters" : [ {
           "$ref" : "#/components/parameters/queryParam_alarm_dateFrom"
@@ -290,7 +338,7 @@
         } ],
         "summary" : "Remove alarm collections",
         "operationId" : "deleteAlarms",
-        "description" : "Remove alarm collections specified by query parameters.<br><br> **Important:** Note that it is possible to call this endpoint without providing any parameter - it will result in deleting all alarms and it is not recommended.<br><br> Required roles: **ROLE_ALARM_ADMIN**\n",
+        "description" : "Remove alarm collections specified by query parameters.<br><br> **⚠️ Important:** Note that it is possible to call this endpoint without providing any parameter - it will result in deleting all alarms and it is not recommended.<br><br> Required roles: **ROLE_ALARM_ADMIN**\n",
         "responses" : {
           "204" : {
             "description" : "A collection of alarms was deleted successfully.",
@@ -387,6 +435,10 @@
           },
           "404" : {
             "$ref" : "#/components/responses/alarmNotFound"
+          },
+          "422" : {
+            "description" : "Not authorized to perform this operation.",
+            "links" : { }
           }
         }
       },
