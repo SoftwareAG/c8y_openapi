@@ -275,7 +275,7 @@
         } ],
         "summary" : "Update alarm collections",
         "operationId" : "putAlarms",
-        "description" : "Update alarm collections specified by query parameters. At least one query parameter is required to avoid accidentally updating all existing alarms.<br> Currently, only the status of alarms can be modified.<br><br> **ℹ️ Info:** Since this operation can take considerable time, the request returns after maximum 0.5 seconds of processing, and the update operation continues as a background process in the platform.<br><br> Required roles: **ROLE_ALARM_ADMIN**\n",
+        "description" : "Update alarm collections specified by query parameters. At least one query parameter is required to avoid accidentally updating all existing alarms.<br> Currently, only the status of alarms can be modified.<br><br> **ℹ Info:** Since this operation can take considerable time, the request returns after maximum 0.5 seconds of processing, and the update operation continues as a background process in the platform.<br><br> Required roles: **ROLE_ALARM_ADMIN**\n",
         "requestBody" : {
           "required" : true,
           "content" : {
