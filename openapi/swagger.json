@@ -290,7 +290,7 @@
         } ],
         "summary" : "Remove alarm collections",
         "operationId" : "deleteAlarms",
-        "description" : "Remove alarm collections specified by query parameters.<br><br> **⚠️ Important:** Note that it is possible to call this endpoint without providing any parameter - it will result in deleting all alarms and it is not recommended.<br><br> Required roles: **ROLE_ALARM_ADMIN**\n",
+        "description" : "Remove alarm collections specified by query parameters.<br><br> **Important:** Note that it is possible to call this endpoint without providing any parameter - it will result in deleting all alarms and it is not recommended.<br><br> Required roles: **ROLE_ALARM_ADMIN**\n",
         "responses" : {
           "204" : {
             "description" : "A collection of alarms was deleted successfully.",
@@ -314,7 +314,7 @@
         } ],
         "summary" : "Retrieve the total number of alarms",
         "operationId" : "getAlarmsCount",
-        "description" : "Count the total number of all active alarms in your tenant.<br><br> Required roles: **ROLE_ALARM_READ**\n",
+        "description" : "Count the total number of all active alarms on your tenant.<br><br> Required roles: **ROLE_ALARM_READ**\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the total number of alarms is sent in the response.",
@@ -341,6 +341,46 @@
         "responses" : {
           "200" : {
             "$ref" : "#/components/responses/alarmFound"
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/alarmNotFound"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Alarms" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Update a specific alarm",
+        "operationId" : "putAlarmByID",
+        "description" : "Update a specific alarm by a given ID.<br> Only text, status, severity and custom properties can be modified. Non-modifiable properties will be ignored when provided in the request body.<br><br> Required roles: **ROLE_ALARM_ADMIN** or **owner of the source**\n",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/vnd.com.nsn.cumulocity.alarm+json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "status" : {
+                    "allOf" : [ {
+                      "$ref" : "#/components/x-descriptions/alarm_status"
+                    }, {
+                      "example" : "CLEARED"
+                    } ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "An alarm was updated successfully.",
+            "links" : { }
           },
           "401" : {
             "$ref" : "#/components/responses/unauthorizedError"
