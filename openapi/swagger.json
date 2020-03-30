@@ -642,6 +642,96 @@
         }
       }
     },
+    "/event/events/{id}" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/alarmId"
+      } ],
+      "get" : {
+        "tags" : [ "Events" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Retrieve a specific event",
+        "operationId" : "getEventById",
+        "description" : "Retrieve a specific event by a given ID.<br><br> Required roles: **ROLE_EVENT_READ**\n",
+        "responses" : {
+          "200" : {
+            "$ref" : "#/components/responses/alarmFound"
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/alarmNotFound"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Events" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Update a specific event",
+        "operationId" : "putEventByID",
+        "description" : "Update a specific event by a given ID.<br><br> Required roles: **ROLE_EVENT_ADMIN** or **owner of the source**\n",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/vnd.com.nsn.cumulocity.event+json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "text" : {
+                    "example" : "Location update"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "An event was updated successfully.",
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/alarmNotFound"
+          },
+          "422" : {
+            "description" : "Not authorized to perform this operation.",
+            "links" : { }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Events" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Remove a specific event",
+        "operationId" : "deleteEventById",
+        "description" : "Remove a specific event by a given ID.<br><br> Required roles: **ROLE_EVENT_ADMIN**\n",
+        "responses" : {
+          "204" : {
+            "description" : "An event was deleted successfully.",
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/alarmNotFound"
+          },
+          "405" : {
+            "description" : "Not authorized to perform this operation.",
+            "links" : { }
+          }
+        }
+      }
+    },
     "/inventory" : {
       "get" : {
         "tags" : [ "Inventory API" ],
