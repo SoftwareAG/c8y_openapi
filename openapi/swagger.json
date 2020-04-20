@@ -54,6 +54,9 @@
   }, {
     "name" : "Managed Objects",
     "description" : "The inventory stores devices and other assets relevant to your IoT solution. We refer to them as managed objects and such can be “smart objects”, e.g. smart electricity meters, home automation gateways or GPS devices.\n"
+  }, {
+    "name" : "Measurement API",
+    "description" : "The measurement API resource returns URIs and URI templates to collections of measurements, so that all measurements can be filtered and retrieved. Querying without filters can be slow, hence it is recommended to narrow the scope by using time range queries. Moreover, the scope can be significantly reduced by querying by source.\n"
   } ],
   "x-tagGroups" : [ {
     "name" : "Alarms",
@@ -64,6 +67,9 @@
   }, {
     "name" : "Inventory",
     "tags" : [ "Inventory API", "Managed Objects" ]
+  }, {
+    "name" : "Measurements",
+    "tags" : [ "Measurement API", "Measurements" ]
   } ],
   "paths" : {
     "/alarm" : {
@@ -111,7 +117,7 @@
                       }
                     },
                     "alarmsForSource" : {
-                      "description" : "Read-only collection of all alarms for a particular source object. The placeholder {source} shall be a unique ID of an object in the inventory.",
+                      "description" : "Read-only collection of all alarms for a specific source object. The placeholder {source} must be a unique ID of an object in the inventory.",
                       "type" : "string",
                       "example" : "PROTOCOL://TENANT_DOMAIN/alarm/alarms?source={source}"
                     },
@@ -121,7 +127,7 @@
                       "example" : "PROTOCOL://TENANT_DOMAIN/alarm/alarms?status={status}"
                     },
                     "alarmsForSourceAndStatusAndTime" : {
-                      "description" : "Read-only collection of all alarms for a particular source, status and time range.",
+                      "description" : "Read-only collection of all alarms for a specific source, status and time range.",
                       "type" : "string",
                       "example" : "PROTOCOL://TENANT_DOMAIN/alarm/alarms?source={source}&status={status}&dateFrom={dateFrom}&dateTo={dateTo}"
                     },
@@ -131,7 +137,7 @@
                       "example" : "PROTOCOL://TENANT_DOMAIN/alarm/alarms?status={status}&dateFrom={dateFrom}&dateTo={dateTo}"
                     },
                     "alarmsForSourceAndTime" : {
-                      "description" : "Read-only collection of all alarms for a particular source and time range.",
+                      "description" : "Read-only collection of all alarms for a specific source and time range.",
                       "type" : "string",
                       "example" : "PROTOCOL://TENANT_DOMAIN/alarm/alarms?source={source}&dateFrom={dateFrom}&dateTo={dateTo}"
                     },
@@ -141,7 +147,7 @@
                       "example" : "PROTOCOL://TENANT_DOMAIN/alarm/alarms?dateFrom={dateFrom}&dateTo={dateTo}"
                     },
                     "alarmsForSourceAndStatus" : {
-                      "description" : "Read-only collection of all alarms for a particular source object in a particular status.",
+                      "description" : "Read-only collection of all alarms for a specific source object in a particular status.",
                       "type" : "string",
                       "example" : "PROTOCOL://TENANT_DOMAIN/alarm/alarms?source={source}&status={status}"
                     }
@@ -458,7 +464,7 @@
         } ],
         "summary" : "Remove a specific alarm",
         "operationId" : "deleteAlarmById",
-        "description" : "Remove a specific alarm by a given ID.<br><br> Required roles: **ROLE_ALARM_ADMIN**\n",
+        "description" : "Remove a specific alarm by a given ID.<br><br> Required roles: **ROLE_ALARM_ADMIN** or **owner of the source**\n",
         "responses" : {
           "204" : {
             "description" : "An alarm was deleted successfully.",
@@ -489,7 +495,72 @@
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the URIs are sent in the response.",
-            "links" : { }
+            "links" : { },
+            "content" : {
+              "application/vnd.com.nsn.cumulocity.eventapi+json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "self" : {
+                      "allOf" : [ {
+                        "$ref" : "#/components/x-descriptions/desc_self"
+                      }, {
+                        "example" : "PROTOCOL://TENANT_DOMAIN/event"
+                      } ]
+                    },
+                    "events" : {
+                      "description" : "Collection of all events",
+                      "type" : "object",
+                      "properties" : {
+                        "self" : {
+                          "allOf" : [ {
+                            "$ref" : "#/components/x-descriptions/desc_self"
+                          }, {
+                            "example" : "PROTOCOL://TENANT_DOMAIN/event/events"
+                          } ]
+                        },
+                        "events" : {
+                          "type" : "array",
+                          "nullable" : true,
+                          "items" : { },
+                          "example" : null
+                        }
+                      }
+                    },
+                    "eventsForSource" : {
+                      "description" : "Read-only collection of all events for a specific source object. The placeholder {source} must be a unique ID of an object in the inventory.",
+                      "type" : "string",
+                      "example" : "PROTOCOL://TENANT_DOMAIN/event/events?source={source}"
+                    },
+                    "eventsForSourceAndType" : {
+                      "description" : "Read-only collection of all events of a particular type and a specific source object.",
+                      "type" : "string",
+                      "example" : "PROTOCOL://TENANT_DOMAIN/event/events?type={type}&source={source}"
+                    },
+                    "eventsForType" : {
+                      "description" : "Read-only collection of all events of a particular type.",
+                      "type" : "string",
+                      "example" : "PROTOCOL://TENANT_DOMAIN/event/events?type={type}"
+                    },
+                    "eventsForFragmentType" : {
+                      "description" : "Read-only collection of all events containing a particular fragment type.",
+                      "type" : "string",
+                      "example" : "PROTOCOL://TENANT_DOMAIN/event/events?fragmentType={fragmentType}"
+                    },
+                    "eventsForTime" : {
+                      "description" : "Read-only collection of all events for a particular time range.",
+                      "type" : "string",
+                      "example" : "PROTOCOL://TENANT_DOMAIN/event/events?dateFrom={dateFrom}&dateTo={dateTo}"
+                    },
+                    "eventsForSourceAndTime" : {
+                      "description" : "Read-only collection of all events for a specific source object in a particular time range.",
+                      "type" : "string",
+                      "example" : "PROTOCOL://TENANT_DOMAIN/event/events?source={source}&dateFrom={dateFrom}&dateTo={dateTo}"
+                    }
+                  }
+                }
+              }
+            }
           },
           "401" : {
             "$ref" : "#/components/responses/unauthorizedError"
@@ -517,7 +588,7 @@
                   "source" : {
                     "required" : [ "id" ],
                     "allOf" : [ {
-                      "$ref" : "#/components/x-descriptions/alarm_source"
+                      "$ref" : "#/components/x-descriptions/event_source"
                     }, {
                       "properties" : {
                         "id" : {
@@ -532,21 +603,21 @@
                   },
                   "type" : {
                     "allOf" : [ {
-                      "$ref" : "#/components/x-descriptions/alarm_type"
+                      "$ref" : "#/components/x-descriptions/event_type"
                     }, {
-                      "example" : "c8y_UnavailabilityAlarm"
+                      "example" : "c8y_OutgoingSmsLog"
                     } ]
                   },
                   "text" : {
                     "allOf" : [ {
-                      "$ref" : "#/components/x-descriptions/alarm_text"
+                      "$ref" : "#/components/x-descriptions/event_text"
                     }, {
-                      "example" : "No data received from the device within the required interval."
+                      "example" : "Sms sent: Alarm occurred"
                     } ]
                   },
                   "time" : {
                     "allOf" : [ {
-                      "$ref" : "#/components/x-descriptions/alarm_time"
+                      "$ref" : "#/components/x-descriptions/event_time"
                     }, {
                       "example" : "2020-03-19T12:03:27.845Z"
                     } ]
@@ -568,19 +639,15 @@
       },
       "get" : {
         "parameters" : [ {
-          "$ref" : "#/components/parameters/queryParam_alarm_dateFrom"
+          "$ref" : "#/components/parameters/queryParam_event_dateFrom"
         }, {
-          "$ref" : "#/components/parameters/queryParam_alarm_dateTo"
+          "$ref" : "#/components/parameters/queryParam_event_dateTo"
         }, {
-          "$ref" : "#/components/parameters/queryParam_alarm_resolved"
+          "$ref" : "#/components/parameters/queryParam_event_source"
         }, {
-          "$ref" : "#/components/parameters/queryParam_alarm_severity"
+          "$ref" : "#/components/parameters/queryParam_event_type"
         }, {
-          "$ref" : "#/components/parameters/queryParam_alarm_source"
-        }, {
-          "$ref" : "#/components/parameters/queryParam_alarm_status"
-        }, {
-          "$ref" : "#/components/parameters/queryParam_alarm_type"
+          "$ref" : "#/components/parameters/queryParam_fragmentType"
         }, {
           "$ref" : "#/components/parameters/queryParam_currentPage"
         }, {
@@ -594,10 +661,10 @@
         } ],
         "summary" : "Retrieve all events",
         "operationId" : "getEvents",
-        "description" : "Retrieve all event on your tenant.<br><br> Required roles: **ROLE_EVENT_READ**\n",
+        "description" : "Retrieve all events on your tenant.<br><br> Required roles: **ROLE_EVENT_READ**\n",
         "responses" : {
           "200" : {
-            "$ref" : "#/components/responses/alarmCollectionFound"
+            "$ref" : "#/components/responses/eventCollectionFound"
           },
           "401" : {
             "$ref" : "#/components/responses/unauthorizedError"
@@ -606,19 +673,15 @@
       },
       "delete" : {
         "parameters" : [ {
-          "$ref" : "#/components/parameters/queryParam_alarm_dateFrom"
+          "$ref" : "#/components/parameters/queryParam_event_dateFrom"
         }, {
-          "$ref" : "#/components/parameters/queryParam_alarm_dateTo"
+          "$ref" : "#/components/parameters/queryParam_event_dateTo"
         }, {
-          "$ref" : "#/components/parameters/queryParam_alarm_resolved"
+          "$ref" : "#/components/parameters/queryParam_event_source"
         }, {
-          "$ref" : "#/components/parameters/queryParam_alarm_severity"
+          "$ref" : "#/components/parameters/queryParam_event_type"
         }, {
-          "$ref" : "#/components/parameters/queryParam_alarm_source"
-        }, {
-          "$ref" : "#/components/parameters/queryParam_alarm_status"
-        }, {
-          "$ref" : "#/components/parameters/queryParam_alarm_type"
+          "$ref" : "#/components/parameters/queryParam_fragmentType"
         } ],
         "tags" : [ "Events" ],
         "security" : [ {
@@ -644,7 +707,7 @@
     },
     "/event/events/{id}" : {
       "parameters" : [ {
-        "$ref" : "#/components/parameters/alarmId"
+        "$ref" : "#/components/parameters/eventId"
       } ],
       "get" : {
         "tags" : [ "Events" ],
@@ -656,13 +719,13 @@
         "description" : "Retrieve a specific event by a given ID.<br><br> Required roles: **ROLE_EVENT_READ**\n",
         "responses" : {
           "200" : {
-            "$ref" : "#/components/responses/alarmFound"
+            "$ref" : "#/components/responses/eventFound"
           },
           "401" : {
             "$ref" : "#/components/responses/unauthorizedError"
           },
           "404" : {
-            "$ref" : "#/components/responses/alarmNotFound"
+            "$ref" : "#/components/responses/eventNotFound"
           }
         }
       },
@@ -698,7 +761,7 @@
             "$ref" : "#/components/responses/unauthorizedError"
           },
           "404" : {
-            "$ref" : "#/components/responses/alarmNotFound"
+            "$ref" : "#/components/responses/eventNotFound"
           },
           "422" : {
             "description" : "Not authorized to perform this operation.",
@@ -713,7 +776,7 @@
         } ],
         "summary" : "Remove a specific event",
         "operationId" : "deleteEventById",
-        "description" : "Remove a specific event by a given ID.<br><br> Required roles: **ROLE_EVENT_ADMIN**\n",
+        "description" : "Remove a specific event by a given ID.<br><br> Required roles: **ROLE_EVENT_ADMIN** or **owner of the source**\n",
         "responses" : {
           "204" : {
             "description" : "An event was deleted successfully.",
@@ -723,7 +786,7 @@
             "$ref" : "#/components/responses/unauthorizedError"
           },
           "404" : {
-            "$ref" : "#/components/responses/alarmNotFound"
+            "$ref" : "#/components/responses/eventNotFound"
           },
           "405" : {
             "description" : "Not authorized to perform this operation.",
@@ -1861,6 +1924,322 @@
           }
         }
       }
+    },
+    "/measurement" : {
+      "get" : {
+        "tags" : [ "Measurement API" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Retrieve URIs to collections of measurements",
+        "operationId" : "getMeasurementApi",
+        "description" : "Retrieve URIs and URI templates to collections of measurements.<br><br> Required roles: **ROLE_MEASUREMENT_READ**\n",
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded and the URIs are sent in the response.",
+            "links" : { },
+            "content" : {
+              "application/vnd.com.nsn.cumulocity.measurementApi+json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "self" : {
+                      "allOf" : [ {
+                        "$ref" : "#/components/x-descriptions/desc_self"
+                      }, {
+                        "example" : "PROTOCOL://TENANT_DOMAIN/measurement"
+                      } ]
+                    },
+                    "measurements" : {
+                      "description" : "Collection of all measurements",
+                      "type" : "object",
+                      "properties" : {
+                        "self" : {
+                          "allOf" : [ {
+                            "$ref" : "#/components/x-descriptions/desc_self"
+                          }, {
+                            "example" : "PROTOCOL://TENANT_DOMAIN/measurement/measurements"
+                          } ]
+                        },
+                        "measurements" : {
+                          "type" : "array",
+                          "nullable" : true,
+                          "items" : { },
+                          "example" : null
+                        }
+                      }
+                    },
+                    "measurementsForSource" : {
+                      "description" : "Read-only collection of all measurements for a specific source object. The placeholder {source} must be a unique ID of an object in the inventory.",
+                      "type" : "string",
+                      "example" : "PROTOCOL://TENANT_DOMAIN/measurement/measurements?source={source}"
+                    },
+                    "measurementsForSourceAndType" : {
+                      "description" : "Read-only collection of all measurements of a particular type and a specific source object.",
+                      "type" : "string",
+                      "example" : "PROTOCOL://TENANT_DOMAIN/measurement/measurements?source={source}&type={type}"
+                    },
+                    "measurementsForType" : {
+                      "description" : "Read-only collection of all measurements of a particular type.",
+                      "type" : "string",
+                      "example" : "PROTOCOL://TENANT_DOMAIN/measurement/measurements?type={type}"
+                    },
+                    "measurementsForValueFragmentType" : {
+                      "description" : "Read-only collection of all measurements containing a particular fragment type.",
+                      "type" : "string",
+                      "example" : "PROTOCOL://TENANT_DOMAIN/measurement/measurements?valueFragmentType={valueFragmentType}"
+                    },
+                    "measurementsForDate" : {
+                      "description" : "Read-only collection of all measurements for a particular time range.",
+                      "type" : "string",
+                      "example" : "PROTOCOL://TENANT_DOMAIN/measurement/measurements?dateFrom={dateFrom}&dateTo={dateTo}"
+                    },
+                    "measurementsForSourceAndDate" : {
+                      "description" : "Read-only collection of all measurements for a specific source object in a particular time range.",
+                      "type" : "string",
+                      "example" : "PROTOCOL://TENANT_DOMAIN/measurement/measurements?source={source}&dateFrom={dateFrom}&dateTo={dateTo}"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          }
+        }
+      }
+    },
+    "/measurement/measurements" : {
+      "post" : {
+        "tags" : [ "Measurements" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Create a measurement",
+        "operationId" : "postMeasurement",
+        "description" : "A measurement must be associated to a source (managed object) identified by ID, and must specify the type of measurement and the time when it was measured by the device (e.g. a thermometer).<br><br> Required roles: **ROLE_MEASUREMENT_ADMIN** or **owner of the source**\n",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/vnd.com.nsn.cumulocity.measurement+json" : {
+              "schema" : {
+                "type" : "object",
+                "required" : [ "source", "type", "time" ],
+                "properties" : {
+                  "source" : {
+                    "required" : [ "id" ],
+                    "allOf" : [ {
+                      "$ref" : "#/components/x-descriptions/measurement_source"
+                    }, {
+                      "properties" : {
+                        "id" : {
+                          "allOf" : [ {
+                            "$ref" : "#/components/x-descriptions/desc_objectId"
+                          }, {
+                            "example" : "251982"
+                          } ]
+                        }
+                      }
+                    } ]
+                  },
+                  "type" : {
+                    "allOf" : [ {
+                      "$ref" : "#/components/x-descriptions/measurement_type"
+                    }, {
+                      "example" : "c8y_TemperatureMeasurement"
+                    } ]
+                  },
+                  "time" : {
+                    "allOf" : [ {
+                      "$ref" : "#/components/x-descriptions/measurement_time"
+                    }, {
+                      "example" : "2020-03-19T12:03:27.845Z"
+                    } ]
+                  },
+                  "c8y_TemperatureMeasurement" : {
+                    "description" : "Fragment type for temperature measurements.",
+                    "type" : "object",
+                    "properties" : {
+                      "T" : {
+                        "type" : "object",
+                        "properties" : {
+                          "value" : {
+                            "description" : "The measured temperature.",
+                            "type" : "number",
+                            "example" : 37
+                          },
+                          "unit" : {
+                            "description" : "The scale of the measurement",
+                            "type" : "string",
+                            "minLength" : 1,
+                            "example" : "C"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "A measurement was created successfully.",
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          }
+        }
+      },
+      "get" : {
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/queryParam_measurement_dateFrom"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_measurement_dateTo"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_measurement_source"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_measurement_type"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_measurement_valueFragmentType"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_currentPage"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_pageSize"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_withTotalPages"
+        } ],
+        "tags" : [ "Measurements" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Retrieve all measurements",
+        "operationId" : "getMeasurements",
+        "description" : "Retrieve all measurements on your tenant.<br><br> Required roles: **ROLE_MEASUREMENT_READ**\n",
+        "responses" : {
+          "200" : {
+            "$ref" : "#/components/responses/measurementCollectionFound"
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          }
+        }
+      },
+      "delete" : {
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/queryParam_measurement_dateFrom"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_measurement_dateTo"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_measurement_source"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_measurement_type"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_measurement_valueFragmentType"
+        } ],
+        "tags" : [ "Measurements" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Remove measurement collections",
+        "operationId" : "deleteMeasurements",
+        "description" : "Remove measurement collections specified by query parameters.<br><br> **⚠️ Important:** Note that it is possible to call this endpoint without providing any parameter - it may result in deleting all measurements and it is not recommended.<br><br> Required roles: **ROLE_MEASUREMENT_ADMIN**\n",
+        "responses" : {
+          "204" : {
+            "description" : "A collection of measurements was deleted successfully.",
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          },
+          "405" : {
+            "description" : "Not authorized to perform this operation.",
+            "links" : { }
+          }
+        }
+      }
+    },
+    "/measurement/measurements/{id}" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/measurementId"
+      } ],
+      "get" : {
+        "tags" : [ "Measurements" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Retrieve a specific measurement",
+        "operationId" : "getMeasurementById",
+        "description" : "Retrieve a specific measurement by a given ID.<br><br> Required roles: **ROLE_MEASUREMENT_READ**\n",
+        "responses" : {
+          "200" : {
+            "$ref" : "#/components/responses/measurementFound"
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/measurementNotFound"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Measurements" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Remove a specific measurement",
+        "operationId" : "deleteMeasurementById",
+        "description" : "Remove a specific measurement by a given ID.<br><br> Required roles: **ROLE_MEASUREMENT_ADMIN** or **owner of the source**\n",
+        "responses" : {
+          "204" : {
+            "description" : "A measurement was deleted successfully.",
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/measurementNotFound"
+          },
+          "405" : {
+            "description" : "Not authorized to perform this operation.",
+            "links" : { }
+          }
+        }
+      }
+    },
+    "/measurement/measurements/series" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/queryParam_measurement_dateFrom"
+      }, {
+        "$ref" : "#/components/parameters/queryParam_measurement_dateTo"
+      }, {
+        "$ref" : "#/components/parameters/queryParam_measurement_source"
+      }, {
+        "$ref" : "#/components/parameters/queryParam_measurement_series"
+      } ],
+      "get" : {
+        "tags" : [ "Measurements" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Retrieve a list of series and their values",
+        "operationId" : "getMeasurementSeries",
+        "description" : "Retrieve a list of series (all or only those matching the specified names) and their values within a given period of a specific managed object (source).<br> A series is any fragment in measurement that contains a `value` property.<br><br> Required roles: **ROLE_MEASUREMENT_READ**\n",
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded and the series are sent in the response.",
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          }
+        }
+      }
     }
   },
   "components" : {
@@ -1887,6 +2266,28 @@
           "type" : "string",
           "minLength" : 1,
           "example" : 20200301
+        }
+      },
+      "eventId" : {
+        "name" : "id",
+        "in" : "path",
+        "description" : "Unique identifier of the event.",
+        "required" : true,
+        "schema" : {
+          "type" : "string",
+          "minLength" : 1,
+          "example" : 20200301
+        }
+      },
+      "measurementId" : {
+        "name" : "id",
+        "in" : "path",
+        "description" : "Unique identifier of the measurement.",
+        "required" : true,
+        "schema" : {
+          "type" : "string",
+          "minLength" : 1,
+          "example" : 102700509
         }
       },
       "managedObjectId" : {
@@ -1925,7 +2326,7 @@
       "queryParam_fragmentType" : {
         "name" : "fragmentType",
         "in" : "query",
-        "description" : "A characteristic which identifies a managed object, e.g. geolocation, electricity sensor, relay state.",
+        "description" : "A characteristic which identifies a managed object or event, e.g. geolocation, electricity sensor, relay state.",
         "schema" : {
           "type" : "string",
           "minLength" : 1,
@@ -2054,6 +2455,110 @@
           "format" : "date-time",
           "minLength" : 1,
           "example" : "2020-03-01"
+        }
+      },
+      "queryParam_event_type" : {
+        "name" : "type",
+        "in" : "query",
+        "description" : "The type of event to search for.",
+        "schema" : {
+          "type" : "string",
+          "minLength" : 1,
+          "example" : "c8y_OutgoingSmsLog"
+        }
+      },
+      "queryParam_event_source" : {
+        "name" : "source",
+        "in" : "query",
+        "description" : "The managed object ID to which the event is associated.",
+        "schema" : {
+          "type" : "string",
+          "minLength" : 1,
+          "example" : 251994
+        }
+      },
+      "queryParam_event_dateFrom" : {
+        "name" : "dateFrom",
+        "in" : "query",
+        "description" : "Start date or date and time of the event occurrence.",
+        "schema" : {
+          "type" : "string",
+          "format" : "date-time",
+          "minLength" : 1,
+          "example" : "2020-03-01"
+        }
+      },
+      "queryParam_event_dateTo" : {
+        "name" : "dateTo",
+        "in" : "query",
+        "description" : "End date or date and time of the event occurrence.",
+        "schema" : {
+          "type" : "string",
+          "format" : "date-time",
+          "minLength" : 1,
+          "example" : "2020-03-01"
+        }
+      },
+      "queryParam_measurement_type" : {
+        "name" : "type",
+        "in" : "query",
+        "description" : "The type of measurement to search for.",
+        "schema" : {
+          "type" : "string",
+          "minLength" : 1,
+          "example" : "c8y_Water"
+        }
+      },
+      "queryParam_measurement_source" : {
+        "name" : "source",
+        "in" : "query",
+        "description" : "The managed object ID to which the measurement is associated.",
+        "schema" : {
+          "type" : "string",
+          "minLength" : 1,
+          "example" : 251994
+        }
+      },
+      "queryParam_measurement_dateFrom" : {
+        "name" : "dateFrom",
+        "in" : "query",
+        "description" : "Start date or date and time of the measurement occurrence.",
+        "schema" : {
+          "type" : "string",
+          "format" : "date-time",
+          "minLength" : 1,
+          "example" : "2020-03-01"
+        }
+      },
+      "queryParam_measurement_dateTo" : {
+        "name" : "dateTo",
+        "in" : "query",
+        "description" : "End date or date and time of the measurement occurrence.",
+        "schema" : {
+          "type" : "string",
+          "format" : "date-time",
+          "minLength" : 1,
+          "example" : "2020-03-01"
+        }
+      },
+      "queryParam_measurement_valueFragmentType" : {
+        "name" : "valueFragmentType",
+        "in" : "query",
+        "description" : "A characteristic which identifies the measurement.",
+        "schema" : {
+          "type" : "string",
+          "minLength" : 1,
+          "example" : "c8y_SteamNetwork"
+        }
+      },
+      "queryParam_measurement_series" : {
+        "name" : "series",
+        "in" : "query",
+        "description" : "The specific series to search for.",
+        "schema" : {
+          "type" : "string",
+          "minLength" : 1,
+          "example" : "c8y_AccelerationMeasurement.acceleration"
         }
       }
     },
@@ -2341,6 +2846,184 @@
             }
           }
         }
+      },
+      "eventCollectionFound" : {
+        "description" : "The request has succeeded and all events are sent in the response.",
+        "links" : { },
+        "content" : {
+          "application/vnd.com.nsn.cumulocity.eventcollection+json" : {
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "prev" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_prevPage"
+                  }, {
+                    "example" : "PROTOCOL://TENANT_DOMAIN/event/events?pageSize=5&currentPage=1"
+                  } ]
+                },
+                "self" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_self"
+                  }, {
+                    "example" : "PROTOCOL://TENANT_DOMAIN/event/events?pageSize=5&currentPage=2"
+                  } ]
+                },
+                "next" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_nextPage"
+                  }, {
+                    "example" : "PROTOCOL://TENANT_DOMAIN/event/events?pageSize=5&currentPage=3"
+                  } ]
+                },
+                "statistics" : {
+                  "$ref" : "#/components/schemas/pageStatistics"
+                },
+                "events" : {
+                  "description" : "An array containing the results (events) of the request.",
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/event"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "eventFound" : {
+        "description" : "The request has succeeded and the event is sent in the response.",
+        "links" : { },
+        "content" : {
+          "application/vnd.com.nsn.cumulocity.event+json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/event"
+            }
+          }
+        }
+      },
+      "eventNotFound" : {
+        "description" : "Event not found.",
+        "links" : { },
+        "content" : {
+          "application/vnd.com.nsn.cumulocity.error+json" : {
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "error" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_40XError"
+                  }, {
+                    "example" : "event/Not Found"
+                  } ]
+                },
+                "message" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_40XMessage"
+                  }, {
+                    "example" : "Finding event from database failed"
+                  } ]
+                },
+                "info" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_40XInfo"
+                  }, {
+                    "example" : "https://www.cumulocity.com/guides/reference-guide/#error_reporting"
+                  } ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "measurementCollectionFound" : {
+        "description" : "The request has succeeded and all measurements are sent in the response.",
+        "links" : { },
+        "content" : {
+          "application/vnd.com.nsn.cumulocity.measurementcollection+json" : {
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "prev" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_prevPage"
+                  }, {
+                    "example" : "PROTOCOL://TENANT_DOMAIN/measurement/measurements?pageSize=5&currentPage=1"
+                  } ]
+                },
+                "self" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_self"
+                  }, {
+                    "example" : "PROTOCOL://TENANT_DOMAIN/measurement/measurements?pageSize=5&currentPage=2"
+                  } ]
+                },
+                "next" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_nextPage"
+                  }, {
+                    "example" : "PROTOCOL://TENANT_DOMAIN/measurement/measurements?pageSize=5&currentPage=3"
+                  } ]
+                },
+                "statistics" : {
+                  "$ref" : "#/components/schemas/pageStatistics"
+                },
+                "measurements" : {
+                  "description" : "An array containing the results (measurements) of the request.",
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/measurement"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "measurementFound" : {
+        "description" : "The request has succeeded and the measurement is sent in the response.",
+        "links" : { },
+        "content" : {
+          "application/vnd.com.nsn.cumulocity.measurement+json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/measurement"
+            }
+          }
+        }
+      },
+      "measurementNotFound" : {
+        "description" : "Measurement not found.",
+        "links" : { },
+        "content" : {
+          "application/vnd.com.nsn.cumulocity.error+json" : {
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "error" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_40XError"
+                  }, {
+                    "example" : "measurement/Not Found"
+                  } ]
+                },
+                "message" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_40XMessage"
+                  }, {
+                    "example" : "Finding measurement from database failed"
+                  } ]
+                },
+                "info" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_40XInfo"
+                  }, {
+                    "example" : "https://www.cumulocity.com/guides/reference-guide/#error_reporting"
+                  } ]
+                }
+              }
+            }
+          }
+        }
       }
     },
     "x-descriptions" : {
@@ -2419,7 +3102,8 @@
       },
       "alarm_time" : {
         "description" : "The date and time when the alarm is triggered.",
-        "type" : "string"
+        "type" : "string",
+        "format" : "date-time"
       },
       "alarm_creationTime" : {
         "description" : "The date and time when the alarm was created.",
@@ -2433,6 +3117,49 @@
       "alarm_id" : {
         "description" : "Unique identifier of the alarm.",
         "type" : "string"
+      },
+      "event_source" : {
+        "description" : "The managed object to which the event is associated.",
+        "type" : "object"
+      },
+      "event_type" : {
+        "description" : "Identifies the type of this event.",
+        "type" : "string"
+      },
+      "event_text" : {
+        "description" : "Description of the event.",
+        "type" : "string"
+      },
+      "event_id" : {
+        "description" : "Unique identifier of the event.",
+        "type" : "string"
+      },
+      "event_time" : {
+        "description" : "The date and time when the event is updated.",
+        "type" : "string",
+        "format" : "date-time"
+      },
+      "event_creationTime" : {
+        "description" : "The date and time when the event was created.",
+        "type" : "string",
+        "format" : "date-time"
+      },
+      "measurement_source" : {
+        "description" : "The managed object to which the measurement is associated.",
+        "type" : "object"
+      },
+      "measurement_type" : {
+        "description" : "Identifies the type of this measurement.",
+        "type" : "string"
+      },
+      "measurement_id" : {
+        "description" : "Unique identifier of the measurement.",
+        "type" : "string"
+      },
+      "measurement_time" : {
+        "description" : "The date and time when the measurement is updated.",
+        "type" : "string",
+        "format" : "date-time"
       }
     },
     "schemas" : {
@@ -2512,6 +3239,61 @@
           }
         }
       },
+      "event" : {
+        "type" : "object",
+        "properties" : {
+          "creationTime" : {
+            "allOf" : [ {
+              "$ref" : "#/components/x-descriptions/event_creationTime"
+            }, {
+              "example" : "2020-03-19T12:16:31.586Z"
+            } ]
+          },
+          "id" : {
+            "allOf" : [ {
+              "$ref" : "#/components/x-descriptions/event_id"
+            }, {
+              "example" : 20200301
+            } ]
+          },
+          "source" : {
+            "allOf" : [ {
+              "$ref" : "#/components/x-descriptions/event_source"
+            }, {
+              "properties" : {
+                "id" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_objectId"
+                  }, {
+                    "example" : "251982"
+                  } ]
+                }
+              }
+            } ]
+          },
+          "text" : {
+            "allOf" : [ {
+              "$ref" : "#/components/x-descriptions/event_text"
+            }, {
+              "example" : "Location update."
+            } ]
+          },
+          "time" : {
+            "allOf" : [ {
+              "$ref" : "#/components/x-descriptions/event_time"
+            }, {
+              "example" : "2020-03-19T00:00:00.000Z"
+            } ]
+          },
+          "type" : {
+            "allOf" : [ {
+              "$ref" : "#/components/x-descriptions/event_type"
+            }, {
+              "example" : "c8y_LocationUpdate"
+            } ]
+          }
+        }
+      },
       "managedObject" : {
         "type" : "object",
         "properties" : {
@@ -2571,6 +3353,47 @@
           },
           "assetParents" : {
             "$ref" : "#/components/schemas/objectAssetParents"
+          }
+        }
+      },
+      "measurement" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "allOf" : [ {
+              "$ref" : "#/components/x-descriptions/measurement_id"
+            }, {
+              "example" : 20200301
+            } ]
+          },
+          "source" : {
+            "allOf" : [ {
+              "$ref" : "#/components/x-descriptions/measurement_source"
+            }, {
+              "properties" : {
+                "id" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_objectId"
+                  }, {
+                    "example" : "251982"
+                  } ]
+                }
+              }
+            } ]
+          },
+          "time" : {
+            "allOf" : [ {
+              "$ref" : "#/components/x-descriptions/measurement_time"
+            }, {
+              "example" : "2020-03-19T00:00:00.000Z"
+            } ]
+          },
+          "type" : {
+            "allOf" : [ {
+              "$ref" : "#/components/x-descriptions/measurement_type"
+            }, {
+              "example" : "c8y_Steam"
+            } ]
           }
         }
       },
