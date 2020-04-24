@@ -57,6 +57,9 @@
   }, {
     "name" : "Measurement API",
     "description" : "The measurement API resource returns URIs and URI templates to collections of measurements, so that all measurements can be filtered and retrieved. Querying without filters can be slow, hence it is recommended to narrow the scope by using time range queries. Moreover, the scope can be significantly reduced by querying by source.\n"
+  }, {
+    "name" : "Measurements",
+    "description" : "Measurements are produced by reading sensor values. In some cases, this data is read in static intervals and sent to the platform (e.g. temperature sensors or electrical meters). In other cases, the data is read on demand or at irregular intervals (e.g. health devices such as weight scales). Regardless what kind of protocol the device supports, the agent is responsible for converting it into a “push” protocol by uploading data to Cumulocity IoT.\n"
   } ],
   "x-tagGroups" : [ {
     "name" : "Alarms",
