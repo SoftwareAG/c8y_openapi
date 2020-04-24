@@ -72,7 +72,7 @@
     "tags" : [ "Event API", "Events" ]
   }, {
     "name" : "Inventory",
-    "tags" : [ "Inventory API", "Managed Objects", "Child operations" ]
+    "tags" : [ "Inventory API", "Managed Objects", "Child Operations" ]
   }, {
     "name" : "Measurements",
     "tags" : [ "Measurement API", "Measurements" ]
@@ -1190,7 +1190,7 @@
         "$ref" : "#/components/parameters/managedObjectId"
       } ],
       "post" : {
-        "tags" : [ "Child operations" ],
+        "tags" : [ "Child Operations" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
         } ],
@@ -1246,7 +1246,7 @@
         }, {
           "$ref" : "#/components/parameters/queryParam_withTotalPages"
         } ],
-        "tags" : [ "Child operations" ],
+        "tags" : [ "Child Operations" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
         } ],
@@ -1322,7 +1322,7 @@
         "$ref" : "#/components/parameters/managedObjectChildId"
       } ],
       "get" : {
-        "tags" : [ "Child operations" ],
+        "tags" : [ "Child Operations" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
         } ],
@@ -1365,7 +1365,7 @@
         }
       },
       "delete" : {
-        "tags" : [ "Child operations" ],
+        "tags" : [ "Child Operations" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
         } ],
@@ -1394,7 +1394,7 @@
         "$ref" : "#/components/parameters/managedObjectId"
       } ],
       "post" : {
-        "tags" : [ "Child operations" ],
+        "tags" : [ "Child Operations" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
         } ],
@@ -1450,7 +1450,7 @@
         }, {
           "$ref" : "#/components/parameters/queryParam_withTotalPages"
         } ],
-        "tags" : [ "Child operations" ],
+        "tags" : [ "Child Operations" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
         } ],
@@ -1514,7 +1514,7 @@
         "$ref" : "#/components/parameters/managedObjectChildId"
       } ],
       "get" : {
-        "tags" : [ "Child operations" ],
+        "tags" : [ "Child Operations" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
         } ],
@@ -1557,7 +1557,7 @@
         }
       },
       "delete" : {
-        "tags" : [ "Child operations" ],
+        "tags" : [ "Child Operations" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
         } ],
@@ -1586,7 +1586,7 @@
         "$ref" : "#/components/parameters/managedObjectId"
       } ],
       "post" : {
-        "tags" : [ "Child operations" ],
+        "tags" : [ "Child Operations" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
         } ],
@@ -1642,7 +1642,7 @@
         }, {
           "$ref" : "#/components/parameters/queryParam_withTotalPages"
         } ],
-        "tags" : [ "Child operations" ],
+        "tags" : [ "Child Operations" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
         } ],
@@ -1718,7 +1718,7 @@
         "$ref" : "#/components/parameters/managedObjectChildId"
       } ],
       "get" : {
-        "tags" : [ "Child operations" ],
+        "tags" : [ "Child Operations" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
         } ],
@@ -1761,7 +1761,7 @@
         }
       },
       "delete" : {
-        "tags" : [ "Child operations" ],
+        "tags" : [ "Child Operations" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
         } ],
