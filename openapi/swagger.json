@@ -55,6 +55,9 @@
     "name" : "Managed Objects",
     "description" : "The inventory stores devices and other assets relevant to your IoT solution. We refer to them as managed objects and such can be “smart objects”, e.g. smart electricity meters, home automation gateways or GPS devices.\n"
   }, {
+    "name" : "Child Operations",
+    "description" : "Managed objects can contain collections of references to child devices, additions and assets.\n"
+  }, {
     "name" : "Measurement API",
     "description" : "The measurement API resource returns URIs and URI templates to collections of measurements, so that all measurements can be filtered and retrieved. Querying without filters can be slow, hence it is recommended to narrow the scope by using time range queries. Moreover, the scope can be significantly reduced by querying by source.\n"
   }, {
