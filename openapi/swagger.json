@@ -49,6 +49,9 @@
     "name" : "Events",
     "description" : "Events are used to pass real-time information through Cumulocity IoT and they come in three types: base events  when something in the sensor network happens, alarms requiring manual actions, and audit logs to store events that are security-relevant.\n"
   }, {
+    "name" : "Binaries",
+    "description" : "It is possible to store, retrieve and delete binaries for events. Each event can have one binary attached.\n"
+  }, {
     "name" : "Inventory API",
     "description" : "The inventory stores all master data related to devices, their configuration and their connections. It also contains all related assets (e.g. vehicles, machines, buildings) and their structure. The inventory API resource returns URIs and URI templates to collections of managed objects.\n"
   }, {
@@ -63,19 +66,25 @@
   }, {
     "name" : "Measurements",
     "description" : "Measurements are produced by reading sensor values. In some cases, this data is read in static intervals and sent to the platform (e.g. temperature sensors or electrical meters). In other cases, the data is read on demand or at irregular intervals (e.g. health devices such as weight scales). Regardless what kind of protocol the device supports, the agent is responsible for converting it into a “push” protocol by uploading data to Cumulocity IoT.\n"
+  }, {
+    "name" : "Tenant API",
+    "description" : "The measurement API resource returns URIs and URI templates to collections of measurements, so that all measurements can be filtered and retrieved. \n"
   } ],
   "x-tagGroups" : [ {
     "name" : "Alarms",
     "tags" : [ "Alarm API", "Alarms" ]
   }, {
     "name" : "Events",
-    "tags" : [ "Event API", "Events" ]
+    "tags" : [ "Event API", "Events", "Binaries" ]
   }, {
     "name" : "Inventory",
     "tags" : [ "Inventory API", "Managed Objects", "Child Operations" ]
   }, {
     "name" : "Measurements",
     "tags" : [ "Measurement API", "Measurements" ]
+  }, {
+    "name" : "Tenants",
+    "tags" : [ "Tenant API" ]
   } ],
   "paths" : {
     "/alarm" : {
@@ -786,6 +795,115 @@
         "responses" : {
           "204" : {
             "description" : "An event was deleted successfully.",
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/eventNotFound"
+          },
+          "405" : {
+            "description" : "Not authorized to perform this operation.",
+            "links" : { }
+          }
+        }
+      }
+    },
+    "/event/events/{id}/binaries" : {
+      "parameters" : [ {
+        "$ref" : "#/components/parameters/eventId"
+      } ],
+      "post" : {
+        "tags" : [ "Binaries" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Attach a file to a specific event",
+        "operationId" : "postEventBinary",
+        "description" : "Upload a file (binary) as an attachment of a specific event by a given ID.<br> The size of the attachment cannot exceed 50MB.<br><br> Required roles: **ROLE_EVENT_ADMIN** or **owner of the source**\n",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/vnd.com.nsn.cumulocity.event+json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "text" : {
+                    "example" : "Location update"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "A file was uploaded successfully.",
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/eventNotFound"
+          },
+          "409" : {
+            "$ref" : "#/components/responses/attachmentDuplicated"
+          },
+          "422" : {
+            "description" : "Not authorized to perform this operation.",
+            "links" : { }
+          }
+        },
+        "x-code-samples" : [ {
+          "lang" : "curl",
+          "source" : "curl --location --request POST 'PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries' \\\n--header 'Authorization: Basic <AUTHORIZATION>' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: text/plain' \\\n--data-binary '@/attachment/file.txt'\n"
+        }, {
+          "lang" : "Java",
+          "source" : "Unirest.setTimeouts(0, 0);\nHttpResponse<String> response = Unirest.post(\"PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries\")\n    .header(\"Authorization\", \"Basic <AUTHORIZATION>\")\n    .header(\"Accept\", \"application/json\")\n    .body(\"<file contents here>\")\n    .asString();\n"
+        }, {
+          "lang" : "C#",
+          "source" : "var client = new RestClient(\"PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries\");\nclient.Timeout = -1;\n\nvar request = new RestRequest(Method.POST);\nrequest.AddHeader(\"Authorization\", \"Basic <AUTHORIZATION>\");\nrequest.AddHeader(\"Accept\", \"application/json\");\nrequest.AddParameter(\"text/plain\", \"<file contents here>\", ParameterType.RequestBody);\n\nIRestResponse response = client.Execute(request);\nConsole.WriteLine(response.Content);\n"
+        }, {
+          "lang" : "Node.js",
+          "source" : "var unirest = require('unirest');\nvar req = unirest('POST', 'PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries')\n    .headers({\n        'Authorization': 'Basic <AUTHORIZATION>',\n        'Accept': 'application/json',\n        'Content-Type': 'text/plain'\n    })\n    .send(\"<file contents here>\")\n    .end(function (res) { \n        if (res.error) throw new Error(res.error); \n        console.log(res.raw_body);\n    });\n"
+        }, {
+          "lang" : "Python",
+          "source" : "import requests\n\nurl = \"PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries\"\npayload = \"<file contents here>\"\nheaders = {\n  'Authorization': 'Basic <AUTHORIZATION>',\n  'Accept': 'application/json',\n  'Content-Type': 'text/plain'\n}\nresponse = requests.request(\"POST\", url, headers=headers, data = payload)\nprint(response.text.encode('utf8'))\n"
+        } ]
+      },
+      "get" : {
+        "tags" : [ "Binaries" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Retrieve the attached file of a specific event",
+        "operationId" : "getEventBinary",
+        "description" : "Retrieve the attached file (binary) of a specific event by a given ID.<br><br> Required roles: **ROLE_EVENT_READ**\n",
+        "responses" : {
+          "200" : {
+            "$ref" : "#/components/responses/eventFound"
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/attachmentNotFound"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Binaries" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Remove the attached file from a specific event",
+        "operationId" : "deleteEventBinary",
+        "description" : "Remove the attached file (binary) from a specific event by a given ID.<br><br> Required roles: **ROLE_EVENT_ADMIN** or **owner of the source**\n",
+        "responses" : {
+          "204" : {
+            "description" : "A file was deleted successfully.",
             "links" : { }
           },
           "401" : {
@@ -3017,6 +3135,74 @@
                     "$ref" : "#/components/x-descriptions/desc_40XMessage"
                   }, {
                     "example" : "Finding measurement from database failed"
+                  } ]
+                },
+                "info" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_40XInfo"
+                  }, {
+                    "example" : "https://www.cumulocity.com/guides/reference-guide/#error_reporting"
+                  } ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "attachmentNotFound" : {
+        "description" : "Attachment not found.",
+        "links" : { },
+        "content" : {
+          "application/vnd.com.nsn.cumulocity.error+json" : {
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "error" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_40XError"
+                  }, {
+                    "example" : "Not Found"
+                  } ]
+                },
+                "message" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_40XMessage"
+                  }, {
+                    "example" : "Attachment not found"
+                  } ]
+                },
+                "info" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_40XInfo"
+                  }, {
+                    "example" : "https://www.cumulocity.com/guides/reference-guide/#error_reporting"
+                  } ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "attachmentDuplicated" : {
+        "description" : "An attachment exists already.",
+        "links" : { },
+        "content" : {
+          "application/vnd.com.nsn.cumulocity.error+json" : {
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "error" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_40XError"
+                  }, {
+                    "example" : "Duplicate"
+                  } ]
+                },
+                "message" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_40XMessage"
+                  }, {
+                    "example" : "Attachment already exists"
                   } ]
                 },
                 "info" : {
