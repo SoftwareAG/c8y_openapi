@@ -830,14 +830,10 @@
         "requestBody" : {
           "required" : true,
           "content" : {
-            "application/vnd.com.nsn.cumulocity.event+json" : {
+            "plain/text" : {
               "schema" : {
-                "type" : "object",
-                "properties" : {
-                  "text" : {
-                    "example" : "Location update"
-                  }
-                }
+                "type" : "string",
+                "format" : "binary"
               }
             }
           }
@@ -862,7 +858,7 @@
           }
         },
         "x-code-samples" : [ {
-          "lang" : "curl",
+          "lang" : "cURL",
           "source" : "curl --location --request POST 'PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries' \\\n--header 'Authorization: Basic <AUTHORIZATION>' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: text/plain' \\\n--data-binary '@/attachment/file.txt'\n"
         }, {
           "lang" : "C#",
@@ -899,7 +895,7 @@
           }
         },
         "x-code-samples" : [ {
-          "lang" : "curl",
+          "lang" : "cURL",
           "source" : "curl --location --request GET 'PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries' \\\n--header 'Authorization: Basic <AUTHORIZATION>'\n"
         }, {
           "lang" : "C#",
@@ -940,7 +936,7 @@
           }
         },
         "x-code-samples" : [ {
-          "lang" : "curl",
+          "lang" : "cURL",
           "source" : "curl --location --request DELETE 'PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries' \\\n--header 'Authorization: Basic <AUTHORIZATION>'\n"
         }, {
           "lang" : "C#",
