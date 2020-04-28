@@ -27,12 +27,6 @@
     "description" : "Cumulocity IoT - test server",
     "url" : "https://glenn.cumulocity.com"
   }, {
-    "description" : "Cumulocity IoT - test server",
-    "url" : "https://aaron.cumulocity.com/"
-  }, {
-    "description" : "Cumulocity IoT Production Server",
-    "url" : "https://api.cumulocity.com/"
-  }, {
     "description" : "SwaggerHub API Auto Mocking",
     "url" : "https://virtserver.swaggerhub.com/manasesjesus/c8y_openapi/1.0.0"
   } ],
@@ -826,7 +820,7 @@
         } ],
         "summary" : "Attach a file to a specific event",
         "operationId" : "postEventBinary",
-        "description" : "Upload a file (binary) as an attachment of a specific event by a given ID.<br> The size of the attachment cannot exceed 50MB.<br><br> Required roles: **ROLE_EVENT_ADMIN** or **owner of the source**\n",
+        "description" : "Upload a file (binary) as an attachment of a specific event by a given ID.<br> The size of the attachment cannot exceed 50MB.<br><br> Required roles: **ROLE_EVENT_ADMIN**\n",
         "requestBody" : {
           "required" : true,
           "content" : {
@@ -851,10 +845,6 @@
           },
           "409" : {
             "$ref" : "#/components/responses/attachmentDuplicated"
-          },
-          "422" : {
-            "description" : "Not authorized to perform this operation.",
-            "links" : { }
           }
         },
         "x-code-samples" : [ {
@@ -911,6 +901,53 @@
           "source" : "import requests\n\nurl = \"PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries\"\npayload = {}\nheaders = {\n  'Authorization': 'Basic <AUTHORIZATION>'\n}\nresponse = requests.request(\"GET\", url, headers=headers, data = payload)\nprint(response.text.encode('utf8'))\n"
         } ]
       },
+      "put" : {
+        "tags" : [ "Binaries" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Replace the attached file of a specific event",
+        "operationId" : "putEventBinary",
+        "description" : "Upload and replace the attached file (binary) of a specific event by a given ID.<br> The size of the attachment cannot exceed 50MB.<br><br> Required roles: **ROLE_EVENT_ADMIN**\n",
+        "requestBody" : {
+          "content" : {
+            "plain/text" : {
+              "schema" : {
+                "type" : "string",
+                "format" : "binary"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "A file was uploaded successfully.",
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/eventNotFound"
+          }
+        },
+        "x-code-samples" : [ {
+          "lang" : "cURL",
+          "source" : "curl --location --request PUT 'PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries' \\\n--header 'Authorization: Basic <AUTHORIZATION>' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: text/plain' \\\n--data-binary '@/attachment/file.txt'\n"
+        }, {
+          "lang" : "C#",
+          "source" : "var client = new RestClient(\"PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries\");\nclient.Timeout = -1;\n\nvar request = new RestRequest(Method.PUT);\nrequest.AddHeader(\"Authorization\", \"Basic <AUTHORIZATION>\");\nrequest.AddHeader(\"Accept\", \"application/json\");\nrequest.AddParameter(\"text/plain\", \"<file contents here>\", ParameterType.RequestBody);\n\nIRestResponse response = client.Execute(request);\nConsole.WriteLine(response.Content);\n"
+        }, {
+          "lang" : "Java",
+          "source" : "Unirest.setTimeouts(0, 0);\nHttpResponse<String> response = Unirest.put(\"PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries\")\n    .header(\"Authorization\", \"Basic <AUTHORIZATION>\")\n    .header(\"Accept\", \"application/json\")\n    .body(\"<file contents here>\")\n    .asString();\n"
+        }, {
+          "lang" : "Node.js",
+          "source" : "var unirest = require('unirest');\nvar req = unirest('PUT', 'PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries')\n    .headers({\n        'Authorization': 'Basic <AUTHORIZATION>',\n        'Accept': 'application/json',\n        'Content-Type': 'text/plain'\n    })\n    .send(\"<file contents here>\")\n    .end(function (res) { \n        if (res.error) throw new Error(res.error); \n        console.log(res.raw_body);\n    });\n"
+        }, {
+          "lang" : "Python",
+          "source" : "import requests\n\nurl = \"PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries\"\npayload = \"<file contents here>\"\nheaders = {\n  'Authorization': 'Basic <AUTHORIZATION>',\n  'Accept': 'application/json',\n  'Content-Type': 'text/plain'\n}\nresponse = requests.request(\"PUT\", url, headers=headers, data = payload)\nprint(response.text.encode('utf8'))\n"
+        } ]
+      },
       "delete" : {
         "tags" : [ "Binaries" ],
         "security" : [ {
@@ -918,7 +955,7 @@
         } ],
         "summary" : "Remove the attached file from a specific event",
         "operationId" : "deleteEventBinary",
-        "description" : "Remove the attached file (binary) from a specific event by a given ID.<br><br> Required roles: **ROLE_EVENT_ADMIN** or **owner of the source**\n",
+        "description" : "Remove the attached file (binary) from a specific event by a given ID.<br><br> Required roles: **ROLE_EVENT_ADMIN**\n",
         "responses" : {
           "204" : {
             "description" : "A file was deleted successfully.",
@@ -929,10 +966,6 @@
           },
           "404" : {
             "$ref" : "#/components/responses/eventNotFound"
-          },
-          "405" : {
-            "description" : "Not authorized to perform this operation.",
-            "links" : { }
           }
         },
         "x-code-samples" : [ {
