@@ -2443,7 +2443,7 @@
         } ],
         "summary" : "Retrieve URIs to collections of tenants",
         "operationId" : "getTenantApi",
-        "description" : "Retrieve URIs and URI templates to collections of tenants and options.<br><br> Required roles: **ROLE_TENANT_READ**\n",
+        "description" : "Retrieve URIs and URI templates to collections of tenants and options.<br><br> Required roles: **ROLE_TENANT_MANAGEMENT_READ**\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the URIs are sent in the response.",
@@ -2451,6 +2451,36 @@
           },
           "401" : {
             "$ref" : "#/components/responses/unauthorizedError"
+          }
+        }
+      }
+    },
+    "/tenant/tenants" : {
+      "get" : {
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/queryParam_currentPage"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_pageSize"
+        }, {
+          "$ref" : "#/components/parameters/queryParam_withTotalPages"
+        } ],
+        "tags" : [ "Tenants" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Retrieve all subtenants",
+        "operationId" : "getSubtenants",
+        "description" : "Retrieve all subtenants on your tenant.<br><br> Required roles: **ROLE_TENANT_MANAGEMENT_READ**\n",
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded and the subtenants are sent in the response.",
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          },
+          "403" : {
+            "$ref" : "#/components/responses/accessDenied"
           }
         }
       }
@@ -2797,6 +2827,40 @@
                     "$ref" : "#/components/x-descriptions/desc_40XMessage"
                   }, {
                     "example" : "Invalid credentials! : Bad credentials"
+                  } ]
+                },
+                "info" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_40XInfo"
+                  }, {
+                    "example" : "https://www.cumulocity.com/guides/reference-guide/#error_reporting"
+                  } ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "accessDenied" : {
+        "description" : "Not enough permissions/roles to perform this operation.",
+        "links" : { },
+        "content" : {
+          "application/vnd.com.nsn.cumulocity.error+json" : {
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "error" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_40XError"
+                  }, {
+                    "example" : "security/Forbidden"
+                  } ]
+                },
+                "message" : {
+                  "allOf" : [ {
+                    "$ref" : "#/components/x-descriptions/desc_40XMessage"
+                  }, {
+                    "example" : "Access is denied."
                   } ]
                 },
                 "info" : {
