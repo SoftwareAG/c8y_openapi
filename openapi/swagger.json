@@ -186,7 +186,7 @@
           "BasicAuthentication" : [ ]
         } ],
         "summary" : "Create an alarm",
-        "operationId" : "postAlarm",
+        "operationId" : "postAlarmCollectionResource",
         "description" : "An alarm must be associated to a source (managed object) identified by ID.<br> In general, each alarm may consist of:\n<ul><li>A status showing whether the alarm is ACTIVE, ACKNOWLEDGED or CLEARED.</li> <li>A time stamp to indicate when the alarm was last updated.</li> <li>The severity of the alarm: CRITICAL, MAJOR, MINOR or WARNING.</li> <li>A history of changes to the event in form of audit logs.</li></ul>\n\nRequired roles: **ROLE_ALARM_ADMIN** or **owner of the source**\n",
         "requestBody" : {
           "required" : true,
@@ -260,7 +260,23 @@
           "401" : {
             "$ref" : "#/components/responses/unauthorizedError"
           }
-        }
+        },
+        "x-code-samples" : [ {
+          "lang" : "cURL",
+          "source" : "curl --location --request POST 'PROTOCOL://TENANT_DOMAIN/alarm/alarms' \\\n--header 'Authorization: Basic <AUTHORIZATION>' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--data-raw '{\n    \"source\": {\n        \"id\": \"<managedObjectId>\" \n    },\n      \"type\": \"c8y_UnavailabilityAlarm\",\n      \"text\": \"No data received from the device within the required interval.\",\n      \"severity\": \"MAJOR\",\n      \"status\": \"ACTIVE\",\n      \"time\": \"2020-03-19T12:03:27.845Z\"\n  }'\n"
+        }, {
+          "lang" : "C#",
+          "source" : "var client = new RestClient(\"PROTOCOL://TENANT_DOMAIN/alarm/alarms\");\nclient.Timeout = -1;\n\nvar request = new RestRequest(Method.POST);\nrequest.AddHeader(\"Authorization\", \"Basic <AUTHORIZATION>\");\nrequest.AddHeader(\"Content-Type\", \"application/json\");\nrequest.AddParameter(\"application/json\", \"{\\n\\t\\\"source\\\": {\\n    \\t\\\"id\\\": \\\"<managedObjectId>\\\" \\n\\t},\\n    \\\"type\\\": \\\"c8y_UnavailabilityAlarm\\\",\\n    \\\"text\\\": \\\"No data received from the device within the required interval.\\\",\\n    \\\"severity\\\": \\\"MAJOR\\\",\\n    \\\"status\\\": \\\"ACTIVE\\\",\\n    \\\"time\\\": \\\"2020-03-19T12:03:27.845Z\\\"\\n}\",  ParameterType.RequestBody);\n\nIRestResponse response = client.Execute(request);\nConsole.WriteLine(response.Content);\n"
+        }, {
+          "lang" : "Java",
+          "source" : "Unirest.setTimeouts(0, 0);\nHttpResponse<String> response = Unirest.post(\"PROTOCOL://TENANT_DOMAIN/alarm/alarms\")\n    .header(\"Authorization\", \"Basic <AUTHORIZATION>\")\n    .header(\"Content-Type\", \"application/json\")\n    .header(\"Accept\", \"application/json\")\n    .body(\"{\\n\\t\\\"source\\\": {\\n    \\t\\\"id\\\": \\\"<managedObjectId>\\\" \\n\\t},\\n    \\\"type\\\": \\\"c8y_UnavailabilityAlarm\\\",\\n    \\\"text\\\": \\\"No data received from the device within the required interval.\\\",\\n    \\\"severity\\\": \\\"MAJOR\\\",\\n    \\\"status\\\": \\\"ACTIVE\\\",\\n    \\\"time\\\": \\\"2020-03-19T12:03:27.845Z\\\"\\n}\")\n    .asString();\n"
+        }, {
+          "lang" : "Node.js",
+          "source" : "var unirest = require('unirest');\nvar req = unirest('POST', 'PROTOCOL://TENANT_DOMAIN/alarm/alarms')\n    .headers({\n        'Authorization': 'Basic <AUTHORIZATION>',\n        'Accept': 'application/json',\n        'Content-Type': 'application/json'\n    })\n    .send(JSON.stringify({\"source\":{\"id\":\"<managedObjectId>\"},\"type\":\"c8y_UnavailabilityAlarm\",\"text\":\"No data received from the device within the required interval.\",\"severity\":\"MAJOR\",\"status\":\"ACTIVE\",\"time\":\"2020-03-19T12:03:27.845Z\"}))\n    .end(function (res) { \n        if (res.error) throw new Error(res.error); \n        console.log(res.raw_body);\n    });\n"
+        }, {
+          "lang" : "Python",
+          "source" : "import requests\n\nurl = \"PROTOCOL://TENANT_DOMAIN/alarm/alarms\"\npayload = \"{\\n\\t\\\"source\\\": {\\n    \\t\\\"id\\\": \\\"<managedObjectId>\\\" \\n\\t},\\n    \\\"type\\\": \\\"c8y_UnavailabilityAlarm\\\",\\n    \\\"text\\\": \\\"No data received from the device within the required interval.\\\",\\n    \\\"severity\\\": \\\"MAJOR\\\",\\n    \\\"status\\\": \\\"ACTIVE\\\",\\n    \\\"time\\\": \\\"2020-03-19T12:03:27.845Z\\\"\\n}\"\nheaders = {\n  'Authorization': 'Basic <AUTHORIZATION>',\n  'Accept': 'application/json',\n  'Content-Type': 'application/json'\n}\nresponse = requests.request(\"POST\", url, headers=headers, data = payload)\nprint(response.text.encode('utf8'))\n"
+        } ]
       },
       "get" : {
         "parameters" : [ {
@@ -289,7 +305,7 @@
           "BasicAuthentication" : [ ]
         } ],
         "summary" : "Retrieve all alarms",
-        "operationId" : "getAlarms",
+        "operationId" : "getAlarmCollectionResource",
         "description" : "Retrieve all alarms on your tenant.<br><br> Required roles: **ROLE_ALARM_READ**\n",
         "responses" : {
           "200" : {
@@ -306,7 +322,7 @@
           "BasicAuthentication" : [ ]
         } ],
         "summary" : "Update alarm collections",
-        "operationId" : "putAlarms",
+        "operationId" : "putAlarmCollectionResource",
         "description" : "Update alarm collections specified by query parameters. At least one query parameter is required to avoid accidentally updating all existing alarms.<br> Currently, only the status of alarms can be modified.<br><br> **Info:** Since this operation can take considerable time, the request returns after maximum 0.5 seconds of processing, and the update operation continues as a background process in the platform.<br><br> Required roles: **ROLE_ALARM_ADMIN**\n",
         "requestBody" : {
           "required" : true,
@@ -369,7 +385,7 @@
           "BasicAuthentication" : [ ]
         } ],
         "summary" : "Remove alarm collections",
-        "operationId" : "deleteAlarms",
+        "operationId" : "deleteAlarmCollectionResource",
         "description" : "Remove alarm collections specified by query parameters.<br><br> **⚠️ Important:** Note that it is possible to call this endpoint without providing any parameter - it will result in deleting all alarms and it is not recommended.<br><br> Required roles: **ROLE_ALARM_ADMIN**\n",
         "responses" : {
           "204" : {
