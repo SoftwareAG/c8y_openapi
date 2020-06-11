@@ -11,3 +11,8 @@ Regardless the communication originates from IoT devices, web applications or fr
 Cumulocity IoT exposes its complete functionality through programming interfaces; this means that all of Cumulocity IoT’s functionality is available for you to use in different contexts outside of what the platform directly provides - in your own applications, in your own devices. Cumulocity IoT gives you very fast visibility and control over your remote assets, be these houses, cars, machines or any other assets that you want to manage.
 
 Check out <a href="https://cumulocity.com/guides/concepts/introduction/" target="_new">our online guides</a> to learn more about the platform.
+
+______________________
+These tools are provided as-is and without warranty or support. They do not constitute part of the Software AG product suite. Users are free to use, fork and modify them, subject to the license agreement. While Software AG welcomes contributions, we cannot guarantee to include every contribution in the master project.
+
+Contact us at [TECHcommunity](mailto:technologycommunity@softwareag.com?subject=Github/SoftwareAG) if you have any questions.
