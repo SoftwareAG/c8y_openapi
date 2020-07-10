@@ -2380,7 +2380,7 @@
         } ],
         "summary" : "Retrieve a specific measurement",
         "operationId" : "getMeasurementById",
-        "description" : "Retrieve a specific measurement by a given ID.<br><br> Required roles: **ROLE_MEASUREMENT_READ**\n",
+        "description" : "Retrieve a specific measurement by a given ID.\n\nRequired roles: **ROLE_MEASUREMENT_READ**\n",
         "responses" : {
           "200" : {
             "$ref" : "#/components/responses/measurementFound"
@@ -2400,7 +2400,7 @@
         } ],
         "summary" : "Remove a specific measurement",
         "operationId" : "deleteMeasurementById",
-        "description" : "Remove a specific measurement by a given ID.<br><br> Required roles: **ROLE_MEASUREMENT_ADMIN** or **owner of the source**\n",
+        "description" : "Remove a specific measurement by a given ID.\n\nRequired roles: **ROLE_MEASUREMENT_ADMIN** or **owner of the source**\n",
         "responses" : {
           "204" : {
             "description" : "A measurement was deleted successfully.",
@@ -2436,7 +2436,7 @@
         } ],
         "summary" : "Retrieve a list of series and their values",
         "operationId" : "getMeasurementSeries",
-        "description" : "Retrieve a list of series (all or only those matching the specified names) and their values within a given period of a specific managed object (source).<br> A series is any fragment in measurement that contains a `value` property.<br><br> Required roles: **ROLE_MEASUREMENT_READ**\n",
+        "description" : "Retrieve a list of series (all or only those matching the specified names) and their values within a given period of a specific managed object (source).<br>\nA series is any fragment in measurement that contains a `value` property.\n\nRequired roles: **ROLE_MEASUREMENT_READ**\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the series are sent in the response.",
@@ -2456,7 +2456,7 @@
         } ],
         "summary" : "Retrieve URIs to collections of tenants",
         "operationId" : "getTenantApi",
-        "description" : "Retrieve URIs and URI templates to collections of tenants and options.<br><br> Required roles: **ROLE_TENANT_MANAGEMENT_READ**\n",
+        "description" : "Retrieve URIs and URI templates to collections of tenants and options.\n\nRequired roles: **ROLE_TENANT_MANAGEMENT_READ**\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the URIs are sent in the response.",
@@ -2483,7 +2483,7 @@
         } ],
         "summary" : "Retrieve all subtenants",
         "operationId" : "getSubtenants",
-        "description" : "Retrieve all subtenants on your tenant.<br><br> Required roles: **ROLE_TENANT_MANAGEMENT_READ**\n",
+        "description" : "Retrieve all subtenants on your tenant.\n\nRequired roles: **ROLE_TENANT_MANAGEMENT_READ**\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the subtenants are sent in the response.",
@@ -2502,12 +2502,12 @@
   "components" : {
     "securitySchemes" : {
       "BasicAuthentication" : {
-        "description" : "The authorization header is formed as `Basic <Base64(<tenantID>/<c8yuser>:<password>)>`. For instance, if your tenantID, username and password are **t0071234**, **testuser** and **secret123** respectively, you can generate the Base64 string with the following command:\n\n  ```shell\n  $ echo -n t0071234/testuser:secret123 | base64\n  ```\n\n  and your authorization header would look like\n\n  ```\n  \"Authorization\": \"Basic dDAwNzEyMzQvdGVzdHVzZXI6c2VjcmV0MTIz\"\n  ```\n\n  On UI interfaces, your username name shall be plain text in the format `<tenantID>/<c8yuser>`.\n",
+        "description" : "The authorization header is formed as `Basic <Base64(<tenantID>/<c8yuser>:<password>)>`. For instance, if your tenantID, username and password are **t0071234**, **testuser** and **secret123** respectively, you can generate the Base64 string with the following command:\n\n```shell\n$ echo -n t0071234/testuser:secret123 | base64\n```\n\nand your authorization header would look like the following:\n\n```\n\"Authorization\": \"Basic dDAwNzEyMzQvdGVzdHVzZXI6c2VjcmV0MTIz\"\n```\n\nOn UI interfaces, your username name shall be plain text in the format `<tenantID>/<c8yuser>`.\n",
         "type" : "http",
         "scheme" : "basic"
       },
       "JWTAuthentication" : {
-        "description" : "Cumulocity IoT supports JWT token authentication. The HTTP header must include:\n```\n  \"Authorization\": \"Bearer <<Base64 encoded JWT token>>\"\n```\nThe JWT token must be signed using RSA signature with SHA-256 (RS256).\nThe minimal RSA key size is 512 bit.\nYou must upload your public key to the tenant options on the “token.publicKey” category.\n",
+        "description" : "Cumulocity IoT supports JWT token authentication. The HTTP header must include:\n\n```\n  \"Authorization\": \"Bearer <<Base64 encoded JWT token>>\"\n```\n\nThe JWT token must be signed using RSA signature with SHA-256 (RS256).\n\nThe minimal RSA key size is 512 bit.\n\nYou must upload your public key to the tenant options on the “token.publicKey” category.\n",
         "type" : "http",
         "scheme" : "bearer",
         "bearerFormat" : "JWT"
