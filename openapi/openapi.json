@@ -8,7 +8,7 @@
       "backgroundColor" : "#F8F8F8",
       "altText" : "Cumulocity IoT"
     },
-    "description" : "# Introduction\nStandard OpenAPI specification, language-agnostic interface to the Cumulocity IoT RESTful API which allows – both humans and computers – to discover and understand the capabilities of the platform.\n\nCumulocity IoT uses HTTP and REST, which is today the most widely used interfacing technology and which works on any Internet-connected device ranging from small embedded microcontrollers up to desktop PCs. The secure variant, HTTPS, is used for the most security critical applications and will give you the best possible security.\n\nRegardless the communication originates from IoT devices, web applications or from back-office IT systems, Cumulocity IoT employs the protocol REST for all external communication. Our API has predictable resource-oriented URLs, accepts form-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication and verbs.\n### Just Getting Started?\nCumulocity IoT exposes its complete functionality through programming interfaces; this means that all of Cumulocity IoT’s functionality is available for you to use in different contexts outside of what the platform directly provides - in your own applications, in your own devices. Cumulocity IoT gives you very fast visibility and control over your remote assets, be these houses, cars, machines or any other assets that you want to manage.\n\nCheck out <a href=\"https://cumulocity.com/guides/concepts/introduction/\" target=\"_new\">our online guides</a> to learn more about the platform.\n# Authentication\nWhen you sign up for an account on the [Cumulocity IoT platform](https://cumulocity.com/), for example by using a free trial, you will be provided with a dedicated URL address for your tenant. All requests to the platform have to be authenticated employing your tenant ID, Cumulocity IoT user (c8yuser for short) and password. Cumulocity IoT offers the following forms of authentication:\n<ul><li>Basic authentication</li> <li>JWT token authentication</li> <li>OAuth authentication code grant</li></ul>\n\nCumulocity IoT also supports two factor authentication. For more details, see [Authentication](https://cumulocity.com/guides/reference/rest-implementation/#authentication) in the Reference Guide.\n\n# Response Codes\nCumulocity IoT uses conventional HTTP response codes to indicate the success or failure of an API request. Codes in the `2xx` range indicate success. Codes in the `4xx` range indicate an error that failed given the information provided (e.g., a required parameter was omitted). Codes in the `5xx` range indicate an error with Cumulocity IoT's servers ([these are very rare](https://www.softwareag.cloud/site/sla/cumulocity-iot.html#/)).\n<table>\n  <caption>HTTP STATUS CODE SUMMARY</caption>\n  <tr><th>Code</th><th>Description</th></tr>\n  <tr><td>200 - OK</td><td>Everything worked as expected.</td></tr>\n  <tr><td>201 - Created</td><td>A managed object was created successfully.</td></tr>\n  <tr><td>204 - No content</td><td>A managed object was deleted successfully.</td></tr>\n  <tr><td>400 - Bad Request</td><td>The request was unacceptable, often due to missing a required parameter.</td></tr>\n  <tr><td>401 - Unauthorized</td><td>Authentication has failed, or credentials were required but not provided..</td></tr>\n  <tr><td>403 - Forbidden</td><td>The authenticated user doesn't have permissions to perform the request.</td></tr>\n  <tr><td>404 - Not Found</td><td>The requested resource doesn't exist.</td></tr>\n  <tr><td>405 - Method not allowed</td><td>The employed HTTP method cannot be used on this resource (e.g., using PUT on a read-only resource).</td></tr>\n  <tr><td>422 - Invalid data</td><td>Invalid data was sent on the request and/or a query could not be understood.</td></tr>\n  <tr><td>422 - Unprocessable Entity</td><td>The requested resource cannot be updated or mandatory fields are missing on the executed operation.</td></tr>\n  <tr><td>500, 503 - Server Errors</td><td>Something went wrong on Cumulocity IoT's end.</td></tr>\n</table>\n\nAll error codes and their interpretations can be found in [Error reporting](https://cumulocity.com/guides/reference/rest-implementation/#a-name-error-reporting-a-error-reporting) in the Reference guide.\n",
+    "description" : "# Introduction\n\nStandard OpenAPI specification, language-agnostic interface to the Cumulocity IoT RESTful API which allows – both humans and computers – to discover and understand the capabilities of the platform.\n\nCumulocity IoT uses HTTP and REST, which is today the most widely used interfacing technology and which works on any Internet-connected device ranging from small embedded microcontrollers up to desktop PCs. The secure variant, HTTPS, is used for the most security critical applications and will give you the best possible security.\n\nRegardless the communication originates from IoT devices, web applications or from back-office IT systems, Cumulocity IoT employs the protocol REST for all external communication. Our API has predictable resource-oriented URLs, accepts form-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication and verbs.\n\n### Just Getting Started?\n\nCumulocity IoT exposes its complete functionality through programming interfaces; this means that all of Cumulocity IoT’s functionality is available for you to use in different contexts outside of what the platform directly provides - in your own applications, in your own devices. Cumulocity IoT gives you very fast visibility and control over your remote assets, be these houses, cars, machines or any other assets that you want to manage.\n\nCheck out <a href=\"https://cumulocity.com/guides/concepts/introduction/\" target=\"_new\">our online guides</a> to learn more about the platform.\n\n# Authentication\n\nWhen you sign up for an account on the [Cumulocity IoT platform](https://cumulocity.com/), for example by using a free trial, you will be provided with a dedicated URL address for your tenant. All requests to the platform have to be authenticated employing your tenant ID, Cumulocity IoT user (c8yuser for short) and password. Cumulocity IoT offers the following forms of authentication:\n\n<ul><li>Basic authentication</li>\n<li>JWT token authentication</li>\n<li>OAuth authentication code grant</li></ul>\n\n# Response Codes\n\nCumulocity IoT uses conventional HTTP response codes to indicate the success or failure of an API request. Codes in the `2xx` range indicate success. Codes in the `4xx` range indicate an error that failed given the information provided (e.g., a required parameter was omitted). Codes in the `5xx` range indicate an error with Cumulocity IoT's servers ([these are very rare](https://www.softwareag.cloud/site/sla/cumulocity-iot.html#/)).\n\n### HTTP status code summary\n\n|Code|Description|\n|--- |--- |\n|200 - OK|Everything worked as expected.|\n|201 - Created|A managed object was created successfully.|\n|204 - No content|A managed object was deleted successfully.|\n|400 - Bad Request|The request was unacceptable, often due to missing a required parameter.|\n|401 - Unauthorized|Authentication has failed, or credentials were required but not provided..|\n|403 - Forbidden|The authenticated user doesn't have permissions to perform the request.|\n|404 - Not Found|The requested resource doesn't exist.|\n|405 - Method not allowed|The employed HTTP method cannot be used on this resource (e.g., using PUT on a read-only resource).|\n|422 - Invalid data|Invalid data was sent on the request and/or a query could not be understood.|\n|422 - Unprocessable Entity|The requested resource cannot be updated or mandatory fields are missing on the executed operation.|\n|500, 503 - Server Errors|Something went wrong on Cumulocity IoT's end.|\n",
     "contact" : {
       "name" : "Cumulocity IoT",
       "url" : "https://www.cumulocity.com",
@@ -24,11 +24,8 @@
     "url" : "https://cumulocity.com/guides/about-doc/intro-documentation/"
   },
   "servers" : [ {
-    "description" : "Cumulocity IoT - test server",
-    "url" : "https://glenn.cumulocity.com"
-  }, {
-    "description" : "SwaggerHub API Auto Mocking",
-    "url" : "https://virtserver.swaggerhub.com/manasesjesus/c8y_openapi/1.0.0"
+    "description" : "Cumulocity IoT",
+    "url" : "https://api.cumulocity.com"
   } ],
   "security" : [ {
     "BasicAuthentication" : [ ]
@@ -70,7 +67,7 @@
     "description" : "The measurement API resource returns URIs and URI templates to collections of measurements, so that all measurements can be filtered and retrieved. \n"
   }, {
     "name" : "Tenants",
-    "description" : "Tenants are physically separated data spaces with a separate URL, with own users, a separate application management and no sharing of data by default. Users in a single tenant by default share the same URL and the same data space.<br><br>\nThe **tenant ID** is a unique identifier across all tenants in Cumulocity IoT, e.g. t07007007. It cannot be changed after tenant creation.\nIt is recommended to use auto-generated tenant IDs, which follow the format t&lt;number>, for all tenant types.<br><br>\nThe location where a tenant can be accessed is called **tenant domain**, e.g. _mytenant.cumulocity.com_. It needs to be unique across all tenants and it can be changed after tenant creation.\nThe tenant domain may contain lowercase letters, digits or hyphens. It must start with a letter; hyphens are only allowed in the middle; minimum is 2 characters. Note that the usage of underscore characters is deprecated but still possible for backward compatibility reasons.<br><br>\nIn general, the tenant domain should be used for communication if it is known.\n"
+    "description" : "Tenants are physically separated data spaces with a separate URL, with own users, a separate application management and no sharing of data by default. Users in a single tenant by default share the same URL and the same data space.\n\nThe **tenant ID** is a unique identifier across all tenants in Cumulocity IoT and it follows the format t&lt;number>, e.g. t07007007. It cannot be changed after tenant creation. It is recommended to use auto-generated tenant IDs for all tenant types.\n\nThe location where a tenant can be accessed is called **tenant domain**, e.g. _mytenant.cumulocity.com_. It needs to be unique across all tenants and it can be changed after tenant creation.\nThe tenant domain may contain lowercase letters, digits or hyphens. It must start with a letter; hyphens are only allowed in the middle; minimum is 2 characters. Note that the usage of underscore characters is deprecated but still possible for backward compatibility reasons.\n\nIn general, the tenant domain should be used for communication if it is known.\n"
   } ],
   "x-tagGroups" : [ {
     "name" : "Alarms",
@@ -97,7 +94,7 @@
         } ],
         "summary" : "Retrieve URIs to collections of alarms",
         "operationId" : "getAlarmApi",
-        "description" : "Retrieve URIs and URI templates to collections of alarms.<br><br> Required roles: **ROLE_ALARM_READ**\n",
+        "description" : "Retrieve URIs and URI templates to collections of alarms.\n\nRequired roles: **ROLE_ALARM_READ**\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the URIs are sent in the response.",
@@ -187,7 +184,7 @@
         } ],
         "summary" : "Create an alarm",
         "operationId" : "postAlarmCollectionResource",
-        "description" : "An alarm must be associated to a source (managed object) identified by ID.<br> In general, each alarm may consist of:\n<ul><li>A status showing whether the alarm is ACTIVE, ACKNOWLEDGED or CLEARED.</li> <li>A time stamp to indicate when the alarm was last updated.</li> <li>The severity of the alarm: CRITICAL, MAJOR, MINOR or WARNING.</li> <li>A history of changes to the event in form of audit logs.</li></ul>\n\nRequired roles: **ROLE_ALARM_ADMIN** or **owner of the source**\n",
+        "description" : "An alarm must be associated to a source (managed object) identified by ID.<br>\nIn general, each alarm may consist of:\n\n*   A status showing whether the alarm is ACTIVE, ACKNOWLEDGED or CLEARED.\n*   A time stamp to indicate when the alarm was last updated.\n*   The severity of the alarm: CRITICAL, MAJOR, MINOR or WARNING.\n*   A history of changes to the event in form of audit logs.\n\nRequired roles: **ROLE_ALARM_ADMIN** or **owner of the source**\n",
         "requestBody" : {
           "required" : true,
           "content" : {
@@ -306,7 +303,7 @@
         } ],
         "summary" : "Retrieve all alarms",
         "operationId" : "getAlarmCollectionResource",
-        "description" : "Retrieve all alarms on your tenant.<br><br> Required roles: **ROLE_ALARM_READ**\n",
+        "description" : "Retrieve all alarms on your tenant.\n\nRequired roles: **ROLE_ALARM_READ**\n",
         "responses" : {
           "200" : {
             "$ref" : "#/components/responses/alarmCollectionFound"
@@ -323,7 +320,7 @@
         } ],
         "summary" : "Update alarm collections",
         "operationId" : "putAlarmCollectionResource",
-        "description" : "Update alarm collections specified by query parameters. At least one query parameter is required to avoid accidentally updating all existing alarms.<br> Currently, only the status of alarms can be modified.<br><br> **Info:** Since this operation can take considerable time, the request returns after maximum 0.5 seconds of processing, and the update operation continues as a background process in the platform.<br><br> Required roles: **ROLE_ALARM_ADMIN**\n",
+        "description" : "Update alarm collections specified by query parameters. At least one query parameter is required to avoid accidentally updating all existing alarms.<br>\nCurrently, only the status of alarms can be modified.\n\n> **Info:** Since this operation can take considerable time, the request returns after maximum 0.5 seconds of processing, and the update operation continues as a background process in the platform.\n\nRequired roles: **ROLE_ALARM_ADMIN**\n",
         "requestBody" : {
           "required" : true,
           "content" : {
@@ -386,7 +383,7 @@
         } ],
         "summary" : "Remove alarm collections",
         "operationId" : "deleteAlarmCollectionResource",
-        "description" : "Remove alarm collections specified by query parameters.<br><br> **⚠️ Important:** Note that it is possible to call this endpoint without providing any parameter - it will result in deleting all alarms and it is not recommended.<br><br> Required roles: **ROLE_ALARM_ADMIN**\n",
+        "description" : "Remove alarm collections specified by query parameters.\n\n> **⚠️ Important:** Note that it is possible to call this endpoint without providing any parameter - it will result in deleting all alarms and it is not recommended.\n\nRequired roles: **ROLE_ALARM_ADMIN**\n",
         "responses" : {
           "204" : {
             "description" : "A collection of alarms was deleted successfully.",
@@ -402,26 +399,6 @@
         }
       }
     },
-    "/alarm/alarms/count" : {
-      "get" : {
-        "tags" : [ "Alarms" ],
-        "security" : [ {
-          "BasicAuthentication" : [ ]
-        } ],
-        "summary" : "Retrieve the total number of alarms",
-        "operationId" : "getAlarmsCount",
-        "description" : "Count the total number of all active alarms on your tenant.<br><br> Required roles: **ROLE_ALARM_READ**\n",
-        "responses" : {
-          "200" : {
-            "description" : "The request has succeeded and the total number of alarms is sent in the response.",
-            "links" : { }
-          },
-          "401" : {
-            "$ref" : "#/components/responses/unauthorizedError"
-          }
-        }
-      }
-    },
     "/alarm/alarms/{id}" : {
       "parameters" : [ {
         "$ref" : "#/components/parameters/alarmId"
@@ -432,8 +409,8 @@
           "BasicAuthentication" : [ ]
         } ],
         "summary" : "Retrieve a specific alarm",
-        "operationId" : "getAlarmById",
-        "description" : "Retrieve a specific alarm by a given ID.<br><br> Required roles: **ROLE_ALARM_READ**\n",
+        "operationId" : "getAlarmResource",
+        "description" : "Retrieve a specific alarm by a given ID.\n\nRequired roles: **ROLE_ALARM_READ**\n",
         "responses" : {
           "200" : {
             "$ref" : "#/components/responses/alarmFound"
@@ -452,8 +429,8 @@
           "BasicAuthentication" : [ ]
         } ],
         "summary" : "Update a specific alarm",
-        "operationId" : "putAlarmByID",
-        "description" : "Update a specific alarm by a given ID.<br> Only text, status, severity and custom properties can be modified. Non-modifiable properties will be ignored when provided in the request body.<br><br> Required roles: **ROLE_ALARM_ADMIN** or **owner of the source**\n",
+        "operationId" : "putAlarmResource",
+        "description" : "Update a specific alarm by a given ID.\nOnly text, status, severity and custom properties can be modified. Non-modifiable properties will be ignored when provided in the request body.\n\nRequired roles: **ROLE_ALARM_ADMIN** or **owner of the source**\n",
         "requestBody" : {
           "required" : true,
           "content" : {
@@ -496,8 +473,8 @@
           "BasicAuthentication" : [ ]
         } ],
         "summary" : "Remove a specific alarm",
-        "operationId" : "deleteAlarmById",
-        "description" : "Remove a specific alarm by a given ID.<br><br> Required roles: **ROLE_ALARM_ADMIN** or **owner of the source**\n",
+        "operationId" : "deleteAlarmResource",
+        "description" : "Remove a specific alarm by a given ID.\n\nRequired roles: **ROLE_ALARM_ADMIN** or **owner of the source**\n",
         "responses" : {
           "204" : {
             "description" : "An alarm was deleted successfully.",
@@ -516,6 +493,26 @@
         }
       }
     },
+    "/alarm/alarms/count" : {
+      "get" : {
+        "tags" : [ "Alarms" ],
+        "security" : [ {
+          "BasicAuthentication" : [ ]
+        } ],
+        "summary" : "Retrieve the total number of alarms",
+        "operationId" : "getAlarmsCount",
+        "description" : "Count the total number of all active alarms on your tenant.\n\nRequired roles: **ROLE_ALARM_READ**\n",
+        "responses" : {
+          "200" : {
+            "description" : "The request has succeeded and the total number of alarms is sent in the response.",
+            "links" : { }
+          },
+          "401" : {
+            "$ref" : "#/components/responses/unauthorizedError"
+          }
+        }
+      }
+    },
     "/event" : {
       "get" : {
         "tags" : [ "Event API" ],
@@ -524,7 +521,7 @@
         } ],
         "summary" : "Retrieve URIs to collections of events",
         "operationId" : "getEventApi",
-        "description" : "Retrieve URIs and URI templates to collections of events.<br><br> Required roles: **ROLE_EVENT_READ**\n",
+        "description" : "Retrieve URIs and URI templates to collections of events.\n\nRequired roles: **ROLE_EVENT_READ**\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the URIs are sent in the response.",
@@ -609,7 +606,7 @@
         } ],
         "summary" : "Create an event",
         "operationId" : "postEvent",
-        "description" : "An event must be associated to a source (managed object) identified by ID.<br> In general, each event may consist of:\n<ul><li>A type to identify the nature of the event.</li> <li>A time stamp to indicate when the event was last updated.</li> <li>A description of the event.</li> <li>The managed object which originated the event.</li></ul>\n\nRequired roles: **ROLE_EVENT_ADMIN** or **owner of the source**\n",
+        "description" : "An event must be associated to a source (managed object) identified by ID.<br>\nIn general, each event may consist of:\n\n*  A type to identify the nature of the event.\n*  A time stamp to indicate when the event was last updated.\n*  A description of the event.\n*  The managed object which originated the event.\n\nRequired roles: **ROLE_EVENT_ADMIN** or **owner of the source**\n",
         "requestBody" : {
           "required" : true,
           "content" : {
@@ -694,7 +691,7 @@
         } ],
         "summary" : "Retrieve all events",
         "operationId" : "getEvents",
-        "description" : "Retrieve all events on your tenant.<br><br> Required roles: **ROLE_EVENT_READ**\n",
+        "description" : "Retrieve all events on your tenant.\n\nRequired roles: **ROLE_EVENT_READ**\n",
         "responses" : {
           "200" : {
             "$ref" : "#/components/responses/eventCollectionFound"
@@ -722,7 +719,7 @@
         } ],
         "summary" : "Remove event collections",
         "operationId" : "deleteEvent",
-        "description" : "Remove event collections specified by query parameters.<br><br> **⚠️ Important:** Note that it is possible to call this endpoint without providing any parameter - it will result in deleting all events and it is not recommended.<br><br> Required roles: **ROLE_EVENT_ADMIN**\n",
+        "description" : "Remove event collections specified by query parameters.\n\n> **⚠️ Important:** Note that it is possible to call this endpoint without providing any parameter - it will result in deleting all events and it is not recommended.\n\nRequired roles: **ROLE_EVENT_ADMIN**\n",
         "responses" : {
           "204" : {
             "description" : "A collection of events was deleted successfully.",
@@ -749,7 +746,7 @@
         } ],
         "summary" : "Retrieve a specific event",
         "operationId" : "getEventById",
-        "description" : "Retrieve a specific event by a given ID.<br><br> Required roles: **ROLE_EVENT_READ**\n",
+        "description" : "Retrieve a specific event by a given ID.\n\nRequired roles: **ROLE_EVENT_READ**\n",
         "responses" : {
           "200" : {
             "$ref" : "#/components/responses/eventFound"
@@ -769,7 +766,7 @@
         } ],
         "summary" : "Update a specific event",
         "operationId" : "putEventByID",
-        "description" : "Update a specific event by a given ID.<br><br> Required roles: **ROLE_EVENT_ADMIN** or **owner of the source**\n",
+        "description" : "Update a specific event by a given ID.\n\nRequired roles: **ROLE_EVENT_ADMIN** or **owner of the source**\n",
         "requestBody" : {
           "required" : true,
           "content" : {
@@ -809,7 +806,7 @@
         } ],
         "summary" : "Remove a specific event",
         "operationId" : "deleteEventById",
-        "description" : "Remove a specific event by a given ID.<br><br> Required roles: **ROLE_EVENT_ADMIN** or **owner of the source**\n",
+        "description" : "Remove a specific event by a given ID.\n\nRequired roles: **ROLE_EVENT_ADMIN** or **owner of the source**\n",
         "responses" : {
           "204" : {
             "description" : "An event was deleted successfully.",
@@ -839,7 +836,7 @@
         } ],
         "summary" : "Attach a file to a specific event",
         "operationId" : "postEventBinary",
-        "description" : "Upload a file (binary) as an attachment of a specific event by a given ID.<br> The size of the attachment cannot exceed 50MB.<br><br> Required roles: **ROLE_EVENT_ADMIN**\n",
+        "description" : "Upload a file (binary) as an attachment of a specific event by a given ID.<br>\nThe size of the attachment cannot exceed 50MB.\n\nRequired roles: **ROLE_EVENT_ADMIN**\n",
         "requestBody" : {
           "required" : true,
           "content" : {
@@ -890,7 +887,7 @@
         } ],
         "summary" : "Retrieve the attached file of a specific event",
         "operationId" : "getEventBinary",
-        "description" : "Retrieve the attached file (binary) of a specific event by a given ID.<br><br> Required roles: **ROLE_EVENT_READ**\n",
+        "description" : "Retrieve the attached file (binary) of a specific event by a given ID.\n\nRequired roles: **ROLE_EVENT_READ**\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the file is sent in the response.",
@@ -927,7 +924,7 @@
         } ],
         "summary" : "Replace the attached file of a specific event",
         "operationId" : "putEventBinary",
-        "description" : "Upload and replace the attached file (binary) of a specific event by a given ID.<br> The size of the attachment cannot exceed 50MB.<br><br> Required roles: **ROLE_EVENT_ADMIN**\n",
+        "description" : "Upload and replace the attached file (binary) of a specific event by a given ID.<br>\nThe size of the attachment cannot exceed 50MB.\n\nRequired roles: **ROLE_EVENT_ADMIN**\n",
         "requestBody" : {
           "content" : {
             "plain/text" : {
@@ -974,7 +971,7 @@
         } ],
         "summary" : "Remove the attached file from a specific event",
         "operationId" : "deleteEventBinary",
-        "description" : "Remove the attached file (binary) from a specific event by a given ID.<br><br> Required roles: **ROLE_EVENT_ADMIN**\n",
+        "description" : "Remove the attached file (binary) from a specific event by a given ID.\n\nRequired roles: **ROLE_EVENT_ADMIN**\n",
         "responses" : {
           "204" : {
             "description" : "A file was deleted successfully.",
@@ -2618,7 +2615,7 @@
       "queryParam_query" : {
         "name" : "query",
         "in" : "query",
-        "description" : "Use query language to perform operations and/or filter the results. Details about the properties and supported operations can be found in [Query language](https://cumulocity.com/guides/reference/inventory/#query-language) on the Reference guide.\n",
+        "description" : "Use query language to perform operations and/or filter the results. Details about the properties and supported operations can be found in [Query language](#TODO_add-the-url).\n",
         "schema" : {
           "type" : "string",
           "minLength" : 1,
