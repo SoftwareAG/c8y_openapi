@@ -1,5 +1,7 @@
 # Cumulocity IoT OpenAPI
 
+![status](https://img.shields.io/badge/status-work--in--progress-blue "status")
+
 Standard OpenAPI specification, language-agnostic interface to the Cumulocity IoT RESTful API which allows – both humans and computers – to discover and understand the capabilities of the platform.
 
 Cumulocity IoT uses HTTP and REST, which is today the most widely used interfacing technology and which works on any Internet-connected device ranging from small embedded microcontrollers up to desktop PCs. The secure variant, HTTPS, is used for the most security critical applications and will give you the best possible security.
