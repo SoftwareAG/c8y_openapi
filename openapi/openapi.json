@@ -112,7 +112,7 @@
                       "allOf" : [ {
                         "$ref" : "#/components/x-descriptions/desc_self"
                       }, {
-                        "example" : "PROTOCOL://TENANT_DOMAIN/alarm"
+                        "example" : "https://<TENANT_DOMAIN>/alarm"
                       } ]
                     },
                     "alarms" : {
@@ -123,7 +123,7 @@
                           "allOf" : [ {
                             "$ref" : "#/components/x-descriptions/desc_self"
                           }, {
-                            "example" : "PROTOCOL://TENANT_DOMAIN/alarm/alarms"
+                            "example" : "https://<TENANT_DOMAIN>/alarm/alarms"
                           } ]
                         },
                         "alarms" : {
@@ -137,37 +137,37 @@
                     "alarmsForSource" : {
                       "description" : "Read-only collection of all alarms for a specific source object. The placeholder {source} must be a unique ID of an object in the inventory.",
                       "type" : "string",
-                      "example" : "PROTOCOL://TENANT_DOMAIN/alarm/alarms?source={source}"
+                      "example" : "https://<TENANT_DOMAIN>/alarm/alarms?source={source}"
                     },
                     "alarmsForStatus" : {
                       "description" : "Read-only collection of all alarms in a particular status. The placeholder {status} can be one of the following values: ACTIVE, ACKNOWLEDGED or CLEARED",
                       "type" : "string",
-                      "example" : "PROTOCOL://TENANT_DOMAIN/alarm/alarms?status={status}"
+                      "example" : "https://<TENANT_DOMAIN>/alarm/alarms?status={status}"
                     },
                     "alarmsForSourceAndStatusAndTime" : {
                       "description" : "Read-only collection of all alarms for a specific source, status and time range.",
                       "type" : "string",
-                      "example" : "PROTOCOL://TENANT_DOMAIN/alarm/alarms?source={source}&status={status}&dateFrom={dateFrom}&dateTo={dateTo}"
+                      "example" : "https://<TENANT_DOMAIN>/alarm/alarms?source={source}&status={status}&dateFrom={dateFrom}&dateTo={dateTo}"
                     },
                     "alarmsForStatusAndTime" : {
                       "description" : "Read-only collection of all alarms for a particular status and time range.",
                       "type" : "string",
-                      "example" : "PROTOCOL://TENANT_DOMAIN/alarm/alarms?status={status}&dateFrom={dateFrom}&dateTo={dateTo}"
+                      "example" : "https://<TENANT_DOMAIN>/alarm/alarms?status={status}&dateFrom={dateFrom}&dateTo={dateTo}"
                     },
                     "alarmsForSourceAndTime" : {
                       "description" : "Read-only collection of all alarms for a specific source and time range.",
                       "type" : "string",
-                      "example" : "PROTOCOL://TENANT_DOMAIN/alarm/alarms?source={source}&dateFrom={dateFrom}&dateTo={dateTo}"
+                      "example" : "https://<TENANT_DOMAIN>/alarm/alarms?source={source}&dateFrom={dateFrom}&dateTo={dateTo}"
                     },
                     "alarmsForTime" : {
                       "description" : "Read-only collection of all alarms for a particular time range.",
                       "type" : "string",
-                      "example" : "PROTOCOL://TENANT_DOMAIN/alarm/alarms?dateFrom={dateFrom}&dateTo={dateTo}"
+                      "example" : "https://<TENANT_DOMAIN>/alarm/alarms?dateFrom={dateFrom}&dateTo={dateTo}"
                     },
                     "alarmsForSourceAndStatus" : {
                       "description" : "Read-only collection of all alarms for a specific source object in a particular status.",
                       "type" : "string",
-                      "example" : "PROTOCOL://TENANT_DOMAIN/alarm/alarms?source={source}&status={status}"
+                      "example" : "https://<TENANT_DOMAIN>/alarm/alarms?source={source}&status={status}"
                     }
                   }
                 }
@@ -266,19 +266,19 @@
         },
         "x-code-samples" : [ {
           "lang" : "cURL",
-          "source" : "curl --location --request POST 'PROTOCOL://TENANT_DOMAIN/alarm/alarms' \\\n--header 'Authorization: Basic <AUTHORIZATION>' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--data-raw '{\n    \"source\": {\n        \"id\": \"<managedObjectId>\" \n    },\n      \"type\": \"c8y_UnavailabilityAlarm\",\n      \"text\": \"No data received from the device within the required interval.\",\n      \"severity\": \"MAJOR\",\n      \"status\": \"ACTIVE\",\n      \"time\": \"2020-03-19T12:03:27.845Z\"\n  }'\n"
+          "source" : "curl --location --request POST 'https://<TENANT_DOMAIN>/alarm/alarms' \\\n--header 'Authorization: Basic <AUTHORIZATION>' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: application/json' \\\n--data-raw '{\n    \"source\": {\n        \"id\": \"<managedObjectId>\" \n    },\n      \"type\": \"c8y_UnavailabilityAlarm\",\n      \"text\": \"No data received from the device within the required interval.\",\n      \"severity\": \"MAJOR\",\n      \"status\": \"ACTIVE\",\n      \"time\": \"2020-03-19T12:03:27.845Z\"\n  }'\n"
         }, {
           "lang" : "C#",
-          "source" : "var client = new RestClient(\"PROTOCOL://TENANT_DOMAIN/alarm/alarms\");\nclient.Timeout = -1;\n\nvar request = new RestRequest(Method.POST);\nrequest.AddHeader(\"Authorization\", \"Basic <AUTHORIZATION>\");\nrequest.AddHeader(\"Content-Type\", \"application/json\");\nrequest.AddParameter(\"application/json\", \"<Payload>\",  ParameterType.RequestBody);\n\nIRestResponse response = client.Execute(request);\nConsole.WriteLine(response.Content);\n"
+          "source" : "var client = new RestClient(\"https://<TENANT_DOMAIN>/alarm/alarms\");\nclient.Timeout = -1;\n\nvar request = new RestRequest(Method.POST);\nrequest.AddHeader(\"Authorization\", \"Basic <AUTHORIZATION>\");\nrequest.AddHeader(\"Content-Type\", \"application/json\");\nrequest.AddParameter(\"application/json\", \"<Payload>\",  ParameterType.RequestBody);\n\nIRestResponse response = client.Execute(request);\nConsole.WriteLine(response.Content);\n"
         }, {
           "lang" : "Java",
-          "source" : "Unirest.setTimeouts(0, 0);\nHttpResponse<String> response = Unirest.post(\"PROTOCOL://TENANT_DOMAIN/alarm/alarms\")\n    .header(\"Authorization\", \"Basic <AUTHORIZATION>\")\n    .header(\"Content-Type\", \"application/json\")\n    .header(\"Accept\", \"application/json\")\n    .body(\"<Payload>\")\n    .asString();\n"
+          "source" : "Unirest.setTimeouts(0, 0);\nHttpResponse<String> response = Unirest.post(\"https://<TENANT_DOMAIN>/alarm/alarms\")\n    .header(\"Authorization\", \"Basic <AUTHORIZATION>\")\n    .header(\"Content-Type\", \"application/json\")\n    .header(\"Accept\", \"application/json\")\n    .body(\"<Payload>\")\n    .asString();\n"
         }, {
           "lang" : "Node.js",
-          "source" : "var unirest = require('unirest');\nvar req = unirest('POST', 'PROTOCOL://TENANT_DOMAIN/alarm/alarms')\n    .headers({\n        'Authorization': 'Basic <AUTHORIZATION>',\n        'Accept': 'application/json',\n        'Content-Type': 'application/json'\n    })\n    .send(JSON.stringify( {Payload} ))\n    .end(function (res) { \n        if (res.error) throw new Error(res.error); \n        console.log(res.raw_body);\n    });\n"
+          "source" : "var unirest = require('unirest');\nvar req = unirest('POST', 'https://<TENANT_DOMAIN>/alarm/alarms')\n    .headers({\n        'Authorization': 'Basic <AUTHORIZATION>',\n        'Accept': 'application/json',\n        'Content-Type': 'application/json'\n    })\n    .send(JSON.stringify( {Payload} ))\n    .end(function (res) { \n        if (res.error) throw new Error(res.error); \n        console.log(res.raw_body);\n    });\n"
         }, {
           "lang" : "Python",
-          "source" : "import requests\n\nurl = \"PROTOCOL://TENANT_DOMAIN/alarm/alarms\"\npayload = \"<Payload>\"\nheaders = {\n  'Authorization': 'Basic <AUTHORIZATION>',\n  'Accept': 'application/json',\n  'Content-Type': 'application/json'\n}\nresponse = requests.request(\"POST\", url, headers=headers, data = payload)\nprint(response.text.encode('utf8'))\n"
+          "source" : "import requests\n\nurl = \"https://<TENANT_DOMAIN>/alarm/alarms\"\npayload = \"<Payload>\"\nheaders = {\n  'Authorization': 'Basic <AUTHORIZATION>',\n  'Accept': 'application/json',\n  'Content-Type': 'application/json'\n}\nresponse = requests.request(\"POST\", url, headers=headers, data = payload)\nprint(response.text.encode('utf8'))\n"
         } ]
       },
       "get" : {
@@ -557,7 +557,7 @@
                       "allOf" : [ {
                         "$ref" : "#/components/x-descriptions/desc_self"
                       }, {
-                        "example" : "PROTOCOL://TENANT_DOMAIN/event"
+                        "example" : "https://<TENANT_DOMAIN>/event"
                       } ]
                     },
                     "events" : {
@@ -568,7 +568,7 @@
                           "allOf" : [ {
                             "$ref" : "#/components/x-descriptions/desc_self"
                           }, {
-                            "example" : "PROTOCOL://TENANT_DOMAIN/event/events"
+                            "example" : "https://<TENANT_DOMAIN>/event/events"
                           } ]
                         },
                         "events" : {
@@ -582,32 +582,32 @@
                     "eventsForSource" : {
                       "description" : "Read-only collection of all events for a specific source object. The placeholder {source} must be a unique ID of an object in the inventory.",
                       "type" : "string",
-                      "example" : "PROTOCOL://TENANT_DOMAIN/event/events?source={source}"
+                      "example" : "https://<TENANT_DOMAIN>/event/events?source={source}"
                     },
                     "eventsForSourceAndType" : {
                       "description" : "Read-only collection of all events of a particular type and a specific source object.",
                       "type" : "string",
-                      "example" : "PROTOCOL://TENANT_DOMAIN/event/events?type={type}&source={source}"
+                      "example" : "https://<TENANT_DOMAIN>/event/events?type={type}&source={source}"
                     },
                     "eventsForType" : {
                       "description" : "Read-only collection of all events of a particular type.",
                       "type" : "string",
-                      "example" : "PROTOCOL://TENANT_DOMAIN/event/events?type={type}"
+                      "example" : "https://<TENANT_DOMAIN>/event/events?type={type}"
                     },
                     "eventsForFragmentType" : {
                       "description" : "Read-only collection of all events containing a particular fragment type.",
                       "type" : "string",
-                      "example" : "PROTOCOL://TENANT_DOMAIN/event/events?fragmentType={fragmentType}"
+                      "example" : "https://<TENANT_DOMAIN>/event/events?fragmentType={fragmentType}"
                     },
                     "eventsForTime" : {
                       "description" : "Read-only collection of all events for a particular time range.",
                       "type" : "string",
-                      "example" : "PROTOCOL://TENANT_DOMAIN/event/events?dateFrom={dateFrom}&dateTo={dateTo}"
+                      "example" : "https://<TENANT_DOMAIN>/event/events?dateFrom={dateFrom}&dateTo={dateTo}"
                     },
                     "eventsForSourceAndTime" : {
                       "description" : "Read-only collection of all events for a specific source object in a particular time range.",
                       "type" : "string",
-                      "example" : "PROTOCOL://TENANT_DOMAIN/event/events?source={source}&dateFrom={dateFrom}&dateTo={dateTo}"
+                      "example" : "https://<TENANT_DOMAIN>/event/events?source={source}&dateFrom={dateFrom}&dateTo={dateTo}"
                     }
                   }
                 }
@@ -901,19 +901,19 @@
         },
         "x-code-samples" : [ {
           "lang" : "cURL",
-          "source" : "curl --location --request POST 'PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries' \\\n--header 'Authorization: Basic <AUTHORIZATION>' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: text/plain' \\\n--data-binary '@/attachment/file.txt'\n"
+          "source" : "curl --location --request POST 'https://<TENANT_DOMAIN>/event/events/<ID>/binaries' \\\n--header 'Authorization: Basic <AUTHORIZATION>' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: text/plain' \\\n--data-binary '@/attachment/file.txt'\n"
         }, {
           "lang" : "C#",
-          "source" : "var client = new RestClient(\"PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries\");\nclient.Timeout = -1;\n\nvar request = new RestRequest(Method.POST);\nrequest.AddHeader(\"Authorization\", \"Basic <AUTHORIZATION>\");\nrequest.AddHeader(\"Accept\", \"application/json\");\nrequest.AddParameter(\"text/plain\", \"<file contents here>\", ParameterType.RequestBody);\n\nIRestResponse response = client.Execute(request);\nConsole.WriteLine(response.Content);\n"
+          "source" : "var client = new RestClient(\"https://<TENANT_DOMAIN>/event/events/<ID>/binaries\");\nclient.Timeout = -1;\n\nvar request = new RestRequest(Method.POST);\nrequest.AddHeader(\"Authorization\", \"Basic <AUTHORIZATION>\");\nrequest.AddHeader(\"Accept\", \"application/json\");\nrequest.AddParameter(\"text/plain\", \"<file contents here>\", ParameterType.RequestBody);\n\nIRestResponse response = client.Execute(request);\nConsole.WriteLine(response.Content);\n"
         }, {
           "lang" : "Java",
-          "source" : "Unirest.setTimeouts(0, 0);\nHttpResponse<String> response = Unirest.post(\"PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries\")\n    .header(\"Authorization\", \"Basic <AUTHORIZATION>\")\n    .header(\"Accept\", \"application/json\")\n    .body(\"<file contents here>\")\n    .asString();\n"
+          "source" : "Unirest.setTimeouts(0, 0);\nHttpResponse<String> response = Unirest.post(\"https://<TENANT_DOMAIN>/event/events/<ID>/binaries\")\n    .header(\"Authorization\", \"Basic <AUTHORIZATION>\")\n    .header(\"Accept\", \"application/json\")\n    .body(\"<file contents here>\")\n    .asString();\n"
         }, {
           "lang" : "Node.js",
-          "source" : "var unirest = require('unirest');\nvar req = unirest('POST', 'PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries')\n    .headers({\n        'Authorization': 'Basic <AUTHORIZATION>',\n        'Accept': 'application/json',\n        'Content-Type': 'text/plain'\n    })\n    .send(\"<file contents here>\")\n    .end(function (res) { \n        if (res.error) throw new Error(res.error); \n        console.log(res.raw_body);\n    });\n"
+          "source" : "var unirest = require('unirest');\nvar req = unirest('POST', 'https://<TENANT_DOMAIN>/event/events/<ID>/binaries')\n    .headers({\n        'Authorization': 'Basic <AUTHORIZATION>',\n        'Accept': 'application/json',\n        'Content-Type': 'text/plain'\n    })\n    .send(\"<file contents here>\")\n    .end(function (res) { \n        if (res.error) throw new Error(res.error); \n        console.log(res.raw_body);\n    });\n"
         }, {
           "lang" : "Python",
-          "source" : "import requests\n\nurl = \"PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries\"\npayload = \"<file contents here>\"\nheaders = {\n  'Authorization': 'Basic <AUTHORIZATION>',\n  'Accept': 'application/json',\n  'Content-Type': 'text/plain'\n}\nresponse = requests.request(\"POST\", url, headers=headers, data = payload)\nprint(response.text.encode('utf8'))\n"
+          "source" : "import requests\n\nurl = \"https://<TENANT_DOMAIN>/event/events/<ID>/binaries\"\npayload = \"<file contents here>\"\nheaders = {\n  'Authorization': 'Basic <AUTHORIZATION>',\n  'Accept': 'application/json',\n  'Content-Type': 'text/plain'\n}\nresponse = requests.request(\"POST\", url, headers=headers, data = payload)\nprint(response.text.encode('utf8'))\n"
         } ]
       },
       "get" : {
@@ -940,19 +940,19 @@
         },
         "x-code-samples" : [ {
           "lang" : "cURL",
-          "source" : "curl --location --request GET 'PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries' \\\n--header 'Authorization: Basic <AUTHORIZATION>'\n"
+          "source" : "curl --location --request GET 'https://<TENANT_DOMAIN>/event/events/<ID>/binaries' \\\n--header 'Authorization: Basic <AUTHORIZATION>'\n"
         }, {
           "lang" : "C#",
-          "source" : "var client = new RestClient(\"PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries\");\nclient.Timeout = -1;\n\nvar request = new RestRequest(Method.GET);\nrequest.AddHeader(\"Authorization\", \"Basic <AUTHORIZATION>\");\n\nIRestResponse response = client.Execute(request);\nConsole.WriteLine(response.Content);\n"
+          "source" : "var client = new RestClient(\"https://<TENANT_DOMAIN>/event/events/<ID>/binaries\");\nclient.Timeout = -1;\n\nvar request = new RestRequest(Method.GET);\nrequest.AddHeader(\"Authorization\", \"Basic <AUTHORIZATION>\");\n\nIRestResponse response = client.Execute(request);\nConsole.WriteLine(response.Content);\n"
         }, {
           "lang" : "Java",
-          "source" : "Unirest.setTimeouts(0, 0);\nHttpResponse<String> response = Unirest.get(\"PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries\")\n    .header(\"Authorization\", \"Basic <AUTHORIZATION>\").asString();\n"
+          "source" : "Unirest.setTimeouts(0, 0);\nHttpResponse<String> response = Unirest.get(\"https://<TENANT_DOMAIN>/event/events/<ID>/binaries\")\n    .header(\"Authorization\", \"Basic <AUTHORIZATION>\").asString();\n"
         }, {
           "lang" : "Node.js",
-          "source" : "var unirest = require('unirest');\nvar req = unirest('GET', 'PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries')\n    .headers({\n        'Authorization': 'Basic <AUTHORIZATION>'\n    })\n    .end(function (res) { \n        if (res.error) throw new Error(res.error); \n        console.log(res.raw_body);\n    });\n"
+          "source" : "var unirest = require('unirest');\nvar req = unirest('GET', 'https://<TENANT_DOMAIN>/event/events/<ID>/binaries')\n    .headers({\n        'Authorization': 'Basic <AUTHORIZATION>'\n    })\n    .end(function (res) { \n        if (res.error) throw new Error(res.error); \n        console.log(res.raw_body);\n    });\n"
         }, {
           "lang" : "Python",
-          "source" : "import requests\n\nurl = \"PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries\"\npayload = {}\nheaders = {\n  'Authorization': 'Basic <AUTHORIZATION>'\n}\nresponse = requests.request(\"GET\", url, headers=headers, data = payload)\nprint(response.text.encode('utf8'))\n"
+          "source" : "import requests\n\nurl = \"https://<TENANT_DOMAIN>/event/events/<ID>/binaries\"\npayload = {}\nheaders = {\n  'Authorization': 'Basic <AUTHORIZATION>'\n}\nresponse = requests.request(\"GET\", url, headers=headers, data = payload)\nprint(response.text.encode('utf8'))\n"
         } ]
       },
       "put" : {
@@ -989,19 +989,19 @@
         },
         "x-code-samples" : [ {
           "lang" : "cURL",
-          "source" : "curl --location --request PUT 'PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries' \\\n--header 'Authorization: Basic <AUTHORIZATION>' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: text/plain' \\\n--data-binary '@/attachment/file.txt'\n"
+          "source" : "curl --location --request PUT 'https://<TENANT_DOMAIN>/event/events/<ID>/binaries' \\\n--header 'Authorization: Basic <AUTHORIZATION>' \\\n--header 'Accept: application/json' \\\n--header 'Content-Type: text/plain' \\\n--data-binary '@/attachment/file.txt'\n"
         }, {
           "lang" : "C#",
-          "source" : "var client = new RestClient(\"PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries\");\nclient.Timeout = -1;\n\nvar request = new RestRequest(Method.PUT);\nrequest.AddHeader(\"Authorization\", \"Basic <AUTHORIZATION>\");\nrequest.AddHeader(\"Accept\", \"application/json\");\nrequest.AddParameter(\"text/plain\", \"<file contents here>\", ParameterType.RequestBody);\n\nIRestResponse response = client.Execute(request);\nConsole.WriteLine(response.Content);\n"
+          "source" : "var client = new RestClient(\"https://<TENANT_DOMAIN>/event/events/<ID>/binaries\");\nclient.Timeout = -1;\n\nvar request = new RestRequest(Method.PUT);\nrequest.AddHeader(\"Authorization\", \"Basic <AUTHORIZATION>\");\nrequest.AddHeader(\"Accept\", \"application/json\");\nrequest.AddParameter(\"text/plain\", \"<file contents here>\", ParameterType.RequestBody);\n\nIRestResponse response = client.Execute(request);\nConsole.WriteLine(response.Content);\n"
         }, {
           "lang" : "Java",
-          "source" : "Unirest.setTimeouts(0, 0);\nHttpResponse<String> response = Unirest.put(\"PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries\")\n    .header(\"Authorization\", \"Basic <AUTHORIZATION>\")\n    .header(\"Accept\", \"application/json\")\n    .body(\"<file contents here>\")\n    .asString();\n"
+          "source" : "Unirest.setTimeouts(0, 0);\nHttpResponse<String> response = Unirest.put(\"https://<TENANT_DOMAIN>/event/events/<ID>/binaries\")\n    .header(\"Authorization\", \"Basic <AUTHORIZATION>\")\n    .header(\"Accept\", \"application/json\")\n    .body(\"<file contents here>\")\n    .asString();\n"
         }, {
           "lang" : "Node.js",
-          "source" : "var unirest = require('unirest');\nvar req = unirest('PUT', 'PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries')\n    .headers({\n        'Authorization': 'Basic <AUTHORIZATION>',\n        'Accept': 'application/json',\n        'Content-Type': 'text/plain'\n    })\n    .send(\"<file contents here>\")\n    .end(function (res) { \n        if (res.error) throw new Error(res.error); \n        console.log(res.raw_body);\n    });\n"
+          "source" : "var unirest = require('unirest');\nvar req = unirest('PUT', 'https://<TENANT_DOMAIN>/event/events/<ID>/binaries')\n    .headers({\n        'Authorization': 'Basic <AUTHORIZATION>',\n        'Accept': 'application/json',\n        'Content-Type': 'text/plain'\n    })\n    .send(\"<file contents here>\")\n    .end(function (res) { \n        if (res.error) throw new Error(res.error); \n        console.log(res.raw_body);\n    });\n"
         }, {
           "lang" : "Python",
-          "source" : "import requests\n\nurl = \"PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries\"\npayload = \"<file contents here>\"\nheaders = {\n  'Authorization': 'Basic <AUTHORIZATION>',\n  'Accept': 'application/json',\n  'Content-Type': 'text/plain'\n}\nresponse = requests.request(\"PUT\", url, headers=headers, data = payload)\nprint(response.text.encode('utf8'))\n"
+          "source" : "import requests\n\nurl = \"https://<TENANT_DOMAIN>/event/events/<ID>/binaries\"\npayload = \"<file contents here>\"\nheaders = {\n  'Authorization': 'Basic <AUTHORIZATION>',\n  'Accept': 'application/json',\n  'Content-Type': 'text/plain'\n}\nresponse = requests.request(\"PUT\", url, headers=headers, data = payload)\nprint(response.text.encode('utf8'))\n"
         } ]
       },
       "delete" : {
@@ -1028,19 +1028,19 @@
         },
         "x-code-samples" : [ {
           "lang" : "cURL",
-          "source" : "curl --location --request DELETE 'PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries' \\\n--header 'Authorization: Basic <AUTHORIZATION>'\n"
+          "source" : "curl --location --request DELETE 'https://<TENANT_DOMAIN>/event/events/<ID>/binaries' \\\n--header 'Authorization: Basic <AUTHORIZATION>'\n"
         }, {
           "lang" : "C#",
-          "source" : "var client = new RestClient(\"PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries\");\nclient.Timeout = -1;\n\nvar request = new RestRequest(Method.DELETE);\nrequest.AddHeader(\"Authorization\", \"Basic <AUTHORIZATION>\");\n\nIRestResponse response = client.Execute(request);\nConsole.WriteLine(response.Content);\n"
+          "source" : "var client = new RestClient(\"https://<TENANT_DOMAIN>/event/events/<ID>/binaries\");\nclient.Timeout = -1;\n\nvar request = new RestRequest(Method.DELETE);\nrequest.AddHeader(\"Authorization\", \"Basic <AUTHORIZATION>\");\n\nIRestResponse response = client.Execute(request);\nConsole.WriteLine(response.Content);\n"
         }, {
           "lang" : "Java",
-          "source" : "Unirest.setTimeouts(0, 0);\nHttpResponse<String> response = Unirest.delete(\"PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries\")\n    .header(\"Authorization\", \"Basic <AUTHORIZATION>\").asString();\n"
+          "source" : "Unirest.setTimeouts(0, 0);\nHttpResponse<String> response = Unirest.delete(\"https://<TENANT_DOMAIN>/event/events/<ID>/binaries\")\n    .header(\"Authorization\", \"Basic <AUTHORIZATION>\").asString();\n"
         }, {
           "lang" : "Node.js",
-          "source" : "var unirest = require('unirest');\nvar req = unirest('DELETE', 'PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries')\n    .headers({\n        'Authorization': 'Basic <AUTHORIZATION>'\n    })\n    .end(function (res) { \n        if (res.error) throw new Error(res.error); \n        console.log(res.raw_body);\n    });\n"
+          "source" : "var unirest = require('unirest');\nvar req = unirest('DELETE', 'https://<TENANT_DOMAIN>/event/events/<ID>/binaries')\n    .headers({\n        'Authorization': 'Basic <AUTHORIZATION>'\n    })\n    .end(function (res) { \n        if (res.error) throw new Error(res.error); \n        console.log(res.raw_body);\n    });\n"
         }, {
           "lang" : "Python",
-          "source" : "import requests\n\nurl = \"PROTOCOL://TENANT_DOMAIN/event/events/<ID>/binaries\"\npayload = {}\nheaders = {\n  'Authorization': 'Basic <AUTHORIZATION>'\n}\nresponse = requests.request(\"DELETE\", url, headers=headers, data = payload)\nprint(response.text.encode('utf8'))\n"
+          "source" : "import requests\n\nurl = \"https://<TENANT_DOMAIN>/event/events/<ID>/binaries\"\npayload = {}\nheaders = {\n  'Authorization': 'Basic <AUTHORIZATION>'\n}\nresponse = requests.request(\"DELETE\", url, headers=headers, data = payload)\nprint(response.text.encode('utf8'))\n"
         } ]
       }
     },
@@ -1068,23 +1068,23 @@
                       "allOf" : [ {
                         "$ref" : "#/components/x-descriptions/desc_self"
                       }, {
-                        "example" : "PROTOCOL://TENANT_DOMAIN/inventory"
+                        "example" : "https://<TENANT_DOMAIN>/inventory"
                       } ]
                     },
                     "managedObjectsForFragmentType" : {
                       "description" : "Read-only collection of all managed objects with a particular fragment type or capability (placeholder {fragmentType}).",
                       "type" : "string",
-                      "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects?fragmentType={fragmentType}"
+                      "example" : "https://<TENANT_DOMAIN>/inventory/managedObjects?fragmentType={fragmentType}"
                     },
                     "managedObjectsForType" : {
                       "description" : "Read-only collection of all managed objects of a particular type (placeholder {type}).",
                       "type" : "string",
-                      "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects?type={type}"
+                      "example" : "https://<TENANT_DOMAIN>/inventory/managedObjects?type={type}"
                     },
                     "managedObjectsForListOfIds" : {
                       "description" : "Read-only collection of managed objects fetched for a given list of ids, e.g. “ids=41,43,68”.",
                       "type" : "string",
-                      "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects?ids={ids}"
+                      "example" : "https://<TENANT_DOMAIN>/inventory/managedObjects?ids={ids}"
                     },
                     "managedObjects" : {
                       "description" : "Collection of all managed objects",
@@ -1094,7 +1094,7 @@
                           "allOf" : [ {
                             "$ref" : "#/components/x-descriptions/desc_self"
                           }, {
-                            "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects"
+                            "example" : "https://<TENANT_DOMAIN>/inventory/managedObjects"
                           } ]
                         },
                         "references" : {
@@ -1178,7 +1178,7 @@
                       "allOf" : [ {
                         "$ref" : "#/components/x-descriptions/desc_self"
                       }, {
-                        "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}"
+                        "example" : "https://<TENANT_DOMAIN>/inventory/managedObjects/{id}"
                       } ]
                     },
                     "creationTime" : {
@@ -1529,21 +1529,21 @@
                       "allOf" : [ {
                         "$ref" : "#/components/x-descriptions/desc_prevPage"
                       }, {
-                        "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childAdditions?pageSize=5&currentPage=1"
+                        "example" : "https://<TENANT_DOMAIN>/inventory/managedObjects/{id}/childAdditions?pageSize=5&currentPage=1"
                       } ]
                     },
                     "self" : {
                       "allOf" : [ {
                         "$ref" : "#/components/x-descriptions/desc_self"
                       }, {
-                        "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childAdditions?pageSize=5&currentPage=2"
+                        "example" : "https://<TENANT_DOMAIN>/inventory/managedObjects/{id}/childAdditions?pageSize=5&currentPage=2"
                       } ]
                     },
                     "next" : {
                       "allOf" : [ {
                         "$ref" : "#/components/x-descriptions/desc_nextPage"
                       }, {
-                        "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childAdditions?pageSize=5&currentPage=3"
+                        "example" : "https://<TENANT_DOMAIN>/inventory/managedObjects/{id}/childAdditions?pageSize=5&currentPage=3"
                       } ]
                     },
                     "references" : {
@@ -1610,7 +1610,7 @@
                       "allOf" : [ {
                         "$ref" : "#/components/x-descriptions/desc_self"
                       }, {
-                        "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childAdditions/{childId}"
+                        "example" : "https://<TENANT_DOMAIN>/inventory/managedObjects/{id}/childAdditions/{childId}"
                       } ]
                     }
                   }
@@ -1741,7 +1741,7 @@
                       "allOf" : [ {
                         "$ref" : "#/components/x-descriptions/desc_self"
                       }, {
-                        "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childAssets"
+                        "example" : "https://<TENANT_DOMAIN>/inventory/managedObjects/{id}/childAssets"
                       } ]
                     },
                     "references" : {
@@ -1810,7 +1810,7 @@
                       "allOf" : [ {
                         "$ref" : "#/components/x-descriptions/desc_self"
                       }, {
-                        "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childAssets/{childId}"
+                        "example" : "https://<TENANT_DOMAIN>/inventory/managedObjects/{id}/childAssets/{childId}"
                       } ]
                     }
                   }
@@ -1941,21 +1941,21 @@
                       "allOf" : [ {
                         "$ref" : "#/components/x-descriptions/desc_prevPage"
                       }, {
-                        "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childDevices?pageSize=5&currentPage=1"
+                        "example" : "https://<TENANT_DOMAIN>/inventory/managedObjects/{id}/childDevices?pageSize=5&currentPage=1"
                       } ]
                     },
                     "self" : {
                       "allOf" : [ {
                         "$ref" : "#/components/x-descriptions/desc_self"
                       }, {
-                        "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childDevices?pageSize=5&currentPage=2"
+                        "example" : "https://<TENANT_DOMAIN>/inventory/managedObjects/{id}/childDevices?pageSize=5&currentPage=2"
                       } ]
                     },
                     "next" : {
                       "allOf" : [ {
                         "$ref" : "#/components/x-descriptions/desc_nextPage"
                       }, {
-                        "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childDevices?pageSize=5&currentPage=3"
+                        "example" : "https://<TENANT_DOMAIN>/inventory/managedObjects/{id}/childDevices?pageSize=5&currentPage=3"
                       } ]
                     },
                     "references" : {
@@ -2022,7 +2022,7 @@
                       "allOf" : [ {
                         "$ref" : "#/components/x-descriptions/desc_self"
                       }, {
-                        "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childDevices/{childId}"
+                        "example" : "https://<TENANT_DOMAIN>/inventory/managedObjects/{id}/childDevices/{childId}"
                       } ]
                     }
                   }
@@ -2192,7 +2192,7 @@
                       "allOf" : [ {
                         "$ref" : "#/components/x-descriptions/desc_self"
                       }, {
-                        "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/user"
+                        "example" : "https://<TENANT_DOMAIN>/inventory/managedObjects/{id}/user"
                       } ]
                     },
                     "userName" : {
@@ -2244,7 +2244,7 @@
                       "allOf" : [ {
                         "$ref" : "#/components/x-descriptions/desc_self"
                       }, {
-                        "example" : "PROTOCOL://TENANT_DOMAIN/measurement"
+                        "example" : "https://<TENANT_DOMAIN>/measurement"
                       } ]
                     },
                     "measurements" : {
@@ -2255,7 +2255,7 @@
                           "allOf" : [ {
                             "$ref" : "#/components/x-descriptions/desc_self"
                           }, {
-                            "example" : "PROTOCOL://TENANT_DOMAIN/measurement/measurements"
+                            "example" : "https://<TENANT_DOMAIN>/measurement/measurements"
                           } ]
                         },
                         "measurements" : {
@@ -2269,32 +2269,32 @@
                     "measurementsForSource" : {
                       "description" : "Read-only collection of all measurements for a specific source object. The placeholder {source} must be a unique ID of an object in the inventory.",
                       "type" : "string",
-                      "example" : "PROTOCOL://TENANT_DOMAIN/measurement/measurements?source={source}"
+                      "example" : "https://<TENANT_DOMAIN>/measurement/measurements?source={source}"
                     },
                     "measurementsForSourceAndType" : {
                       "description" : "Read-only collection of all measurements of a particular type and a specific source object.",
                       "type" : "string",
-                      "example" : "PROTOCOL://TENANT_DOMAIN/measurement/measurements?source={source}&type={type}"
+                      "example" : "https://<TENANT_DOMAIN>/measurement/measurements?source={source}&type={type}"
                     },
                     "measurementsForType" : {
                       "description" : "Read-only collection of all measurements of a particular type.",
                       "type" : "string",
-                      "example" : "PROTOCOL://TENANT_DOMAIN/measurement/measurements?type={type}"
+                      "example" : "https://<TENANT_DOMAIN>/measurement/measurements?type={type}"
                     },
                     "measurementsForValueFragmentType" : {
                       "description" : "Read-only collection of all measurements containing a particular fragment type.",
                       "type" : "string",
-                      "example" : "PROTOCOL://TENANT_DOMAIN/measurement/measurements?valueFragmentType={valueFragmentType}"
+                      "example" : "https://<TENANT_DOMAIN>/measurement/measurements?valueFragmentType={valueFragmentType}"
                     },
                     "measurementsForDate" : {
                       "description" : "Read-only collection of all measurements for a particular time range.",
                       "type" : "string",
-                      "example" : "PROTOCOL://TENANT_DOMAIN/measurement/measurements?dateFrom={dateFrom}&dateTo={dateTo}"
+                      "example" : "https://<TENANT_DOMAIN>/measurement/measurements?dateFrom={dateFrom}&dateTo={dateTo}"
                     },
                     "measurementsForSourceAndDate" : {
                       "description" : "Read-only collection of all measurements for a specific source object in a particular time range.",
                       "type" : "string",
-                      "example" : "PROTOCOL://TENANT_DOMAIN/measurement/measurements?source={source}&dateFrom={dateFrom}&dateTo={dateTo}"
+                      "example" : "https://<TENANT_DOMAIN>/measurement/measurements?source={source}&dateFrom={dateFrom}&dateTo={dateTo}"
                     }
                   }
                 }
@@ -3084,21 +3084,21 @@
                   "allOf" : [ {
                     "$ref" : "#/components/x-descriptions/desc_prevPage"
                   }, {
-                    "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects?pageSize=5&currentPage=1"
+                    "example" : "https://<TENANT_DOMAIN>/inventory/managedObjects?pageSize=5&currentPage=1"
                   } ]
                 },
                 "self" : {
                   "allOf" : [ {
                     "$ref" : "#/components/x-descriptions/desc_self"
                   }, {
-                    "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects?pageSize=5&currentPage=2"
+                    "example" : "https://<TENANT_DOMAIN>/inventory/managedObjects?pageSize=5&currentPage=2"
                   } ]
                 },
                 "next" : {
                   "allOf" : [ {
                     "$ref" : "#/components/x-descriptions/desc_nextPage"
                   }, {
-                    "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects?pageSize=5&currentPage=3"
+                    "example" : "https://<TENANT_DOMAIN>/inventory/managedObjects?pageSize=5&currentPage=3"
                   } ]
                 },
                 "statistics" : {
@@ -3177,21 +3177,21 @@
                   "allOf" : [ {
                     "$ref" : "#/components/x-descriptions/desc_prevPage"
                   }, {
-                    "example" : "PROTOCOL://TENANT_DOMAIN/alarm/alarms?pageSize=5&currentPage=1"
+                    "example" : "https://<TENANT_DOMAIN>/alarm/alarms?pageSize=5&currentPage=1"
                   } ]
                 },
                 "self" : {
                   "allOf" : [ {
                     "$ref" : "#/components/x-descriptions/desc_self"
                   }, {
-                    "example" : "PROTOCOL://TENANT_DOMAIN/alarm/alarms?pageSize=5&currentPage=2"
+                    "example" : "https://<TENANT_DOMAIN>/alarm/alarms?pageSize=5&currentPage=2"
                   } ]
                 },
                 "next" : {
                   "allOf" : [ {
                     "$ref" : "#/components/x-descriptions/desc_nextPage"
                   }, {
-                    "example" : "PROTOCOL://TENANT_DOMAIN/alarm/alarms?pageSize=5&currentPage=3"
+                    "example" : "https://<TENANT_DOMAIN>/alarm/alarms?pageSize=5&currentPage=3"
                   } ]
                 },
                 "statistics" : {
@@ -3266,21 +3266,21 @@
                   "allOf" : [ {
                     "$ref" : "#/components/x-descriptions/desc_prevPage"
                   }, {
-                    "example" : "PROTOCOL://TENANT_DOMAIN/event/events?pageSize=5&currentPage=1"
+                    "example" : "https://<TENANT_DOMAIN>/event/events?pageSize=5&currentPage=1"
                   } ]
                 },
                 "self" : {
                   "allOf" : [ {
                     "$ref" : "#/components/x-descriptions/desc_self"
                   }, {
-                    "example" : "PROTOCOL://TENANT_DOMAIN/event/events?pageSize=5&currentPage=2"
+                    "example" : "https://<TENANT_DOMAIN>/event/events?pageSize=5&currentPage=2"
                   } ]
                 },
                 "next" : {
                   "allOf" : [ {
                     "$ref" : "#/components/x-descriptions/desc_nextPage"
                   }, {
-                    "example" : "PROTOCOL://TENANT_DOMAIN/event/events?pageSize=5&currentPage=3"
+                    "example" : "https://<TENANT_DOMAIN>/event/events?pageSize=5&currentPage=3"
                   } ]
                 },
                 "statistics" : {
@@ -3355,21 +3355,21 @@
                   "allOf" : [ {
                     "$ref" : "#/components/x-descriptions/desc_prevPage"
                   }, {
-                    "example" : "PROTOCOL://TENANT_DOMAIN/measurement/measurements?pageSize=5&currentPage=1"
+                    "example" : "https://<TENANT_DOMAIN>/measurement/measurements?pageSize=5&currentPage=1"
                   } ]
                 },
                 "self" : {
                   "allOf" : [ {
                     "$ref" : "#/components/x-descriptions/desc_self"
                   }, {
-                    "example" : "PROTOCOL://TENANT_DOMAIN/measurement/measurements?pageSize=5&currentPage=2"
+                    "example" : "https://<TENANT_DOMAIN>/measurement/measurements?pageSize=5&currentPage=2"
                   } ]
                 },
                 "next" : {
                   "allOf" : [ {
                     "$ref" : "#/components/x-descriptions/desc_nextPage"
                   }, {
-                    "example" : "PROTOCOL://TENANT_DOMAIN/measurement/measurements?pageSize=5&currentPage=3"
+                    "example" : "https://<TENANT_DOMAIN>/measurement/measurements?pageSize=5&currentPage=3"
                   } ]
                 },
                 "statistics" : {
@@ -3783,7 +3783,7 @@
             "allOf" : [ {
               "$ref" : "#/components/x-descriptions/desc_self"
             }, {
-              "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}"
+              "example" : "https://<TENANT_DOMAIN>/inventory/managedObjects/{id}"
             } ]
           },
           "name" : {
@@ -3879,7 +3879,7 @@
           "self" : {
             "description" : "Link to this resource's asset parent objects.",
             "type" : "string",
-            "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/assetParents"
+            "example" : "https://<TENANT_DOMAIN>/inventory/managedObjects/{id}/assetParents"
           },
           "references" : {
             "description" : "An array with the references to asset parent objects.",
@@ -3896,7 +3896,7 @@
           "self" : {
             "description" : "Link to this resource's child additions.",
             "type" : "string",
-            "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childAdditions"
+            "example" : "https://<TENANT_DOMAIN>/inventory/managedObjects/{id}/childAdditions"
           },
           "references" : {
             "description" : "An array with the references to child devices.",
@@ -3913,7 +3913,7 @@
           "self" : {
             "description" : "Link to this resource's child assets.",
             "type" : "string",
-            "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childAssets"
+            "example" : "https://<TENANT_DOMAIN>/inventory/managedObjects/{id}/childAssets"
           },
           "references" : {
             "description" : "An array with the references to child assets.",
@@ -3930,7 +3930,7 @@
           "self" : {
             "description" : "Link to this resource's child devices.",
             "type" : "string",
-            "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/childDevices"
+            "example" : "https://<TENANT_DOMAIN>/inventory/managedObjects/{id}/childDevices"
           },
           "references" : {
             "description" : "An array with the references to child devices.",
@@ -3947,7 +3947,7 @@
           "self" : {
             "description" : "Link to this resource's parent objects.",
             "type" : "string",
-            "example" : "PROTOCOL://TENANT_DOMAIN/inventory/managedObjects/{id}/deviceParents"
+            "example" : "https://<TENANT_DOMAIN>/inventory/managedObjects/{id}/deviceParents"
           },
           "references" : {
             "description" : "An array with the references to parent objects.",
