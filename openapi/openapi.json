@@ -8,7 +8,7 @@
       "backgroundColor" : "#F8F8F8",
       "altText" : "Cumulocity IoT"
     },
-    "description" : "# Introduction\n\nStandard OpenAPI specification, language-agnostic interface to the Cumulocity IoT RESTful API which allows – both humans and computers – to discover and understand the capabilities of the platform.\n\nCumulocity IoT uses HTTP and REST, which is today the most widely used interfacing technology and which works on any Internet-connected device ranging from small embedded microcontrollers up to desktop PCs. The secure variant, HTTPS, is used for the most security critical applications and will give you the best possible security.\n\nRegardless the communication originates from IoT devices, web applications or from back-office IT systems, Cumulocity IoT employs the protocol REST for all external communication. Our API has predictable resource-oriented URLs, accepts form-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication and verbs.\n\n### Just Getting Started?\n\nCumulocity IoT exposes its complete functionality through programming interfaces; this means that all of Cumulocity IoT’s functionality is available for you to use in different contexts outside of what the platform directly provides - in your own applications, in your own devices. Cumulocity IoT gives you very fast visibility and control over your remote assets, be these houses, cars, machines or any other assets that you want to manage.\n\nCheck out <a href=\"https://cumulocity.com/guides/concepts/introduction/\" target=\"_new\">our online guides</a> to learn more about the platform.\n\n# Authentication\n\nWhen you sign up for an account on the [Cumulocity IoT platform](https://cumulocity.com/), for example by using a free trial, you will be provided with a dedicated URL address for your tenant. All requests to the platform have to be authenticated employing your tenant ID, Cumulocity IoT user (c8yuser for short) and password. Cumulocity IoT offers the following forms of authentication:\n\n<ul><li>Basic authentication</li>\n<li>JWT token authentication</li>\n<li>OAuth authentication code grant</li></ul>\n\n# Response Codes\n\nCumulocity IoT uses conventional HTTP response codes to indicate the success or failure of an API request. Codes in the `2xx` range indicate success. Codes in the `4xx` range indicate an error that failed given the information provided (e.g., a required parameter was omitted). Codes in the `5xx` range indicate an error with Cumulocity IoT's servers ([these are very rare](https://www.softwareag.cloud/site/sla/cumulocity-iot.html#/)).\n\n### HTTP status code summary\n\n|Code|Description|\n|--- |--- |\n|200 - OK|Everything worked as expected.|\n|201 - Created|A managed object was created successfully.|\n|204 - No content|A managed object was deleted successfully.|\n|400 - Bad Request|The request was unacceptable, often due to missing a required parameter.|\n|401 - Unauthorized|Authentication has failed, or credentials were required but not provided..|\n|403 - Forbidden|The authenticated user doesn't have permissions to perform the request.|\n|404 - Not Found|The requested resource doesn't exist.|\n|405 - Method not allowed|The employed HTTP method cannot be used on this resource (e.g., using PUT on a read-only resource).|\n|422 - Invalid data|Invalid data was sent on the request and/or a query could not be understood.|\n|422 - Unprocessable Entity|The requested resource cannot be updated or mandatory fields are missing on the executed operation.|\n|500, 503 - Server Errors|Something went wrong on Cumulocity IoT's end.|\n",
+    "description" : "# Introduction\n\nStandard OpenAPI specification, language-agnostic interface to the Cumulocity IoT RESTful API which allows – both humans and computers – to discover and understand the capabilities of the platform.\n\nCumulocity IoT uses HTTP and REST, which is today the most widely used interfacing technology and which works on any Internet-connected device ranging from small embedded microcontrollers up to desktop PCs. The secure variant, HTTPS, is used for the most security critical applications and will give you the best possible security.\n\nRegardless the communication originates from IoT devices, web applications or from back-office IT systems, Cumulocity IoT employs the protocol REST for all external communication. Our API has predictable resource-oriented URLs, accepts form-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication and verbs.\n\n### Just Getting Started?\n\nCumulocity IoT exposes its complete functionality through programming interfaces; this means that all of Cumulocity IoT’s functionality is available for you to use in different contexts outside of what the platform directly provides - in your own applications, in your own devices. Cumulocity IoT gives you very fast visibility and control over your remote assets, be these houses, cars, machines or any other assets that you want to manage.\n\nCheck out <a href=\"https://cumulocity.com/guides/concepts/introduction/\" target=\"_new\">our online guides</a> to learn more about the platform.\n\n# Authentication\n\nWhen you sign up for an account on the [Cumulocity IoT platform](https://cumulocity.com/), for example by using a free trial, you will be provided with a dedicated URL address for your tenant. All requests to the platform have to be authenticated employing your tenant ID, Cumulocity IoT user (c8yuser for short) and password. Cumulocity IoT offers the following forms of authentication:\n\n<ul><li>Basic authentication</li>\n<li>JWT token authentication</li>\n<li>OAuth authentication code grant</li></ul>\n\n# Response Codes\n\nCumulocity IoT uses conventional HTTP response codes to indicate the success or failure of an API request. Codes in the `2xx` range indicate success. Codes in the `4xx` range indicate an error that failed given the information provided (e.g., a required parameter was omitted). Codes in the `5xx` range indicate an error with Cumulocity IoT's servers ([these are very rare](https://www.softwareag.cloud/site/sla/cumulocity-iot.html#availability)).\n\n### HTTP status code summary\n\n|Code|Message|Description|\n|:---:|:---|:---|\n|200|OK|Everything worked as expected.|\n|201|Created|A managed object was created successfully.|\n|204|No content|A managed object was deleted successfully.|\n|400|Bad Request|The request was unacceptable, often due to missing a required parameter.|\n|401|Unauthorized|Authentication has failed, or credentials were required but not provided..|\n|403|Forbidden|The authenticated user doesn't have permissions to perform the request.|\n|404|Not Found|The requested resource doesn't exist.|\n|405|Method not allowed|The employed HTTP method cannot be used on this resource (e.g., using PUT on a read-only resource).|\n|422|Invalid data|Invalid data was sent on the request and/or a query could not be understood.|\n|422|Unprocessable Entity|The requested resource cannot be updated or mandatory fields are missing on the executed operation.|\n|500<br>503|Server Errors|Something went wrong on Cumulocity IoT's end.|\n",
     "contact" : {
       "name" : "Cumulocity IoT",
       "url" : "https://www.cumulocity.com",
@@ -29,6 +29,8 @@
   } ],
   "security" : [ {
     "BasicAuthentication" : [ ]
+  }, {
+    "OAuth2Authentication" : [ ]
   }, {
     "JWTAuthentication" : [ ]
   } ],
@@ -88,13 +90,15 @@
   "paths" : {
     "/alarm" : {
       "get" : {
+        "operationId" : "getAlarmApi",
         "tags" : [ "Alarm API" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Retrieve URIs to collections of alarms",
-        "operationId" : "getAlarmApi",
-        "description" : "Retrieve URIs and URI templates to collections of alarms.\n\nRequired roles: **ROLE_ALARM_READ**\n",
+        "description" : "Retrieve URIs and URI templates to collections of alarms.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_ALARM_READ\n</div></div>\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the URIs are sent in the response.",
@@ -178,13 +182,15 @@
     },
     "/alarm/alarms" : {
       "post" : {
+        "operationId" : "postAlarmCollectionResource",
         "tags" : [ "Alarms" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Create an alarm",
-        "operationId" : "postAlarmCollectionResource",
-        "description" : "An alarm must be associated to a source (managed object) identified by ID.<br>\nIn general, each alarm may consist of:\n\n*   A status showing whether the alarm is ACTIVE, ACKNOWLEDGED or CLEARED.\n*   A time stamp to indicate when the alarm was last updated.\n*   The severity of the alarm: CRITICAL, MAJOR, MINOR or WARNING.\n*   A history of changes to the event in form of audit logs.\n\nRequired roles: **ROLE_ALARM_ADMIN** or **owner of the source**\n",
+        "description" : "An alarm must be associated to a source (managed object) identified by ID.<br>\nIn general, each alarm may consist of:\n\n*   A status showing whether the alarm is ACTIVE, ACKNOWLEDGED or CLEARED.\n*   A time stamp to indicate when the alarm was last updated.\n*   The severity of the alarm: CRITICAL, MAJOR, MINOR or WARNING.\n*   A history of changes to the event in form of audit logs.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_ALARM_ADMIN <b>OR</b> owner of the source\n</div></div>\n",
         "requestBody" : {
           "required" : true,
           "content" : {
@@ -276,6 +282,7 @@
         } ]
       },
       "get" : {
+        "operationId" : "getAlarmCollectionResource",
         "parameters" : [ {
           "$ref" : "#/components/parameters/queryParam_alarm_dateFrom"
         }, {
@@ -300,10 +307,11 @@
         "tags" : [ "Alarms" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Retrieve all alarms",
-        "operationId" : "getAlarmCollectionResource",
-        "description" : "Retrieve all alarms on your tenant.\n\nRequired roles: **ROLE_ALARM_READ**\n",
+        "description" : "Retrieve all alarms on your tenant.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_ALARM_READ\n</div></div>\n",
         "responses" : {
           "200" : {
             "$ref" : "#/components/responses/alarmCollectionFound"
@@ -314,13 +322,15 @@
         }
       },
       "put" : {
+        "operationId" : "putAlarmCollectionResource",
         "tags" : [ "Alarms" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Update alarm collections",
-        "operationId" : "putAlarmCollectionResource",
-        "description" : "Update alarm collections specified by query parameters. At least one query parameter is required to avoid accidentally updating all existing alarms.<br>\nCurrently, only the status of alarms can be modified.\n\n> **Info:** Since this operation can take considerable time, the request returns after maximum 0.5 seconds of processing, and the update operation continues as a background process in the platform.\n\nRequired roles: **ROLE_ALARM_ADMIN**\n",
+        "description" : "Update alarm collections specified by query parameters. At least one query parameter is required to avoid accidentally updating all existing alarms.<br>\nCurrently, only the status of alarms can be modified.\n\n> **Info:** Since this operation can take considerable time, the request returns after maximum 0.5 seconds of processing, and the update operation continues as a background process in the platform.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_ALARM_ADMIN\n</div></div>\n",
         "requestBody" : {
           "required" : true,
           "content" : {
@@ -362,6 +372,7 @@
         }
       },
       "delete" : {
+        "operationId" : "deleteAlarmCollectionResource",
         "parameters" : [ {
           "$ref" : "#/components/parameters/queryParam_alarm_dateFrom"
         }, {
@@ -380,10 +391,11 @@
         "tags" : [ "Alarms" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Remove alarm collections",
-        "operationId" : "deleteAlarmCollectionResource",
-        "description" : "Remove alarm collections specified by query parameters.\n\n> **⚠️ Important:** Note that it is possible to call this endpoint without providing any parameter - it will result in deleting all alarms and it is not recommended.\n\nRequired roles: **ROLE_ALARM_ADMIN**\n",
+        "description" : "Remove alarm collections specified by query parameters.\n\n> **⚠️ Important:** Note that it is possible to call this endpoint without providing any parameter - it will result in deleting all alarms and it is not recommended.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_ALARM_ADMIN\n</div></div>\n",
         "responses" : {
           "204" : {
             "description" : "A collection of alarms was deleted successfully.",
@@ -404,13 +416,15 @@
         "$ref" : "#/components/parameters/alarmId"
       } ],
       "get" : {
+        "operationId" : "getAlarmResource",
         "tags" : [ "Alarms" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Retrieve a specific alarm",
-        "operationId" : "getAlarmResource",
-        "description" : "Retrieve a specific alarm by a given ID.\n\nRequired roles: **ROLE_ALARM_READ**\n",
+        "description" : "Retrieve a specific alarm by a given ID.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_ALARM_READ\n</div></div>\n",
         "responses" : {
           "200" : {
             "$ref" : "#/components/responses/alarmFound"
@@ -424,13 +438,15 @@
         }
       },
       "put" : {
+        "operationId" : "putAlarmResource",
         "tags" : [ "Alarms" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Update a specific alarm",
-        "operationId" : "putAlarmResource",
-        "description" : "Update a specific alarm by a given ID.\nOnly text, status, severity and custom properties can be modified. Non-modifiable properties will be ignored when provided in the request body.\n\nRequired roles: **ROLE_ALARM_ADMIN** or **owner of the source**\n",
+        "description" : "Update a specific alarm by a given ID.\nOnly text, status, severity and custom properties can be modified. Non-modifiable properties will be ignored when provided in the request body.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_ALARM_ADMIN <b>OR</b> owner of the source\n</div></div>\n",
         "requestBody" : {
           "required" : true,
           "content" : {
@@ -468,13 +484,15 @@
         }
       },
       "delete" : {
+        "operationId" : "deleteAlarmResource",
         "tags" : [ "Alarms" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Remove a specific alarm",
-        "operationId" : "deleteAlarmResource",
-        "description" : "Remove a specific alarm by a given ID.\n\nRequired roles: **ROLE_ALARM_ADMIN** or **owner of the source**\n",
+        "description" : "Remove a specific alarm by a given ID.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_ALARM_ADMIN <b>OR</b> owner of the source\n</div></div>\n",
         "responses" : {
           "204" : {
             "description" : "An alarm was deleted successfully.",
@@ -495,13 +513,15 @@
     },
     "/alarm/alarms/count" : {
       "get" : {
+        "operationId" : "getAlarmsCount",
         "tags" : [ "Alarms" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Retrieve the total number of alarms",
-        "operationId" : "getAlarmsCount",
-        "description" : "Count the total number of all active alarms on your tenant.\n\nRequired roles: **ROLE_ALARM_READ**\n",
+        "description" : "Count the total number of all active alarms on your tenant.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_ALARM_READ\n</div></div>\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the total number of alarms is sent in the response.",
@@ -515,13 +535,15 @@
     },
     "/event" : {
       "get" : {
+        "operationId" : "getEventApi",
         "tags" : [ "Event API" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Retrieve URIs to collections of events",
-        "operationId" : "getEventApi",
-        "description" : "Retrieve URIs and URI templates to collections of events.\n\nRequired roles: **ROLE_EVENT_READ**\n",
+        "description" : "Retrieve URIs and URI templates to collections of events.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_EVENT_READ\n</div></div>\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the URIs are sent in the response.",
@@ -600,13 +622,15 @@
     },
     "/event/events" : {
       "post" : {
+        "operationId" : "postEvent",
         "tags" : [ "Events" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Create an event",
-        "operationId" : "postEvent",
-        "description" : "An event must be associated to a source (managed object) identified by ID.<br>\nIn general, each event may consist of:\n\n*  A type to identify the nature of the event.\n*  A time stamp to indicate when the event was last updated.\n*  A description of the event.\n*  The managed object which originated the event.\n\nRequired roles: **ROLE_EVENT_ADMIN** or **owner of the source**\n",
+        "description" : "An event must be associated to a source (managed object) identified by ID.<br>\nIn general, each event may consist of:\n\n*  A type to identify the nature of the event.\n*  A time stamp to indicate when the event was last updated.\n*  A description of the event.\n*  The managed object which originated the event.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_EVENT_ADMIN <b>OR</b> owner of the source\n</div></div>\n",
         "requestBody" : {
           "required" : true,
           "content" : {
@@ -668,6 +692,7 @@
         }
       },
       "get" : {
+        "operationId" : "getEvents",
         "parameters" : [ {
           "$ref" : "#/components/parameters/queryParam_event_dateFrom"
         }, {
@@ -688,10 +713,11 @@
         "tags" : [ "Events" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Retrieve all events",
-        "operationId" : "getEvents",
-        "description" : "Retrieve all events on your tenant.\n\nRequired roles: **ROLE_EVENT_READ**\n",
+        "description" : "Retrieve all events on your tenant.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_EVENT_READ\n</div></div>\n",
         "responses" : {
           "200" : {
             "$ref" : "#/components/responses/eventCollectionFound"
@@ -702,6 +728,7 @@
         }
       },
       "delete" : {
+        "operationId" : "deleteEvent",
         "parameters" : [ {
           "$ref" : "#/components/parameters/queryParam_event_dateFrom"
         }, {
@@ -716,10 +743,11 @@
         "tags" : [ "Events" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Remove event collections",
-        "operationId" : "deleteEvent",
-        "description" : "Remove event collections specified by query parameters.\n\n> **⚠️ Important:** Note that it is possible to call this endpoint without providing any parameter - it will result in deleting all events and it is not recommended.\n\nRequired roles: **ROLE_EVENT_ADMIN**\n",
+        "description" : "Remove event collections specified by query parameters.\n\n> **⚠️ Important:** Note that it is possible to call this endpoint without providing any parameter - it will result in deleting all events and it is not recommended.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_EVENT_ADMIN\n</div></div>\n",
         "responses" : {
           "204" : {
             "description" : "A collection of events was deleted successfully.",
@@ -740,13 +768,15 @@
         "$ref" : "#/components/parameters/eventId"
       } ],
       "get" : {
+        "operationId" : "getEventById",
         "tags" : [ "Events" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Retrieve a specific event",
-        "operationId" : "getEventById",
-        "description" : "Retrieve a specific event by a given ID.\n\nRequired roles: **ROLE_EVENT_READ**\n",
+        "description" : "Retrieve a specific event by a given ID.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_EVENT_READ\n</div></div>\n",
         "responses" : {
           "200" : {
             "$ref" : "#/components/responses/eventFound"
@@ -760,13 +790,15 @@
         }
       },
       "put" : {
+        "operationId" : "putEventByID",
         "tags" : [ "Events" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Update a specific event",
-        "operationId" : "putEventByID",
-        "description" : "Update a specific event by a given ID.\n\nRequired roles: **ROLE_EVENT_ADMIN** or **owner of the source**\n",
+        "description" : "Update a specific event by a given ID.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_EVENT_ADMIN <b>OR</b> owner of the source\n</div></div>\n",
         "requestBody" : {
           "required" : true,
           "content" : {
@@ -800,13 +832,15 @@
         }
       },
       "delete" : {
+        "operationId" : "deleteEventById",
         "tags" : [ "Events" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Remove a specific event",
-        "operationId" : "deleteEventById",
-        "description" : "Remove a specific event by a given ID.\n\nRequired roles: **ROLE_EVENT_ADMIN** or **owner of the source**\n",
+        "description" : "Remove a specific event by a given ID.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_EVENT_ADMIN <b>OR</b> owner of the source\n</div></div>\n",
         "responses" : {
           "204" : {
             "description" : "An event was deleted successfully.",
@@ -830,13 +864,15 @@
         "$ref" : "#/components/parameters/eventId"
       } ],
       "post" : {
+        "operationId" : "postEventBinary",
         "tags" : [ "Binaries" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Attach a file to a specific event",
-        "operationId" : "postEventBinary",
-        "description" : "Upload a file (binary) as an attachment of a specific event by a given ID.<br>\nThe size of the attachment cannot exceed 50MB.\n\nRequired roles: **ROLE_EVENT_ADMIN**\n",
+        "description" : "Upload a file (binary) as an attachment of a specific event by a given ID.<br>\nThe size of the attachment cannot exceed 50MB.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_EVENT_ADMIN\n</div></div>\n",
         "requestBody" : {
           "required" : true,
           "content" : {
@@ -881,13 +917,15 @@
         } ]
       },
       "get" : {
+        "operationId" : "getEventBinary",
         "tags" : [ "Binaries" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Retrieve the attached file of a specific event",
-        "operationId" : "getEventBinary",
-        "description" : "Retrieve the attached file (binary) of a specific event by a given ID.\n\nRequired roles: **ROLE_EVENT_READ**\n",
+        "description" : "Retrieve the attached file (binary) of a specific event by a given ID.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_EVENT_READ\n</div></div>\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the file is sent in the response.",
@@ -918,13 +956,15 @@
         } ]
       },
       "put" : {
+        "operationId" : "putEventBinary",
         "tags" : [ "Binaries" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Replace the attached file of a specific event",
-        "operationId" : "putEventBinary",
-        "description" : "Upload and replace the attached file (binary) of a specific event by a given ID.<br>\nThe size of the attachment cannot exceed 50MB.\n\nRequired roles: **ROLE_EVENT_ADMIN**\n",
+        "description" : "Upload and replace the attached file (binary) of a specific event by a given ID.<br>\nThe size of the attachment cannot exceed 50MB.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_EVENT_ADMIN\n</div></div>\n",
         "requestBody" : {
           "content" : {
             "plain/text" : {
@@ -965,13 +1005,15 @@
         } ]
       },
       "delete" : {
+        "operationId" : "deleteEventBinary",
         "tags" : [ "Binaries" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Remove the attached file from a specific event",
-        "operationId" : "deleteEventBinary",
-        "description" : "Remove the attached file (binary) from a specific event by a given ID.\n\nRequired roles: **ROLE_EVENT_ADMIN**\n",
+        "description" : "Remove the attached file (binary) from a specific event by a given ID.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_EVENT_ADMIN\n</div></div>\n",
         "responses" : {
           "204" : {
             "description" : "A file was deleted successfully.",
@@ -1004,13 +1046,15 @@
     },
     "/inventory" : {
       "get" : {
+        "operationId" : "getInventoryApi",
         "tags" : [ "Inventory API" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Retrieve URIs to collections of managed objects",
-        "operationId" : "getInventoryApi",
-        "description" : "Retrieve URIs and URI templates to collections of managed objects.\n\nRequired roles: **ROLE_INVENTORY_READ**\n",
+        "description" : "Retrieve URIs and URI templates to collections of managed objects.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_INVENTORY_READ\n</div></div>\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the URIs are sent in the response.",
@@ -1075,13 +1119,15 @@
     },
     "/inventory/managedObjects" : {
       "post" : {
+        "operationId" : "postManagedObject",
         "tags" : [ "Managed Objects" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Create a managed object",
-        "operationId" : "postManagedObject",
-        "description" : "Create a new managed object, e.g. a device with temperature measurements support or a binary switch.<br>\nIn general, each managed object may consist of:\n\n*  A unique identifier that references the object.\n*  The name of the object.\n*  A time stamp showing the last update.\n*  Additional fragments.\n\nImagine, for example, that you want to describe electric meters from different vendors. Depending on the make of the meter, one may have a relay and one may be capable to measure a single phase or three phases (e.g. a three-phase electricity sensor). A fragment `c8y_ThreePhaseElectricitySensor` would identify such electric meter. Devices'  characteristics are identified by storing fragments for each of them.\n\nRequired roles: **ROLE_INVENTORY_ADMIN** or **ROLE_INVENTORY_CREATE**\n",
+        "description" : "Create a new managed object, e.g. a device with temperature measurements support or a binary switch.<br>\nIn general, each managed object may consist of:\n\n*  A unique identifier that references the object.\n*  The name of the object.\n*  A time stamp showing the last update.\n*  Additional fragments.\n\nImagine, for example, that you want to describe electric meters from different vendors. Depending on the make of the meter, one may have a relay and one may be capable to measure a single phase or three phases (e.g. a three-phase electricity sensor). A fragment `c8y_ThreePhaseElectricitySensor` would identify such electric meter. Devices'  characteristics are identified by storing fragments for each of them.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_INVENTORY_ADMIN <b>OR</b> ROLE_INVENTORY_CREATE\n</div></div>\n",
         "requestBody" : {
           "required" : true,
           "content" : {
@@ -1167,6 +1213,7 @@
         }
       },
       "get" : {
+        "operationId" : "getManagedObjects",
         "parameters" : [ {
           "$ref" : "#/components/parameters/queryParam_currentPage"
         }, {
@@ -1185,10 +1232,11 @@
         "tags" : [ "Managed Objects" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Retrieve all managed objects",
-        "operationId" : "getManagedObjects",
-        "description" : "Retrieve all managed objects (e.g. devices, assets, etc.) registered in your tenant.\n\nRequired roles: **ROLE_INVENTORY_READ**\n",
+        "description" : "Retrieve all managed objects (e.g. devices, assets, etc.) registered in your tenant.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_INVENTORY_READ\n</div></div>\n",
         "responses" : {
           "200" : {
             "$ref" : "#/components/responses/inventoryObjectCollectionFound"
@@ -1209,13 +1257,15 @@
         "$ref" : "#/components/parameters/queryParam_query"
       } ],
       "get" : {
+        "operationId" : "getManagedObjectsCount",
         "tags" : [ "Managed Objects" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Retrieve the total number of managed objects",
-        "operationId" : "getManagedObjectsCount",
-        "description" : "Retrieve the total number of managed objects (e.g. devices, assets, etc.) registered in your tenant.\n\nRequired roles: **ROLE_INVENTORY_READ**\n",
+        "description" : "Retrieve the total number of managed objects (e.g. devices, assets, etc.) registered in your tenant.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_INVENTORY_READ\n</div></div>\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the total number of managed objects is sent in the response.",
@@ -1253,6 +1303,7 @@
         "$ref" : "#/components/parameters/managedObjectId"
       } ],
       "get" : {
+        "operationId" : "getManagedObjectById",
         "parameters" : [ {
           "$ref" : "#/components/parameters/queryParam_skipChildrenNames"
         }, {
@@ -1261,10 +1312,11 @@
         "tags" : [ "Managed Objects" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Retrieve a specific managed object",
-        "operationId" : "getManagedObjectById",
-        "description" : "Retrieve a specific managed object (e.g. device, group, template) by a given ID.\n\nRequired roles: **ROLE_INVENTORY_READ**\n",
+        "description" : "Retrieve a specific managed object (e.g. device, group, template) by a given ID.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_INVENTORY_READ\n</div></div>\n",
         "responses" : {
           "200" : {
             "$ref" : "#/components/responses/inventoryObjectFound"
@@ -1278,13 +1330,15 @@
         }
       },
       "put" : {
+        "operationId" : "putManagedObject",
         "tags" : [ "Managed Objects" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Update a specific managed object",
-        "operationId" : "putManagedObject",
-        "description" : "Update a specific managed object (e.g. device) by a given ID.\n\nFor example, if you want to specify that your managed object is a device, you would need to add the fragment `c8y_IsDevice`.\n\nRequired roles: **ROLE_INVENTORY_ADMIN**\n",
+        "description" : "Update a specific managed object (e.g. device) by a given ID.\n\nFor example, if you want to specify that your managed object is a device, you would need to add the fragment `c8y_IsDevice`.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_INVENTORY_ADMIN\n</div></div>\n",
         "requestBody" : {
           "required" : true,
           "content" : {
@@ -1318,13 +1372,15 @@
         }
       },
       "delete" : {
+        "operationId" : "deleteManagedObject",
         "tags" : [ "Managed Objects" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Delete a specific managed object",
-        "operationId" : "deleteManagedObject",
-        "description" : "Delete a specific managed object (e.g. device) by a given ID.\n\nRequired roles: **ROLE_INVENTORY_ADMIN**\n",
+        "description" : "Delete a specific managed object (e.g. device) by a given ID.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_INVENTORY_ADMIN\n</div></div>\n",
         "responses" : {
           "204" : {
             "description" : "A managed object was deleted successfully.",
@@ -1346,13 +1402,15 @@
         "$ref" : "#/components/parameters/queryParam_query"
       } ],
       "get" : {
+        "operationId" : "getManagedObjectAvailability",
         "tags" : [ "Managed Objects" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Retrieve the latest availability date of a specific managed object",
-        "operationId" : "getManagedObjectAvailability",
-        "description" : "Retrieve the date when a specific managed object (by a given ID) sent the last message to Cumulocity IoT.\n\nRequired roles: **ROLE_INVENTORY_READ**\n",
+        "description" : "Retrieve the date when a specific managed object (by a given ID) sent the last message to Cumulocity IoT.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_INVENTORY_READ\n</div></div>\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the date is sent in the response.",
@@ -1391,13 +1449,15 @@
         "$ref" : "#/components/parameters/managedObjectId"
       } ],
       "post" : {
+        "operationId" : "postManagedObjectChildAddition",
         "tags" : [ "Child Operations" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Assign a specific managed object a child addition",
-        "operationId" : "postManagedObjectChildAddition",
-        "description" : "Assign a specific managed object (by a given child ID) as child addition of another managed object (by a given ID).\n\nRequired roles: **ROLE_INVENTORY_ADMIN** or **ROLE_INVENTORY_CREATE**\n",
+        "description" : "Assign a specific managed object (by a given child ID) as child addition of another managed object (by a given ID).\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_INVENTORY_ADMIN <b>OR</b> ROLE_INVENTORY_CREATE\n</div></div>\n",
         "requestBody" : {
           "required" : true,
           "content" : {
@@ -1438,6 +1498,7 @@
         }
       },
       "get" : {
+        "operationId" : "getManagedObjectChildAdditions",
         "parameters" : [ {
           "$ref" : "#/components/parameters/queryParam_currentPage"
         }, {
@@ -1450,10 +1511,11 @@
         "tags" : [ "Child Operations" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Retrieve all child additions of a specific managed object",
-        "operationId" : "getManagedObjectChildAdditions",
-        "description" : "Retrieve all child additions of a specific managed object by a given ID.\n\nRequired roles: **ROLE_INVENTORY_READ**\n",
+        "description" : "Retrieve all child additions of a specific managed object by a given ID.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_INVENTORY_READ\n</div></div>\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and all child additions are sent in the response.",
@@ -1523,13 +1585,15 @@
         "$ref" : "#/components/parameters/managedObjectChildId"
       } ],
       "get" : {
+        "operationId" : "getManagedObjectChildAddition",
         "tags" : [ "Child Operations" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Retrieve a specific child addition of a specific managed object",
-        "operationId" : "getManagedObjectChildAddition",
-        "description" : "Retrieve a specific child addition (by a given child ID) of a specific managed object (by a given ID).\n\nRequired roles: **ROLE_INVENTORY_READ**\n",
+        "description" : "Retrieve a specific child addition (by a given child ID) of a specific managed object (by a given ID).\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_INVENTORY_READ\n</div></div>\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the child addition is sent in the response.",
@@ -1566,13 +1630,15 @@
         }
       },
       "delete" : {
+        "operationId" : "deleteManagedObjectChildAddition",
         "tags" : [ "Child Operations" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Remove a specific child addition from its parent",
-        "operationId" : "deleteManagedObjectChildAddition",
-        "description" : "Remove a specific child addition (by a given child ID) from its parent (by a given ID).\n\nRequired roles: **ROLE_INVENTORY_ADMIN**\n",
+        "description" : "Remove a specific child addition (by a given child ID) from its parent (by a given ID).\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_INVENTORY_ADMIN\n</div></div>\n",
         "responses" : {
           "204" : {
             "description" : "A child addition was removed successfully.",
@@ -1595,13 +1661,15 @@
         "$ref" : "#/components/parameters/managedObjectId"
       } ],
       "post" : {
+        "operationId" : "postManagedObjectChildAsset",
         "tags" : [ "Child Operations" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Assign a specific managed object a child asset",
-        "operationId" : "postManagedObjectChildAsset",
-        "description" : "Assign a specific managed object (by a given child ID) as child asset of another managed object (by a given ID).\n\nRequired roles: **ROLE_INVENTORY_ADMIN** or **ROLE_INVENTORY_CREATE**\n",
+        "description" : "Assign a specific managed object (by a given child ID) as child asset of another managed object (by a given ID).\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_INVENTORY_ADMIN <b>OR</b> ROLE_INVENTORY_CREATE\n</div></div>\n",
         "requestBody" : {
           "required" : true,
           "content" : {
@@ -1642,6 +1710,7 @@
         }
       },
       "get" : {
+        "operationId" : "getManagedObjectChildAssets",
         "parameters" : [ {
           "$ref" : "#/components/parameters/queryParam_currentPage"
         }, {
@@ -1654,10 +1723,11 @@
         "tags" : [ "Child Operations" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Retrieve all child assets of a specific managed object",
-        "operationId" : "getManagedObjectChildAssets",
-        "description" : "Retrieve all child assets of a specific managed object by a given ID.\n\nRequired roles: **ROLE_INVENTORY_READ**\n",
+        "description" : "Retrieve all child assets of a specific managed object by a given ID.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_INVENTORY_READ\n</div></div>\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and all child assets are sent in the response.",
@@ -1715,13 +1785,15 @@
         "$ref" : "#/components/parameters/managedObjectChildId"
       } ],
       "get" : {
+        "operationId" : "getManagedObjectChildAsset",
         "tags" : [ "Child Operations" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Retrieve a specific child asset of a specific managed object",
-        "operationId" : "getManagedObjectChildAsset",
-        "description" : "Retrieve a specific child asset (by a given child ID) of a specific managed object (by a given ID).\n\nRequired roles: **ROLE_INVENTORY_READ**\n",
+        "description" : "Retrieve a specific child asset (by a given child ID) of a specific managed object (by a given ID).\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_INVENTORY_READ\n</div></div>\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the child asset is sent in the response.",
@@ -1758,13 +1830,15 @@
         }
       },
       "delete" : {
+        "operationId" : "deleteManagedObjectChildAsset",
         "tags" : [ "Child Operations" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Remove a specific child asset from its parent",
-        "operationId" : "deleteManagedObjectChildAsset",
-        "description" : "Remove a specific child asset (by a given child ID) from its parent (by a given ID).\n\nRequired roles: **ROLE_INVENTORY_ADMIN**\n",
+        "description" : "Remove a specific child asset (by a given child ID) from its parent (by a given ID).\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_INVENTORY_ADMIN\n</div></div>\n",
         "responses" : {
           "204" : {
             "description" : "A child asset was removed successfully.",
@@ -1787,13 +1861,15 @@
         "$ref" : "#/components/parameters/managedObjectId"
       } ],
       "post" : {
+        "operationId" : "postManagedObjectChildDevice",
         "tags" : [ "Child Operations" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Assign a specific managed object a child device",
-        "operationId" : "postManagedObjectChildDevice",
-        "description" : "Assign a specific managed object (by a given child ID) as child device of another managed object (by a given ID).\n\nRequired roles: **ROLE_INVENTORY_ADMIN** or **ROLE_INVENTORY_CREATE**\n",
+        "description" : "Assign a specific managed object (by a given child ID) as child device of another managed object (by a given ID).\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_INVENTORY_ADMIN <b>OR</b> ROLE_INVENTORY_CREATE\n</div></div>\n",
         "requestBody" : {
           "required" : true,
           "content" : {
@@ -1834,6 +1910,7 @@
         }
       },
       "get" : {
+        "operationId" : "getManagedObjectChildDevices",
         "parameters" : [ {
           "$ref" : "#/components/parameters/queryParam_currentPage"
         }, {
@@ -1846,10 +1923,11 @@
         "tags" : [ "Child Operations" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Retrieve all child devices of a specific managed object",
-        "operationId" : "getManagedObjectChildDevices",
-        "description" : "Retrieve all child devices of a specific managed object by a given ID.\n\nRequired roles: **ROLE_INVENTORY_READ**\n",
+        "description" : "Retrieve all child devices of a specific managed object by a given ID.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_INVENTORY_READ\n</div></div>\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and all child devices are sent in the response.",
@@ -1919,13 +1997,15 @@
         "$ref" : "#/components/parameters/managedObjectChildId"
       } ],
       "get" : {
+        "operationId" : "getManagedObjectChildDevice",
         "tags" : [ "Child Operations" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Retrieve a specific child device of a specific managed object",
-        "operationId" : "getManagedObjectChildDevice",
-        "description" : "Retrieve a specific child device (by a given child ID) of a specific managed object (by a given ID).\n\nRequired roles: **ROLE_INVENTORY_READ**\n",
+        "description" : "Retrieve a specific child device (by a given child ID) of a specific managed object (by a given ID).\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_INVENTORY_READ\n</div></div>\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the child device is sent in the response.",
@@ -1962,13 +2042,15 @@
         }
       },
       "delete" : {
+        "operationId" : "deleteManagedObjectChildDevice",
         "tags" : [ "Child Operations" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Remove a specific child device from its parent",
-        "operationId" : "deleteManagedObjectChildDevice",
-        "description" : "Remove a specific child device (by a given child ID) from its parent (by a given ID).\n\nRequired roles: **ROLE_INVENTORY_ADMIN**\n",
+        "description" : "Remove a specific child device (by a given child ID) from its parent (by a given ID).\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_INVENTORY_ADMIN\n</div></div>\n",
         "responses" : {
           "204" : {
             "description" : "A child device was removed successfully.",
@@ -1993,13 +2075,15 @@
         "$ref" : "#/components/parameters/queryParam_query"
       } ],
       "get" : {
+        "operationId" : "getManagedObjectSupportedMeasurements",
         "tags" : [ "Managed Objects" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Retrieve all measurements of a specific managed object",
-        "operationId" : "getManagedObjectSupportedMeasurements",
-        "description" : "Retrieve all supported measurements of a specific managed object by a given ID.\n\nRequired roles: **ROLE_INVENTORY_READ**\n",
+        "description" : "Retrieve all supported measurements of a specific managed object by a given ID.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_INVENTORY_READ\n</div></div>\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and all supported measurements are sent in the response.",
@@ -2040,13 +2124,15 @@
         "$ref" : "#/components/parameters/queryParam_query"
       } ],
       "get" : {
+        "operationId" : "getManagedObjectSupportedSeries",
         "tags" : [ "Managed Objects" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Retrieve all supported series of a specific managed object",
-        "operationId" : "getManagedObjectSupportedSeries",
-        "description" : "Retrieve all supported series of a specific managed object by a given ID.\n\nRequired roles: **ROLE_INVENTORY_READ**\n",
+        "description" : "Retrieve all supported series of a specific managed object by a given ID.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_INVENTORY_READ\n</div></div>\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and all supported series are sent in the response.",
@@ -2084,13 +2170,15 @@
         "$ref" : "#/components/parameters/managedObjectId"
       } ],
       "get" : {
+        "operationId" : "getManagedObjectUsernameAndStatus",
         "tags" : [ "Managed Objects" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Retrieve the username and status of a specific managed object",
-        "operationId" : "getManagedObjectUsernameAndStatus",
-        "description" : "Retrieve the device's owner's username of a specific managed object (by a given ID) and if it is enabled for that managed object.\n\nRequired roles: **ROLE_INVENTORY_READ**\n",
+        "description" : "Retrieve the device's owner's username of a specific managed object (by a given ID) and if it is enabled for that managed object.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_INVENTORY_READ\n</div></div>\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the username and status are sent in the response.",
@@ -2134,13 +2222,15 @@
     },
     "/measurement" : {
       "get" : {
+        "operationId" : "getMeasurementApi",
         "tags" : [ "Measurement API" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Retrieve URIs to collections of measurements",
-        "operationId" : "getMeasurementApi",
-        "description" : "Retrieve URIs and URI templates to collections of measurements.\n\nRequired roles: **ROLE_MEASUREMENT_READ**\n",
+        "description" : "Retrieve URIs and URI templates to collections of measurements.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_MEASUREMENT_READ\n</div></div>\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the URIs are sent in the response.",
@@ -2219,13 +2309,15 @@
     },
     "/measurement/measurements" : {
       "post" : {
+        "operationId" : "postMeasurement",
         "tags" : [ "Measurements" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Create a measurement",
-        "operationId" : "postMeasurement",
-        "description" : "A measurement must be associated to a source (managed object) identified by ID, and must specify the type of measurement and the time when it was measured by the device (e.g. a thermometer).\n\nRequired roles: **ROLE_MEASUREMENT_ADMIN** or **owner of the source**\n",
+        "description" : "A measurement must be associated to a source (managed object) identified by ID, and must specify the type of measurement and the time when it was measured by the device (e.g. a thermometer).\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_MEASUREMENT_ADMIN <b>OR</b> owner of the source\n</div></div>\n",
         "requestBody" : {
           "required" : true,
           "content" : {
@@ -2302,6 +2394,7 @@
         }
       },
       "get" : {
+        "operationId" : "getMeasurements",
         "parameters" : [ {
           "$ref" : "#/components/parameters/queryParam_measurement_dateFrom"
         }, {
@@ -2322,10 +2415,11 @@
         "tags" : [ "Measurements" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Retrieve all measurements",
-        "operationId" : "getMeasurements",
-        "description" : "Retrieve all measurements on your tenant.\n\nRequired roles: **ROLE_MEASUREMENT_READ**\n",
+        "description" : "Retrieve all measurements on your tenant.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_MEASUREMENT_READ\n</div></div>\n",
         "responses" : {
           "200" : {
             "$ref" : "#/components/responses/measurementCollectionFound"
@@ -2336,6 +2430,7 @@
         }
       },
       "delete" : {
+        "operationId" : "deleteMeasurements",
         "parameters" : [ {
           "$ref" : "#/components/parameters/queryParam_measurement_dateFrom"
         }, {
@@ -2350,10 +2445,11 @@
         "tags" : [ "Measurements" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Remove measurement collections",
-        "operationId" : "deleteMeasurements",
-        "description" : "Remove measurement collections specified by query parameters.\n\n> **⚠️ Important:** Note that it is possible to call this endpoint without providing any parameter - it may result in deleting all measurements and it is not recommended.\n\nRequired roles: **ROLE_MEASUREMENT_ADMIN**\n",
+        "description" : "Remove measurement collections specified by query parameters.\n\n> **⚠️ Important:** Note that it is possible to call this endpoint without providing any parameter - it may result in deleting all measurements and it is not recommended.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_MEASUREMENT_ADMIN\n</div></div>\n",
         "responses" : {
           "204" : {
             "description" : "A collection of measurements was deleted successfully.",
@@ -2374,13 +2470,15 @@
         "$ref" : "#/components/parameters/measurementId"
       } ],
       "get" : {
+        "operationId" : "getMeasurementById",
         "tags" : [ "Measurements" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Retrieve a specific measurement",
-        "operationId" : "getMeasurementById",
-        "description" : "Retrieve a specific measurement by a given ID.\n\nRequired roles: **ROLE_MEASUREMENT_READ**\n",
+        "description" : "Retrieve a specific measurement by a given ID.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_MEASUREMENT_READ\n</div></div>\n",
         "responses" : {
           "200" : {
             "$ref" : "#/components/responses/measurementFound"
@@ -2394,13 +2492,15 @@
         }
       },
       "delete" : {
+        "operationId" : "deleteMeasurementById",
         "tags" : [ "Measurements" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Remove a specific measurement",
-        "operationId" : "deleteMeasurementById",
-        "description" : "Remove a specific measurement by a given ID.\n\nRequired roles: **ROLE_MEASUREMENT_ADMIN** or **owner of the source**\n",
+        "description" : "Remove a specific measurement by a given ID.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_MEASUREMENT_ADMIN <b>OR</b> owner of the source\n</div></div>\n",
         "responses" : {
           "204" : {
             "description" : "A measurement was deleted successfully.",
@@ -2430,13 +2530,15 @@
         "$ref" : "#/components/parameters/queryParam_measurement_series"
       } ],
       "get" : {
+        "operationId" : "getMeasurementSeries",
         "tags" : [ "Measurements" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Retrieve a list of series and their values",
-        "operationId" : "getMeasurementSeries",
-        "description" : "Retrieve a list of series (all or only those matching the specified names) and their values within a given period of a specific managed object (source).<br>\nA series is any fragment in measurement that contains a `value` property.\n\nRequired roles: **ROLE_MEASUREMENT_READ**\n",
+        "description" : "Retrieve a list of series (all or only those matching the specified names) and their values within a given period of a specific managed object (source).<br>\nA series is any fragment in measurement that contains a `value` property.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_MEASUREMENT_READ\n</div></div>\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the series are sent in the response.",
@@ -2450,13 +2552,15 @@
     },
     "/tenant" : {
       "get" : {
+        "operationId" : "getTenantApi",
         "tags" : [ "Tenant API" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Retrieve URIs to collections of tenants",
-        "operationId" : "getTenantApi",
-        "description" : "Retrieve URIs and URI templates to collections of tenants and options.\n\nRequired roles: **ROLE_TENANT_MANAGEMENT_READ**\n",
+        "description" : "Retrieve URIs and URI templates to collections of tenants and options.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_TENANT_MANAGEMENT_READ\n</div></div>\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the URIs are sent in the response.",
@@ -2470,6 +2574,7 @@
     },
     "/tenant/tenants" : {
       "get" : {
+        "operationId" : "getSubtenants",
         "parameters" : [ {
           "$ref" : "#/components/parameters/queryParam_currentPage"
         }, {
@@ -2480,10 +2585,11 @@
         "tags" : [ "Tenants" ],
         "security" : [ {
           "BasicAuthentication" : [ ]
+        }, {
+          "OAuth2Authentication" : [ ]
         } ],
         "summary" : "Retrieve all subtenants",
-        "operationId" : "getSubtenants",
-        "description" : "Retrieve all subtenants on your tenant.\n\nRequired roles: **ROLE_TENANT_MANAGEMENT_READ**\n",
+        "description" : "Retrieve all subtenants on your tenant.\n\n<div class=\"reqRoles\"><div><h5></h5></div><div>\nROLE_TENANT_MANAGEMENT_READ\n</div></div>\n",
         "responses" : {
           "200" : {
             "description" : "The request has succeeded and the subtenants are sent in the response.",
@@ -2502,15 +2608,25 @@
   "components" : {
     "securitySchemes" : {
       "BasicAuthentication" : {
-        "description" : "The authorization header is formed as `Basic <Base64(<tenantID>/<c8yuser>:<password>)>`. For instance, if your tenantID, username and password are **t0071234**, **testuser** and **secret123** respectively, you can generate the Base64 string with the following command:\n\n```shell\n$ echo -n t0071234/testuser:secret123 | base64\n```\n\nand your authorization header would look like the following:\n\n```\n\"Authorization\": \"Basic dDAwNzEyMzQvdGVzdHVzZXI6c2VjcmV0MTIz\"\n```\n\nOn UI interfaces, your username name shall be plain text in the format `<tenantID>/<c8yuser>`.\n",
         "type" : "http",
-        "scheme" : "basic"
+        "scheme" : "basic",
+        "description" : "The authorization header is formed as `Basic <Base64(<tenantID>/<c8yuser>:<password>)>`. For instance, if your tenantID, username and password are **t0071234**, **testuser** and **secret123** respectively, you can generate the Base64 string with the following command:\n\n```shell\n$ echo -n t0071234/testuser:secret123 | base64\n```\n\nand your authorization header would look like the following:\n\n```\n\"Authorization\": \"Basic dDAwNzEyMzQvdGVzdHVzZXI6c2VjcmV0MTIz\"\n```\n\nOn UI interfaces, your username name shall be plain text in the format `<tenantID>/<c8yuser>`.\n"
+      },
+      "OAuth2Authentication" : {
+        "type" : "oauth2",
+        "description" : "To do...\n",
+        "flows" : {
+          "clientCredentials" : {
+            "tokenUrl" : "/tenant/oauth?response_type=code&tenant_id=TENANT",
+            "scopes" : { }
+          }
+        }
       },
       "JWTAuthentication" : {
-        "description" : "Cumulocity IoT supports JWT token authentication. The HTTP header must include:\n\n```\n  \"Authorization\": \"Bearer <<Base64 encoded JWT token>>\"\n```\n\nThe JWT token must be signed using RSA signature with SHA-256 (RS256).\n\nThe minimal RSA key size is 512 bit.\n\nYou must upload your public key to the tenant options on the “token.publicKey” category.\n",
         "type" : "http",
         "scheme" : "bearer",
-        "bearerFormat" : "JWT"
+        "bearerFormat" : "JWT",
+        "description" : "Cumulocity IoT supports JWT token authentication. The HTTP header must include:\n\n```\n  \"Authorization\": \"Bearer <<Base64 encoded JWT token>>\"\n```\n\nThe JWT token must be signed using RSA signature with SHA-256 (RS256).\n\nThe minimal RSA key size is 512 bit.\n\nYou must upload your public key to the tenant options on the “token.publicKey” category.\n"
       }
     },
     "parameters" : {
